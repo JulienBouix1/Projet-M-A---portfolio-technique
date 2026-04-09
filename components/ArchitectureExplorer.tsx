@@ -89,10 +89,16 @@ export function ArchitectureExplorer({ nodes, guardrails, modules }: Architectur
       {/* ── Loupe detail panel ───────────────────────── */}
       {focusedNode && (
         <div key={focusedNode.id} className={styles.loupe}>
-          <div className={styles.loupeInner}>
-            <div className={styles.loupeTech}>
+          {/* Title row above both columns */}
+          <div className={styles.loupeTitle}>
+            <h4>{focusedNode.label}</h4>
+            <span className={styles.loupeSublabel}>{focusedNode.sublabel}</span>
+          </div>
+
+          <div className={styles.loupeColumns}>
+            {/* Tech side */}
+            <div className={styles.loupeCol}>
               <span className={styles.loupeLabel}>Technical</span>
-              <h4>{focusedNode.label}</h4>
               <p>{focusedNode.techDetail}</p>
               <ul className={styles.specList}>
                 {focusedNode.techSpecs.map((spec) => (
@@ -101,19 +107,28 @@ export function ArchitectureExplorer({ nodes, guardrails, modules }: Architectur
               </ul>
             </div>
 
-            <div className={styles.loupeDivider}>
-              <span>Why M&A needs this</span>
-            </div>
-
-            <div className={styles.loupeBusiness}>
-              <span className={styles.loupeLabel}>Business rationale</span>
+            {/* Business side */}
+            <div className={styles.loupeCol}>
+              <span className={styles.loupeLabel}>Why M&A needs this</span>
               <p>{focusedNode.maReason}</p>
+            </div>
+          </div>
+
+          {/* Module connections */}
+          <div className={styles.loupeModules}>
+            <span className={styles.loupeLabel}>
+              Used by {focusedNode.moduleIds.length} module{focusedNode.moduleIds.length !== 1 ? "s" : ""}
+            </span>
+            <div className={styles.modulePills}>
+              {focusedNode.moduleIds.map((id) => (
+                <span key={id} className={styles.modulePill}>{id}</span>
+              ))}
             </div>
           </div>
         </div>
       )}
 
-      {/* ── Module layer (pipeline modules) ──────────── */}
+      {/* ── Module layer ─────────────────────────────── */}
       <div className={styles.moduleLayer}>
         <div className={styles.moduleLayerHeader}>
           <span className={styles.layerTag}>Module Layer</span>

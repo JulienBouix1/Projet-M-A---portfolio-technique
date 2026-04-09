@@ -117,7 +117,7 @@ const textsFR: TextMap = {
     { strong: "Correction routée", p: "Catégorisée, envoyée au fichier SKILL ou MEMORY" },
     { strong: "Le deal suivant est meilleur", p: "Le feedback composé. Deal 20 > Deal 1." }
   ],
-  team: { tag: "Equipe", title: "Deux personnes. Un systeme." },
+  team: { tag: "Équipe", title: "Deux personnes. Un système." },
   julien: {
     name: "Julien Bouix", role: "Président",
     desc: "Ex-Lincoln International, équipe Technology (niveau Associate). 10+ transactions mid-cap. Domaine : exécution M&A, conception du système, rédaction des specs, validation HITL et co-développement de la plateforme.",
