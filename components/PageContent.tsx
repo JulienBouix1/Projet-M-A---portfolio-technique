@@ -232,9 +232,11 @@ export function PageContent() {
               <div className={styles.valoGrid}>
                 {c.valoBranches.map((branch) => (
                   <article key={branch.id} className={styles.valoBranch}>
-                    <span className={styles.valoBranchLabel}>{branch.active}</span>
-                    <h3 className={styles.valoBranchTitle}>{branch.label}</h3>
-                    <span className={styles.valoBranchRole}>{branch.role}</span>
+                    <div className={styles.valoBranchHead}>
+                      <span className={styles.valoBranchLabel}>{branch.active}</span>
+                      <h3 className={styles.valoBranchTitle}>{branch.label}</h3>
+                      <span className={styles.valoBranchRole}>{branch.role}</span>
+                    </div>
                     <p className={styles.valoBranchDesc}>{branch.description}</p>
                     <ul className={styles.valoBranchDetails}>
                       {branch.details.map((d) => (<li key={d}>{d}</li>))}
