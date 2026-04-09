@@ -53,6 +53,14 @@ export function Navigation({ sections }: NavigationProps) {
           >
             {lang === "fr" ? "EN" : "FR"}
           </button>
+          <a className={styles.printBtn} href="/portfolio/print" target="_blank" rel="noopener">
+            PDF
+          </a>
+          <span className={styles.printHint}>
+            {lang === "fr"
+              ? "Cette présentation a été automatisée et a pris moins de 5 minutes à être générée"
+              : "This presentation was automated and took less than 5 minutes to generate"}
+          </span>
         </nav>
       </div>
     </header>
