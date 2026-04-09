@@ -1,0 +1,466 @@
+.shell {
+  display: grid;
+  gap: 0;
+}
+
+/* ── Layer header ──────────────────────────────────────────── */
+
+.layerHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--bg-raised);
+}
+
+.layerTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.layerHint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* ── Node grid ─────────────────────────────────────────────── */
+
+.nodeGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.node {
+  position: relative;
+  appearance: none;
+  border: 0;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--bg-card);
+  cursor: pointer;
+  transition:
+    background var(--duration) ease,
+    opacity var(--duration) ease,
+    transform var(--duration) var(--ease);
+}
+
+.node:hover {
+  background: #1a1a1d;
+}
+
+.nodeFocused {
+  background: #1a1a1d !important;
+  z-index: 2;
+}
+
+.nodeFocused::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 2px solid var(--accent);
+  border-radius: 0;
+  pointer-events: none;
+  animation: glow 3s ease-in-out infinite;
+}
+
+.nodeDimmed {
+  opacity: 0.3;
+}
+
+.nodeIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent-text);
+  transition: border-color var(--duration) ease, background var(--duration) ease;
+}
+
+.nodeFocused .nodeIcon {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.nodeText {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nodeText strong {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nodeText span {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.loupeIndicator {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent);
+}
+
+/* ── Loupe panel ───────────────────────────────────────────── */
+
+.loupe {
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  background: var(--bg-card);
+  animation: fadeIn 0.25s ease;
+}
+
+.loupeInner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  min-height: 0;
+}
+
+.loupeLabel {
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.loupeTech,
+.loupeBusiness {
+  padding: 28px 28px 24px;
+}
+
+.loupeTech h4 {
+  margin: 0 0 10px;
+  font-family: var(--font-display), serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.loupeTech p,
+.loupeBusiness p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.specList {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.specList li {
+  position: relative;
+  padding-left: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.specList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.6;
+}
+
+/* ── Divider ───────────────────────────────────────────────── */
+
+.loupeDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1px;
+  position: relative;
+  background: var(--border);
+}
+
+.loupeDivider span {
+  position: absolute;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-card);
+  padding: 12px 0;
+}
+
+.loupeBusiness {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loupeBusiness p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+/* ── Module layer ──────────────────────────────────────────── */
+
+.moduleLayer {
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background: var(--bg-raised);
+  padding: 18px 24px 20px;
+}
+
+.moduleLayerHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.connectionCount {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  animation: fadeIn 0.3s var(--ease);
+}
+
+.moduleStrip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px;
+}
+
+.moduleCard {
+  position: relative;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition:
+    border-color var(--duration) ease,
+    background var(--duration) ease,
+    opacity var(--duration) ease,
+    transform var(--duration) var(--ease);
+}
+
+.moduleCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.moduleNumber {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.moduleStatus {
+  font-family: var(--font-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.status_live {
+  background: var(--live-bg);
+  color: var(--live);
+}
+
+.status_testing {
+  background: var(--testing-bg);
+  color: var(--testing);
+}
+
+.status_spec {
+  background: var(--spec-bg);
+  color: var(--spec);
+}
+
+.moduleCard strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.moduleCardConnected {
+  border-color: var(--border-focus);
+  background: var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.moduleCardConnected strong {
+  color: var(--accent-text);
+}
+
+.moduleCardDimmed {
+  opacity: 0.25;
+}
+
+.connectionDot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(193, 127, 78, 0.5);
+}
+
+/* ── Guardrail strip ───────────────────────────────────────── */
+
+.guardrailStrip {
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--bg-raised);
+}
+
+.guardrailStrip .layerTag {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.guardrailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.guardrailCard {
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.guardrailCard strong {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent-text);
+  margin-bottom: 6px;
+}
+
+.guardrailCard p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.55;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .loupeInner {
+    grid-template-columns: 1fr;
+  }
+
+  .loupeDivider {
+    width: auto;
+    height: 1px;
+    background: var(--border);
+    margin: 0 28px;
+  }
+
+  .loupeDivider span {
+    writing-mode: horizontal-tb;
+    transform: none;
+    padding: 0 12px;
+  }
+
+  .nodeGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .layerHeader {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nodeGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .loupeTech,
+  .loupeBusiness {
+    padding: 20px;
+  }
+
+  .moduleStrip {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .guardrailGrid {
+    grid-template-columns: 1fr;
+  }
+}

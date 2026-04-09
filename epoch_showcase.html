@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Epoch Associés — Plateforme M&A IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A0907;
+  --surface: #110F0D;
+  --card: #181512;
+  --card-hover: #1E1A16;
+  --gold: #9E7830;
+  --gold-light: #C4A24A;
+  --gold-pale: #E8D5A3;
+  --gold-dim: rgba(158,120,48,0.12);
+  --gold-border: rgba(158,120,48,0.22);
+  --text: #EDE8DF;
+  --text-muted: #8A8580;
+  --text-dim: #4A4842;
+  --accent-blue: #3A7FC1;
+  --accent-teal: #2A8A72;
+  --accent-amber: #C47820;
+  --r: 10px;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+/* ── TYPOGRAPHY ── */
+.serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+.mono  { font-family: 'IBM Plex Mono', monospace; }
+
+h1,h2,h3 { font-family:'Cormorant Garamond',serif; font-weight:500; letter-spacing:-0.02em; }
+.section-label {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px; letter-spacing:0.15em;
+  color:var(--gold); text-transform:uppercase;
+  margin-bottom:16px; opacity:0.8;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 60px;
+  background:linear-gradient(to bottom, rgba(10,9,7,0.95) 0%, transparent 100%);
+  backdrop-filter:blur(2px);
+  transition: background 0.3s;
+}
+nav.scrolled { background:rgba(10,9,7,0.97); border-bottom:1px solid var(--gold-border); }
+.nav-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; font-weight:500; letter-spacing:0.08em;
+  color:var(--text);
+}
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; gap:32px; }
+.nav-links a {
+  font-size:13px; font-weight:400; color:var(--text-muted);
+  text-decoration:none; letter-spacing:0.04em;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--gold-light); }
+.nav-badge {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px; letter-spacing:0.12em;
+  color:var(--gold); border:1px solid var(--gold-border);
+  padding:5px 12px; border-radius:20px;
+}
+
+/* ── HERO ── */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:flex-start;
+  padding:140px 60px 80px;
+  overflow:hidden;
+}
+.hero-bg-grid {
+  position:absolute; inset:0; z-index:0;
+  background-image:
+    linear-gradient(rgba(158,120,48,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158,120,48,0.04) 1px, transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 70% 70% at 30% 50%, black 0%, transparent 100%);
+}
+.hero-glow {
+  position:absolute; top:-10%; left:-5%; width:600px; height:600px; z-index:0;
+  background:radial-gradient(ellipse at center, rgba(158,120,48,0.08) 0%, transparent 70%);
+  animation:glow-pulse 6s ease-in-out infinite;
+}
+@keyframes glow-pulse { 0%,100%{transform:scale(1); opacity:0.7} 50%{transform:scale(1.15); opacity:1} }
+
+.hero-eyebrow {
+  position:relative; z-index:1;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px; letter-spacing:0.2em;
+  color:var(--gold); text-transform:uppercase;
+  margin-bottom:24px;
+  opacity:0; animation:fade-up 0.8s 0.3s forwards;
+}
+.hero-eyebrow::before {
+  content:''; display:inline-block;
+  width:32px; height:1px; background:var(--gold);
+  vertical-align:middle; margin-right:12px; opacity:0.6;
+}
+h1.hero-title {
+  position:relative; z-index:1;
+  font-size:clamp(52px, 7vw, 96px);
+  font-weight:300; line-height:1.05;
+  letter-spacing:-0.03em;
+  max-width:900px;
+  opacity:0; animation:fade-up 0.9s 0.5s forwards;
+}
+h1.hero-title em { font-style:italic; color:var(--gold-light); }
+.hero-sub {
+  position:relative; z-index:1;
+  font-size:18px; font-weight:300;
+  color:var(--text-muted); max-width:560px;
+  margin-top:28px;
+  opacity:0; animation:fade-up 0.9s 0.7s forwards;
+}
+.hero-metrics {
+  position:relative; z-index:1;
+  display:flex; gap:48px; margin-top:56px;
+  opacity:0; animation:fade-up 0.9s 0.9s forwards;
+}
+.hero-metric-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px; font-weight:500; color:var(--gold-light);
+  line-height:1;
+}
+.hero-metric-label {
+  font-size:12px; color:var(--text-muted);
+  margin-top:6px; letter-spacing:0.04em;
+}
+.hero-cta {
+  position:relative; z-index:1;
+  display:flex; align-items:center; gap:24px;
+  margin-top:48px;
+  opacity:0; animation:fade-up 0.9s 1.1s forwards;
+}
+.btn-primary {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--gold); color:#0A0907;
+  font-family:'Outfit',sans-serif; font-size:14px; font-weight:600;
+  padding:14px 28px; border-radius:6px;
+  text-decoration:none; letter-spacing:0.04em;
+  transition:background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--text-muted); font-size:14px;
+  text-decoration:none; letter-spacing:0.04em;
+  transition:color 0.2s;
+}
+.btn-ghost:hover { color:var(--gold-light); }
+
+/* ── SCROLL PARTICLES (canvas) ── */
+#particles-canvas {
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  opacity:0.5;
+}
+
+@keyframes fade-up {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── SECTIONS ── */
+section { position:relative; z-index:1; padding:100px 60px; }
+section + section { border-top:1px solid rgba(158,120,48,0.07); }
+.section-inner { max-width:1200px; margin:0 auto; }
+.section-header { margin-bottom:64px; }
+.section-header h2 {
+  font-size:clamp(36px, 4vw, 56px);
+  font-weight:400; line-height:1.1;
+}
+.section-header h2 span { color:var(--gold-light); font-style:italic; }
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s, transform 0.7s; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:0.1s; }
+.reveal-delay-2 { transition-delay:0.2s; }
+.reveal-delay-3 { transition-delay:0.3s; }
+.reveal-delay-4 { transition-delay:0.4s; }
+.reveal-delay-5 { transition-delay:0.5s; }
+.reveal-delay-6 { transition-delay:0.6s; }
+
+/* ── THESIS SECTION ── */
+#thesis { padding:80px 60px; }
+.thesis-quote {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px, 2.8vw, 36px);
+  font-weight:300; line-height:1.5;
+  color:var(--text); max-width:900px; margin:0 auto;
+  text-align:center;
+}
+.thesis-quote strong { color:var(--gold-light); font-weight:500; }
+.thesis-sub {
+  text-align:center; color:var(--text-muted); margin-top:24px;
+  font-size:15px; max-width:600px; margin-left:auto; margin-right:auto;
+}
+
+/* ── PIPELINE ── */
+#pipeline { background:var(--surface); }
+.pipeline-container {
+  position:relative; overflow:hidden;
+}
+.pipeline-track {
+  display:flex; align-items:stretch;
+  gap:0; overflow-x:auto; padding:8px 0 32px;
+  scrollbar-width:none;
+}
+.pipeline-track::-webkit-scrollbar { display:none; }
+
+.pipeline-phase {
+  flex:0 0 auto;
+  display:flex; flex-direction:column;
+  align-items:center; gap:0;
+  min-width:160px;
+}
+.phase-header {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--gold); padding:8px 16px;
+  border:1px solid var(--gold-border); border-radius:4px;
+  margin-bottom:24px; white-space:nowrap;
+  background:rgba(158,120,48,0.05);
+}
+.phase-nodes { display:flex; flex-direction:column; gap:10px; width:100%; }
+.phase-node {
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:8px;
+  padding:12px 14px;
+  font-size:12px; color:var(--text-muted);
+  cursor:pointer; transition:all 0.2s;
+  position:relative; overflow:hidden;
+}
+.phase-node::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:var(--gold); opacity:0;
+  transition:opacity 0.2s;
+}
+.phase-node:hover {
+  background:var(--card-hover);
+  border-color:var(--gold-border);
+  color:var(--text);
+  transform:translateX(2px);
+}
+.phase-node:hover::before { opacity:1; }
+.phase-node .node-title { font-weight:500; color:var(--text); font-size:13px; margin-bottom:3px; }
+.phase-node .node-badge {
+  font-family:'IBM Plex Mono',monospace; font-size:9px;
+  padding:2px 6px; border-radius:3px; margin-top:6px;
+  display:inline-block;
+}
+.badge-ai { background:rgba(58,127,193,0.15); color:#6EB4F7; }
+.badge-auto { background:rgba(42,138,114,0.15); color:#5BC7A8; }
+.badge-hitl { background:rgba(196,120,32,0.15); color:#F4A34A; }
+.badge-data { background:rgba(158,120,48,0.15); color:var(--gold-light); }
+
+.pipeline-arrow {
+  flex:0 0 auto; display:flex; align-items:center; padding:0 8px;
+  position:relative; top:60px;
+}
+.pipeline-arrow svg { opacity:0.35; }
+
+/* ── MODULES GRID ── */
+#modules { background:var(--bg); }
+.modules-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+  gap:20px;
+}
+.module-card {
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--r);
+  padding:28px;
+  cursor:pointer;
+  transition:all 0.3s;
+  position:relative; overflow:hidden;
+}
+.module-card::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(158,120,48,0.07) 0%, transparent 70%);
+  opacity:0; transition:opacity 0.3s;
+}
+.module-card:hover {
+  border-color:var(--gold-border);
+  background:var(--card-hover);
+  transform:translateY(-3px);
+  box-shadow:0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-border);
+}
+.module-card:hover::after { opacity:1; }
+
+.module-icon {
+  width:44px; height:44px;
+  background:var(--gold-dim); border:1px solid var(--gold-border);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:20px; font-size:20px;
+}
+.module-number {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px; letter-spacing:0.14em;
+  color:var(--gold); margin-bottom:8px;
+}
+.module-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:500; line-height:1.2;
+  margin-bottom:8px; color:var(--text);
+}
+.module-subtitle {
+  font-size:13px; color:var(--text-muted); margin-bottom:16px;
+  line-height:1.5;
+}
+.module-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.module-tag {
+  font-family:'IBM Plex Mono',monospace; font-size:10px;
+  padding:3px 8px; border-radius:3px;
+  background:rgba(255,255,255,0.05); color:var(--text-dim);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.module-stats {
+  display:flex; gap:20px; padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.module-stat-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:500; color:var(--gold-light);
+}
+.module-stat-label {
+  font-size:10px; color:var(--text-muted); letter-spacing:0.04em;
+}
+.module-expand {
+  position:absolute; top:24px; right:24px;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--gold-dim); border:1px solid var(--gold-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:var(--gold); opacity:0;
+  transition:opacity 0.2s;
+}
+.module-card:hover .module-expand { opacity:1; }
+
+/* ── DETAIL MODAL ── */
+.modal-overlay {
+  position:fixed; inset:0; z-index:200;
+  background:rgba(10,9,7,0.9); backdrop-filter:blur(8px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+  padding:40px;
+}
+.modal-overlay.open { opacity:1; pointer-events:auto; }
+.modal-box {
+  background:var(--card); border:1px solid var(--gold-border);
+  border-radius:16px; padding:40px;
+  max-width:700px; width:100%; max-height:80vh; overflow-y:auto;
+  transform:translateY(20px); transition:transform 0.3s;
+  position:relative;
+}
+.modal-overlay.open .modal-box { transform:translateY(0); }
+.modal-close {
+  position:absolute; top:20px; right:20px;
+  background:rgba(255,255,255,0.06); border:none;
+  color:var(--text-muted); cursor:pointer;
+  width:32px; height:32px; border-radius:50%;
+  font-size:16px; display:flex; align-items:center; justify-content:center;
+  transition:background 0.2s;
+}
+.modal-close:hover { background:rgba(255,255,255,0.12); }
+.modal-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px; font-weight:500; margin-bottom:8px;
+}
+.modal-phase-badge {
+  font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em;
+  color:var(--gold); padding:4px 10px; border:1px solid var(--gold-border);
+  border-radius:4px; display:inline-block; margin-bottom:20px;
+}
+.modal-description {
+  color:var(--text-muted); font-size:15px; line-height:1.7; margin-bottom:24px;
+}
+.modal-features { list-style:none; }
+.modal-features li {
+  padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:14px; color:var(--text);
+  display:flex; gap:12px; align-items:flex-start;
+}
+.modal-features li::before {
+  content:''; flex:0 0 6px; height:6px;
+  background:var(--gold); border-radius:50%;
+  margin-top:6px;
+}
+
+/* ── STACK SECTION ── */
+#stack { background:var(--surface); }
+.stack-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+}
+.stack-category {
+  background:var(--card); border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--r); padding:24px;
+}
+.stack-cat-title {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:16px;
+}
+.stack-items { display:flex; flex-direction:column; gap:10px; }
+.stack-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 12px; border-radius:6px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
+}
+.stack-item-name { font-size:13px; font-weight:500; }
+.stack-item-role { font-size:11px; color:var(--text-muted); }
+.stack-dot {
+  width:7px; height:7px; border-radius:50%; flex:0 0 auto;
+}
+.dot-prod { background:#5BC7A8; }
+.dot-dev  { background:#F4A34A; }
+.dot-poc  { background:#6EB4F7; }
+
+/* ── NUMBERS ── */
+#numbers { background:var(--bg); }
+.numbers-grid {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+  background:rgba(158,120,48,0.1);
+  border:1px solid rgba(158,120,48,0.1); border-radius:var(--r);
+  overflow:hidden;
+}
+.number-cell {
+  background:var(--card); padding:48px 36px;
+  text-align:center;
+}
+.number-val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px, 4vw, 64px);
+  font-weight:400; color:var(--gold-light); line-height:1;
+}
+.number-unit { font-size:0.55em; vertical-align:super; }
+.number-label { font-size:13px; color:var(--text-muted); margin-top:10px; line-height:1.4; }
+
+/* ── HITL PHILOSOPHY ── */
+#philosophy { background:var(--surface); }
+.philosophy-cols {
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;
+}
+.philosophy-text h2 { font-size:clamp(32px, 3.5vw, 48px); margin-bottom:20px; }
+.philosophy-text p { color:var(--text-muted); font-size:15px; line-height:1.8; margin-bottom:16px; }
+.philosophy-steps { display:flex; flex-direction:column; gap:0; }
+.philosophy-step {
+  display:flex; gap:20px; padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.step-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px; font-weight:300; color:var(--gold-border);
+  line-height:1; flex:0 0 40px;
+}
+.step-content h4 { font-size:15px; font-weight:600; margin-bottom:6px; color:var(--text); }
+.step-content p  { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+/* ── FOOTER ── */
+footer {
+  position:relative; z-index:1;
+  background:var(--surface);
+  border-top:1px solid rgba(158,120,48,0.1);
+  padding:48px 60px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.footer-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px; font-weight:500; letter-spacing:0.06em;
+}
+.footer-logo span { color:var(--gold); }
+.footer-info { font-size:12px; color:var(--text-muted); text-align:right; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:rgba(158,120,48,0.3); border-radius:2px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding:16px 24px; }
+  .nav-links { display:none; }
+  section { padding:70px 24px; }
+  #hero { padding:110px 24px 60px; }
+  .hero-metrics { gap:28px; flex-wrap:wrap; }
+  .numbers-grid { grid-template-columns:1fr 1fr; }
+  .stack-grid { grid-template-columns:1fr; }
+  .philosophy-cols { grid-template-columns:1fr; gap:40px; }
+  footer { flex-direction:column; gap:20px; text-align:center; }
+  .footer-info { text-align:center; }
+}
+
+/* ── ANIMATED PIPELINE LINE ── */
+.pipeline-flow-dot {
+  position:absolute;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 12px var(--gold), 0 0 24px rgba(158,120,48,0.4);
+  pointer-events:none;
+  opacity:0;
+}
+
+/* ── TICKER ── */
+.ticker-bar {
+  background:var(--surface);
+  border-bottom:1px solid rgba(158,120,48,0.08);
+  overflow:hidden; height:36px;
+  display:flex; align-items:center;
+  position:relative; z-index:50;
+}
+.ticker-inner {
+  display:flex; gap:60px; white-space:nowrap;
+  animation:ticker-scroll 30s linear infinite;
+}
+.ticker-item {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px; letter-spacing:0.08em;
+  color:var(--text-dim);
+}
+.ticker-item span { color:var(--gold); margin-right:8px; }
+@keyframes ticker-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">EPOCH <span>Associés</span></div>
+  <div class="nav-links">
+    <a href="#pipeline">Pipeline</a>
+    <a href="#modules">Modules</a>
+    <a href="#stack">Stack</a>
+    <a href="#numbers">Chiffres</a>
+    <a href="#philosophy">Philosophie</a>
+  </div>
+  <div class="nav-badge">IA-FIRST M&A</div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner" id="ticker-inner">
+    <span class="ticker-item"><span>◈</span>14 modules déployés</span>
+    <span class="ticker-item"><span>◈</span>200 000+ acquéreurs en base</span>
+    <span class="ticker-item"><span>◈</span>Sourcing → Closing, bout en bout</span>
+    <span class="ticker-item"><span>◈</span>Zéro email envoyé automatiquement</span>
+    <span class="ticker-item"><span>◈</span>LBO · Transaction comps · Trading comps</span>
+    <span class="ticker-item"><span>◈</span>HITL à chaque étape critique</span>
+    <span class="ticker-item"><span>◈</span>Qwen 32B local · Claude · OpenRouter</span>
+    <span class="ticker-item"><span>◈</span>Deal 1 : labourieux. Deal 50 : autonome.</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span>◈</span>14 modules déployés</span>
+    <span class="ticker-item"><span>◈</span>200 000+ acquéreurs en base</span>
+    <span class="ticker-item"><span>◈</span>Sourcing → Closing, bout en bout</span>
+    <span class="ticker-item"><span>◈</span>Zéro email envoyé automatiquement</span>
+    <span class="ticker-item"><span>◈</span>LBO · Transaction comps · Trading comps</span>
+    <span class="ticker-item"><span>◈</span>HITL à chaque étape critique</span>
+    <span class="ticker-item"><span>◈</span>Qwen 32B local · Claude · OpenRouter</span>
+    <span class="ticker-item"><span>◈</span>Deal 1 : labourieux. Deal 50 : autonome.</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-eyebrow">Cabinet M&A — Small Cap France — 500K–10M € EV</div>
+  <h1 class="hero-title serif">
+    La première plateforme M&A<br><em>entièrement pilotée par l'IA</em>
+  </h1>
+  <p class="hero-sub">Du sourcing à la clôture — 14 modules interconnectés, un banquier maître à bord à chaque étape critique.</p>
+
+  <div class="hero-metrics">
+    <div>
+      <div class="hero-metric-val">14</div>
+      <div class="hero-metric-label">Modules opérationnels</div>
+    </div>
+    <div>
+      <div class="hero-metric-val">200K<span style="font-size:0.5em;vertical-align:super">+</span></div>
+      <div class="hero-metric-label">Acquéreurs en base</div>
+    </div>
+    <div>
+      <div class="hero-metric-val">80%<span style="font-size:0.5em;vertical-align:super">+</span></div>
+      <div class="hero-metric-label">Tâches automatisées</div>
+    </div>
+    <div>
+      <div class="hero-metric-val">€0</div>
+      <div class="hero-metric-label">Coût donnée publique</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#pipeline" class="btn-primary">
+      Voir le pipeline
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#modules" class="btn-ghost">Explorer les modules →</a>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="section-inner">
+    <div class="thesis-quote reveal">
+      Un cabinet M&A <strong>AI-first</strong> ne remplace pas le banquier — il lui donne les <strong>outils d'une équipe de 20 personnes</strong> tout en conservant son jugement à chaque point critique.
+    </div>
+    <p class="thesis-sub reveal reveal-delay-2">Le vrai moat : des données propriétaires de deal accumulées en temps réel, enrichies par chaque retour HITL. Deal 1 : labourieux. Deal 50 : quasi-autonome.</p>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section id="pipeline">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Architecture bout en bout</div>
+      <h2>Le pipeline de <span>deal complet</span></h2>
+      <p style="color:var(--text-muted); margin-top:12px; font-size:15px;">Du premier signal de cession jusqu'à la signature — chaque étape automatisée, chaque décision validée.</p>
+    </div>
+
+    <div class="pipeline-container reveal">
+      <div class="pipeline-track" id="pipeline-track">
+
+        <!-- PHASE 1 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">① Sourcing</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">Portails M&A</div>
+              BPI, Fusacq, CessionPME, EntreprisesEnLumière, Michel Simond
+              <span class="node-badge badge-auto">AUTO</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Data Froide</div>
+              5K–15K PME proactives via INSEE SIRENE + INPI + BODACC
+              <span class="node-badge badge-data">DATA PUBLIQUE</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Entity Resolution</div>
+              Cascade 4 niveaux : déterministe → Qwen 32B → Claude → manuel
+              <span class="node-badge badge-ai">IA CASCADE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-arrow">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <path d="M8 16h16M20 10l6 6-6 6" stroke="#9E7830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">② Pré-pitch</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">Agent Info Publique</div>
+              10 SKILL files. Due dil gratuite avant pitch
+              <span class="node-badge badge-ai">10 SKILLS</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Workshop Sectoriel</div>
+              8 secteurs. SKILL + MEMORY par industrie
+              <span class="node-badge badge-hitl">HITL FEEDBACK</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Agent Pitch</div>
+              PowerPoint Lincoln-style généré automatiquement
+              <span class="node-badge badge-ai">PPTX AUTO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-arrow">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <path d="M8 16h16M20 10l6 6-6 6" stroke="#9E7830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">③ Mandat</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">Module IRL</div>
+              80 items, 14 catégories. Déclencheurs de déblocage aval
+              <span class="node-badge badge-data">DATAROOM LOCK</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Datapack Financier</div>
+              FEC → KPIs. 4 agents, 18 skills. Zéro donnée inventée
+              <span class="node-badge badge-ai">FEC INGESTION</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Business Plan</div>
+              4 agents, 6 modèles topline configurables
+              <span class="node-badge badge-hitl">HITL LOGGING</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-arrow">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <path d="M8 16h16M20 10l6 6-6 6" stroke="#9E7830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- PHASE 4 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">④ Valorisation</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">Branche A — Comps</div>
+              Transaction comps. MAKB / 451 Research. 50K records/mois
+              <span class="node-badge badge-data">DATABASE M&A</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Branche B — Trading</div>
+              Pairs cotés. yfinance. EV/EBITDA. DLOM + size discount
+              <span class="node-badge badge-auto">YFINANCE</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Branche C — LBO</div>
+              Floor LBO. 6 deals internalisés. 2 familles de templates
+              <span class="node-badge badge-ai">REVERSE LBO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-arrow">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <path d="M8 16h16M20 10l6 6-6 6" stroke="#9E7830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- PHASE 5 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">⑤ Commercialisation</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">IM Writer</div>
+              CIM complet. 2 modes : sell-side compétitif / IC memo bilatéral
+              <span class="node-badge badge-ai">13 FICHIERS</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Module Buyer V5</div>
+              200K–500K entreprises. Serial acquirers. 6 typologies
+              <span class="node-badge badge-data">GRAPH DB</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Email Intelligence</div>
+              Analyste (stateless) + VP Director (stateful LangGraph)
+              <span class="node-badge badge-hitl">ZERO SEND AUTO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-arrow">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32">
+            <path d="M8 16h16M20 10l6 6-6 6" stroke="#9E7830" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- PHASE 6 -->
+        <div class="pipeline-phase">
+          <div class="phase-header">⑥ Cockpit</div>
+          <div class="phase-nodes">
+            <div class="phase-node">
+              <div class="node-title">CRM Cockpit</div>
+              FastAPI + HTMX. 5 onglets. HITL queue intégrée
+              <span class="node-badge badge-hitl">BANQUIER HUB</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Audit complet</div>
+              Toutes actions tracées. Feedback → SKILL + MEMORY
+              <span class="node-badge badge-data">AUDIT TRAIL</span>
+            </div>
+            <div class="phase-node">
+              <div class="node-title">Observabilité</div>
+              structlog + Langfuse. LLM tracing bout en bout
+              <span class="node-badge badge-auto">LANGFUSE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="modules">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">14 modules spécialisés</div>
+      <h2>Une plateforme <span>complète</span>, pas un outil</h2>
+      <p style="color:var(--text-muted); margin-top:12px; font-size:15px;">Chaque module a sa propre architecture d'agents, ses SKILL files et son feedback loop HITL. Cliquer pour explorer.</p>
+    </div>
+
+    <div class="modules-grid" id="modules-grid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Infrastructure technique</div>
+      <h2>Stack <span>de production</span></h2>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-category reveal reveal-delay-1">
+        <div class="stack-cat-title">Données & Stockage</div>
+        <div class="stack-items">
+          <div class="stack-item"><div><div class="stack-item-name">PostgreSQL 16</div><div class="stack-item-role">CRM, deals, acquéreurs, audit</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">Qdrant</div><div class="stack-item-role">Vector DB — namespaces par deal</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">Neo4j CE</div><div class="stack-item-role">Graph dirigeants multi-mandats</div></div><div class="stack-dot dot-poc"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">Google Drive</div><div class="stack-item-role">Dossiers deals synchronisés</div></div><div class="stack-dot dot-prod"></div></div>
+        </div>
+      </div>
+
+      <div class="stack-category reveal reveal-delay-2">
+        <div class="stack-cat-title">IA & Orchestration</div>
+        <div class="stack-items">
+          <div class="stack-item"><div><div class="stack-item-name">Qwen 2.5 32B-AWQ</div><div class="stack-item-role">LLM local — RTX 4090 — batch/DB</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">OpenRouter</div><div class="stack-item-role">Gateway unifié — Claude + Kimi 2.5</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">LangGraph</div><div class="stack-item-role">Orchestration agents stateful</div></div><div class="stack-dot dot-poc"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">BGE-M3 + BM25</div><div class="stack-item-role">Hybrid RAG — dense + sparse + RRF</div></div><div class="stack-dot dot-prod"></div></div>
+        </div>
+      </div>
+
+      <div class="stack-category reveal reveal-delay-3">
+        <div class="stack-cat-title">API & Services</div>
+        <div class="stack-items">
+          <div class="stack-item"><div><div class="stack-item-name">FastAPI + HTMX</div><div class="stack-item-role">Cockpit CRM banquier</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">Docling (IBM)</div><div class="stack-item-role">Parsing documents — MIT license</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">INSEE · INPI · BODACC</div><div class="stack-item-role">Open data français — €0</div></div><div class="stack-dot dot-prod"></div></div>
+          <div class="stack-item"><div><div class="stack-item-name">Langfuse + structlog</div><div class="stack-item-role">Observabilité LLM bout en bout</div></div><div class="stack-dot dot-prod"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; display:flex; gap:20px; flex-wrap:wrap;" class="reveal reveal-delay-4">
+      <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted);">
+        <div class="stack-dot dot-prod" style="width:8px;height:8px;"></div> Production
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted);">
+        <div class="stack-dot dot-dev" style="width:8px;height:8px;"></div> En développement
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted);">
+        <div class="stack-dot dot-poc" style="width:8px;height:8px;"></div> PoC en cours
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="section-inner">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="section-label">En chiffres</div>
+      <h2>L'échelle de la <span>plateforme</span></h2>
+    </div>
+    <div class="numbers-grid reveal">
+      <div class="number-cell">
+        <div class="number-val" data-target="14">0</div>
+        <div class="number-label">Modules<br>spécialisés</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="200" data-suffix="K+">0</div>
+        <div class="number-label">Acquéreurs<br>en base pré-enrichie</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="80" data-suffix="%">0</div>
+        <div class="number-label">Items IRL couverts<br>en 14 catégories</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="8">0</div>
+        <div class="number-label">CIMs analysés<br>banques top-tier</div>
+      </div>
+    </div>
+    <div class="numbers-grid reveal reveal-delay-2" style="margin-top:1px;">
+      <div class="number-cell">
+        <div class="number-val" data-target="6">0</div>
+        <div class="number-label">Deals LBO<br>internalisés</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="18">0</div>
+        <div class="number-label">Skills Datapack<br>Financier</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="6">0</div>
+        <div class="number-label">Modèles topline<br>Business Plan</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val" data-target="0" data-prefix="€">0</div>
+        <div class="number-label">Coût données<br>publiques françaises</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="section-inner philosophy-cols">
+    <div class="philosophy-text reveal">
+      <div class="section-label">Philosophie HITL</div>
+      <h2>Banker-in-the-<span style="color:var(--gold-light);font-style:italic;">loop</span></h2>
+      <p>L'IA ne signe pas les deals. Elle prépare, analyse, structure — et présente les options. Le banquier décide à chaque point critique, valide chaque livrable, corrige chaque erreur.</p>
+      <p>Chaque correction alimente les SKILL files et les MEMORY files. L'agent s'améliore deal après deal. C'est le vrai actif propriétaire.</p>
+      <p>Règle absolue : <strong style="color:var(--text);">zéro email envoyé automatiquement.</strong> Jamais. Dans aucune itération future.</p>
+    </div>
+    <div class="philosophy-steps reveal reveal-delay-2">
+      <div class="philosophy-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>L'agent produit un livrable</h4>
+          <p>Analyse, scoring, brouillon, valorisation — toujours traçable à une source documentée.</p>
+        </div>
+      </div>
+      <div class="philosophy-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Le banquier valide ou corrige</h4>
+          <p>Queue HITL dans le Cockpit. Chaque décision est loggée avec son contexte et son raisonnement.</p>
+        </div>
+      </div>
+      <div class="philosophy-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>La correction enrichit la mémoire</h4>
+          <p>hitl_feedback_logs → SKILL files + MEMORY files. L'agent apprend les préférences spécifiques du deal et du secteur.</p>
+        </div>
+      </div>
+      <div class="philosophy-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Le deal suivant démarre plus haut</h4>
+          <p>Deal 1 : labourieux. Deal 10 : fluide. Deal 50 : quasi-autonome. Le compounding est l'avantage concurrentiel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">EPOCH <span>Associés</span></div>
+    <div style="font-size:12px; color:var(--text-muted); margin-top:8px;">SAS au capital de 10€ — Paris</div>
+  </div>
+  <div class="footer-info">
+    <div style="color:var(--text-muted); font-size:12px;">Julien Bouix · Louis Germain</div>
+    <div style="color:var(--text-dim); font-size:11px; margin-top:4px; font-family:'IBM Plex Mono',monospace;">Confidentiel — Usage interne</div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+// ── MODULE DATA ──
+const modules = [
+  {
+    icon:'🔍', num:'M-01', title:'Sourcing Portails',
+    phase:'Sourcing', subtitle:'Scraping multi-sources en temps réel',
+    tags:['Playwright','PostgreSQL','Dédup pré-ER'],
+    stats:[{val:'6',label:'Portails'},{val:'Déterministe',label:'Entity Resol.'}],
+    features:[
+      'Scrapers T1: BPI France, Transentreprise, Fusacq, CessionPME',
+      'Scrapers T2: EntreprisesEnLumière, PMEàVendre, Cession-Entreprise, Michel Simond',
+      'Parsing métriques texte : "CA > 3M€, 6–9 sal." → données structurées',
+      'Déduplication inter-portails avant Entity Resolution',
+      'Veille CFNEWS + BODACC en parallèle (signaux sectoriels)',
+    ],
+    description:'Capture systématique de toutes les annonces de cession publiées sur les portails M&A français, enrichies par un parsing LLM des métriques textuelles.',
+  },
+  {
+    icon:'🏭', num:'M-02', title:'Data Froide',
+    phase:'Sourcing', subtitle:'Univers proactif 5K–15K PME cessibles',
+    tags:['INSEE SIRENE','INPI RNE','BODACC','€0 coût'],
+    stats:[{val:'15K',label:'PME cibles max'},{val:'€0',label:'Coût data'}],
+    features:[
+      'Requête multicritère : secteur NAF × tranche CA × âge dirigeant × localisation',
+      'Sources directes : INSEE SIRENE + INPI RNE + BODACC (sans intermédiaire)',
+      'Filtrage exclusion : recent BODACC liquidation, gérant <2 ans, CA < seuil',
+      'Signaux de cession : dirigeant > 60 ans, pas de successeur identifiable, holding sans héritiers',
+      'Enrichissement complet avant INSERT dans leads (source = data_froide)',
+    ],
+    description:'Constitution d\'un univers de PME potentiellement cessibles sans annonce publiée — sourcing proactif via données publiques françaises, sans dépendance à Pappers.',
+  },
+  {
+    icon:'🔗', num:'M-03', title:'Entity Resolution',
+    phase:'Sourcing', subtitle:'Cascade 4 niveaux — 98% auto',
+    tags:['Qwen 32B','Claude','HoldCo/OpCo','SIREN'],
+    stats:[{val:'~70%',label:'Niveau 1 auto'},{val:'~2%',label:'Manuel résiduel'}],
+    features:[
+      'Niveau 1 — Déterministe (SIREN exact, TVA, nom strict) : ~70% des cas, coût €0',
+      'Niveau 2 — Qwen 32B local (fuzzy matching + LLM scoring) : ~25% des cas',
+      'Niveau 3 — OpenRouter (Claude) : cas ambigus, ~3% des cas, ~0.02€/appel',
+      'Niveau 4 — Interface manuelle CRM Cockpit : < 2% des cas',
+      'Réconciliation HoldCo / OpCo post-matching',
+      'Cache Pappers TTL : 30j bilans, 7j dirigeants',
+      'Feedback loop : corrections humaines → recalibrage des seuils de confiance',
+    ],
+    description:'Identification fiable de l\'entité légale derrière chaque annonce ou lead. La cascade garantit précision maximale au coût minimal.',
+  },
+  {
+    icon:'🖥️', num:'M-04', title:'CRM Cockpit',
+    phase:'Orchestration', subtitle:'Hub central du banquier',
+    tags:['FastAPI','HTMX','Jinja2','PostgreSQL'],
+    stats:[{val:'5',label:'Onglets'},{val:'HITL',label:'Queue intégrée'}],
+    features:[
+      'Onglet Sourcing : portail vs data froide, pipeline de qualification',
+      'Onglet Deals : CRM léger, statuts, documents, timeline deal',
+      'Onglet Buyers : DB acquéreurs globale + log acquéreurs par deal',
+      'Onglet Analyste : queue HITL, validations en attente, brouillons',
+      'Onglet VP/Director : escalades, décisions stratégiques, approbations',
+      'Aucun email envoyé automatiquement — principe absolu, permanent',
+      'Audit trail complet : toutes actions loggées avec timestamp et contexte',
+    ],
+    description:'Interface unique de pilotage du banquier. Chaque module alimente le Cockpit, chaque décision est prise ici, chaque correction est capturée.',
+  },
+  {
+    icon:'🔎', num:'M-05', title:'Agent Info Publique',
+    phase:'Pré-pitch', subtitle:'Due dil gratuite avant le pitch',
+    tags:['10 SKILL files','Kimi 2.5','Web crawling','Agent Juge'],
+    stats:[{val:'10',label:'SKILL files'},{val:'Pitch',label:'Phase uniquement'}],
+    features:[
+      'SKILL_MANAGEMENT : dirigeants, parcours, profil décisionnel',
+      'SKILL_FINANCIER : comptes publiés, tendances CA/EBE, ratios',
+      'SKILL_CONCURRENTIEL : positionnement marché, parts de marché',
+      'SKILL_CONTENTIEUX : litiges, redressements, signaux négatifs',
+      'SKILL_ACTIONNARIAT : structure capitalistique, pactes publiés',
+      'Agent Juge Mode A : filtrage documents par pertinence',
+      'Agent Juge Mode B : brief adversariel — challenge des conclusions',
+      'Kimi 2.5 via OpenRouter pour le web crawling',
+    ],
+    description:'Analyse complète de la cible à partir de données publiques uniquement, avant toute rencontre avec le vendeur. Fournit un avantage informationnel au pitch.',
+  },
+  {
+    icon:'📊', num:'M-06', title:'Workshop Sectoriel',
+    phase:'Pré-pitch', subtitle:'Intelligence sectorielle cumulée',
+    tags:['8 secteurs','SKILL files','MEMORY_IND','Feedback loop'],
+    stats:[{val:'8',label:'Secteurs'},{val:'∞',label:'Amélioration continue'}],
+    features:[
+      'SKILL_TECH, SKILL_SERVICES, SKILL_FOOD, SKILL_RETAIL',
+      'SKILL_CONSTRUCTION, SKILL_HEALTHCARE, SKILL_INDUSTRIAL, SKILL_UNIVERSAL',
+      'MEMORY_TRAME_WORKSHOP : trame structurée d\'analyse',
+      '8 MEMORY_IND files (à peupler à partir des runs live)',
+      'Protocole HITL → SKILL + MEMORY update après chaque deal',
+      'Questions benchmark sectoriel : CAC, NPS, Ebitda typical par secteur',
+      'Comparaison vs standards : quel niveau de marge est "bon" dans ce secteur ?',
+    ],
+    description:'Accumulation de connaissance sectorielle deal après deal. Les SKILL files capturent les patterns récurrents, les MEMORY files retiennent les cas spécifiques.',
+  },
+  {
+    icon:'📑', num:'M-07', title:'Agent Pitch',
+    phase:'Pré-pitch', subtitle:'PowerPoint Lincoln-style automatique',
+    tags:['PPTX','Arial','#3D3B38','#9E7830','Lincoln benchmark'],
+    stats:[{val:'7',label:'SKILL files'},{val:'V5',label:'Template actif'}],
+    features:[
+      'Template V5 : Arial, fond charcoal #3D3B38, or #9E7830 seul accent',
+      'Lincoln International comme référence de qualité visuelle',
+      '7 SKILL files + SKILL_PITCH_00_ORCHESTRATOR',
+      'Auto-génération à partir du profil cible + atouts clés identifiés',
+      'Sections : thèse, entreprise, secteur, valorisation indicative, next steps',
+      'Teaser auto-généré comme sous-ensemble du pitch',
+      'Version acquéreur avec tracking (qui a reçu quoi, quand)',
+    ],
+    description:'Production automatique de matériaux de pitch banquier-grade. L\'agent assemble les analyses issues des modules précédents dans une présentation cohérente.',
+  },
+  {
+    icon:'📬', num:'M-08', title:'Email Intelligence',
+    phase:'Deal execution', subtitle:'Deux agents, zéro envoi automatique',
+    tags:['LangGraph','Gmail','Google Calendar','Qdrant'],
+    stats:[{val:'2',label:'Agents'},{val:'0',label:'Emails auto-envoyés'},
+    ],
+    features:[
+      'Agent Analyste : junior associate, stateless par email, analyse entrant',
+      'Agent VP Director : senior director, stateful par deal (thread_id = deal_id)',
+      'Communication inter-agents via table PostgreSQL agent_messages',
+      'Google Calendar API read-only : contexte réunions pour chaque deal',
+      'Vectorisation pièces jointes dans Qdrant (Docling + bge-m3)',
+      'Namespaces Qdrant : deal_{id}_{type} — isolation stricte',
+      'Chaque brouillon proposé au banquier dans la queue HITL du Cockpit',
+    ],
+    description:'Intelligence email complète sur tous les deals actifs. Les agents lisent, analysent, proposent — le banquier choisit d\'envoyer ou non, toujours.',
+  },
+  {
+    icon:'📋', num:'M-09', title:'Module IRL',
+    phase:'Dataroom', subtitle:'Information Request List — 80 items',
+    tags:['Excel','14 catégories','Sections A & B','Unlock signals'],
+    stats:[{val:'80',label:'Items'},{val:'14',label:'Catégories'}],
+    features:[
+      'Section A : documents stratégiques + CIM (8 catégories)',
+      'Section B : données financières + comptables pour le datapack (6 catégories)',
+      'Unlock signals : quels documents débloquent quels modules aval',
+      '8 overlays de sectorisation (structure définie, contenu à peupler)',
+      'Tracking automatisé Gmail/Drive prévu en V2',
+      'Scoring de complétude : % dataroom remplie par catégorie',
+      'Alertes : items critiques manquants avant étapes clés',
+    ],
+    description:'Template exhaustif de demande de documents, organisé pour maximiser la qualité et la complétude de la dataroom tout en signalant les blocages potentiels.',
+  },
+  {
+    icon:'💰', num:'M-10', title:'Module Valo V6',
+    phase:'Valorisation', subtitle:'Football field multi-méthodes',
+    tags:['Transaction comps','Trading comps','LBO floor','yfinance'],
+    stats:[{val:'3',label:'Branches'},{val:'Football field',label:'Synthèse'}],
+    features:[
+      'Branche A — Transaction comps : MAKB / 451 Research, 50K records/mois, multiples EV/EBITDA sectoriels',
+      'Branche B — Trading comps : yfinance, 3 niveaux d\'identification des pairs, DLOM + size discount',
+      'Branche C — LBO floor : reverse LBO, 2 familles de templates (885 et 606 lignes)',
+      'Add-in xlwings =YF() pour intégration Excel live — viable dès V1',
+      'Football field synthesis : plage de valorisation consolidée par méthode',
+      '4 nouvelles tables PostgreSQL pour historique valuation par deal',
+      'Benchmarks Argos / Epsilon : contexte sectoriel (non une méthode de valorisation)',
+    ],
+    description:'Valorisation rigoureuse par trois méthodes indépendantes, consolidée en football field. Chaque multiple est traçable à une source. Zéro interpolation non documentée.',
+  },
+  {
+    icon:'📝', num:'M-11', title:'IM Writer V2.1',
+    phase:'Commercialisation', subtitle:'CIM banquier-grade automatique',
+    tags:['13 fichiers','2 modes narratifs','Sell-side','IC memo'],
+    stats:[{val:'13',label:'Fichiers markdown'},{val:'2',label:'Modes narratifs'}],
+    features:[
+      'Mode 1 : sell-side compétitif (Lincoln-style) — CIM classique processus',
+      'Mode 2 : IC memo bilatéral (Sycomore-style) — ton plus analytique',
+      'Documents management comme source principale (pas enrichissement optionnel)',
+      'Backup Excel obligatoire : 8–20 onglets selon complexité deal',
+      'Règle absolue : zéro valorisation dans le CIM sell-side',
+      'Teaser auto-généré comme sous-ensemble du CIM',
+      'Corpus actuel : 8 CIMs analysés (Lincoln, Sycomore, Bryan Garnier, Clipperton)',
+    ],
+    description:'Production du mémorandum d\'information complet. Le banquier valide chaque section. Les documents management sont la source — pas les bases de données génériques.',
+  },
+  {
+    icon:'📈', num:'M-12', title:'Datapack Financier',
+    phase:'Deal execution', subtitle:'FEC → KPIs — zéro donnée inventée',
+    tags:['FEC ingestion','4 agents','18 skills','openpyxl'],
+    stats:[{val:'4',label:'Agents'},{val:'18',label:'Skills'}],
+    features:[
+      'Agent Builder : ingestion FEC → structuration comptable',
+      'Agent Analyst : construction KPIs, retraitements EBITDA normalisé',
+      'Agent Reviewer ×4 : 4 reviewers spécialisés (P&L, bilan, trésorerie, WC)',
+      'Agent Juge : arbitrage désaccords entre reviewers',
+      'require_citation=True sur tous les livrables contenant des chiffres',
+      'Fiabilité de chaque donnée : certified / declarative / estimated / public_web',
+      'Intégration Business Plan : les données FEC alimentent directement le modèle BP',
+    ],
+    description:'Transformation du FEC brut en datapack financier analytique. Chaque chiffre est traçable à sa source comptable originale. Le datapack débloque la valorisation et le CIM.',
+  },
+  {
+    icon:'🗺️', num:'M-13', title:'Business Plan',
+    phase:'Deal execution', subtitle:'6 modèles topline configurables',
+    tags:['4 agents','6 modèles','RAG ciblé','HITL 3 niveaux'],
+    stats:[{val:'6',label:'Modèles topline'},{val:'3',label:'Niveaux HITL'}],
+    features:[
+      '6 modèles topline : récurrent/SaaS, projet, volume×prix, rétention, saisonnalité, mixte',
+      'Agent Diagnostic : analyse des drivers historiques, détection des tendances',
+      'Agent Builder : construction du modèle financier prospectif 3–5 ans',
+      'Agent Reviewer + Agent Juge : double validation, arbitrage contradictions',
+      'RAG via requêtes Qdrant ciblées (pas re-lecture complète des docs)',
+      'Lectures déterministes via openpyxl pour toutes données Excel',
+      'Logging HITL niveau 1/2/3 : quelle décision, quel agent, quel contexte',
+    ],
+    description:'Business Plan prospectif construit sur les données historiques du datapack. Le modèle est cohérent avec la valorisation — il en est l\'un des inputs clés.',
+  },
+  {
+    icon:'🎯', num:'M-14', title:'Module Buyer V5',
+    phase:'Commercialisation', subtitle:'200K–500K acquéreurs pré-enrichis',
+    tags:['Serial acquirers','Graph DB','6 typologies','Discovery rate'],
+    stats:[{val:'500K',label:'Acquéreurs max'},{val:'6',label:'Typologies'}],
+    features:[
+      '6 typologies : corporate_independent, corporate_pe_backed, pe_fund, search_fund, consolidator, individual',
+      'Détection serial acquireurs : graph dirigeants multi-mandats × secteur',
+      'Holdings détenant 3+ opcos, patterns BODACC, portfolios PE scrapés, CFNews',
+      'DB pré-enrichie : dirigeants, âge, bénéficiaires, comptes, BODACC events, GPS',
+      'Phase A : constitution DB batch (SIRENE + INPI + BODACC, PAS Pappers)',
+      'Phase B : matching HITL itératif — 200–500 candidats → 30–50 hyper pertinents',
+      'KPI clé : discovery rate — buyers retenus inconnus du banquier avant le module',
+    ],
+    description:'Base d\'acquéreurs la plus complète possible du marché français, construite uniquement sur données publiques. L\'avantage concurrentiel n°1 est la détection des serial acquéreurs hors radar.',
+  },
+];
+
+// ── BUILD MODULE CARDS ──
+const grid = document.getElementById('modules-grid');
+modules.forEach((m, i) => {
+  const delay = (i % 3) + 1;
+  const card = document.createElement('div');
+  card.className = `module-card reveal reveal-delay-${delay}`;
+  card.innerHTML = `
+    <div class="module-expand">+</div>
+    <div class="module-icon">${m.icon}</div>
+    <div class="module-number">${m.num} — ${m.phase}</div>
+    <div class="module-title">${m.title}</div>
+    <div class="module-subtitle">${m.subtitle}</div>
+    <div class="module-tags">${m.tags.map(t=>`<span class="module-tag">${t}</span>`).join('')}</div>
+    <div class="module-stats">${m.stats.map(s=>`<div><div class="module-stat-val">${s.val}</div><div class="module-stat-label">${s.label}</div></div>`).join('')}</div>
+  `;
+  card.addEventListener('click', () => openModal(m));
+  grid.appendChild(card);
+});
+
+// ── MODAL ──
+function openModal(m) {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-title">${m.icon} ${m.title}</div>
+    <div class="modal-phase-badge">${m.num} — ${m.phase}</div>
+    <p class="modal-description">${m.description}</p>
+    <ul class="modal-features">
+      ${m.features.map(f=>`<li>${f}</li>`).join('')}
+    </ul>
+  `;
+  overlay.classList.add('open');
+}
+document.getElementById('modal-close').addEventListener('click', () => {
+  document.getElementById('modal-overlay').classList.remove('open');
+});
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if(e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+
+// ── SCROLL ANIMATIONS ──
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold:0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const prefix = el.dataset.prefix || '';
+  if(target === 0) { el.textContent = prefix + '0' + suffix; return; }
+  const dur = 1400;
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val = Math.round(ease * target);
+    el.textContent = prefix + val + suffix;
+    if(t < 1) requestAnimationFrame(step);
+    else el.textContent = prefix + target + suffix;
+  }
+  requestAnimationFrame(step);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(el => animateCounter(el));
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold:0.3 });
+document.querySelectorAll('.numbers-grid').forEach(el => counterObserver.observe(el));
+
+// ── PARTICLES ──
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+function createParticles() {
+  particles = [];
+  const n = Math.floor(canvas.width * canvas.height / 14000);
+  for(let i=0; i<n; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random()-0.5) * 0.15,
+      vy: (Math.random()-0.5) * 0.15,
+      opacity: Math.random() * 0.4 + 0.05,
+    });
+  }
+}
+function drawParticles() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if(p.x < 0) p.x = canvas.width;
+    if(p.x > canvas.width) p.x = 0;
+    if(p.y < 0) p.y = canvas.height;
+    if(p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(196, 162, 74, ${p.opacity})`;
+    ctx.fill();
+  });
+  // Connection lines
+  for(let i=0; i<particles.length; i++) {
+    for(let j=i+1; j<particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 90) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(158,120,48,${0.12 * (1 - dist/90)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+resizeCanvas(); createParticles(); drawParticles();
+window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+.container {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--bg-raised);
+}
+
+.headerCell {
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-top: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.propertyCell {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+.baselineCell {
+  padding: 20px;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+.epochCell {
+  padding: 20px;
+  padding-left: 20px;
+  color: var(--text);
+  font-size: 14px;
+  background: rgba(193, 127, 78, 0.03);
+  border-left: 2px solid var(--accent);
+}
+
+@media (max-width: 779px) {
+  .header {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    padding: 16px 0;
+  }
+
+  .propertyCell {
+    padding: 8px 20px;
+  }
+
+  .baselineCell {
+    padding: 8px 20px;
+  }
+
+  .baselineCell::before {
+    content: "ChatGPT + a Banker: ";
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .epochCell {
+    padding: 8px 20px;
+    border-left: 2px solid var(--accent);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 16px;
+  }
+
+  .epochCell::before {
+    content: "Epoch: ";
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: block;
+    margin-bottom: 4px;
+  }
+}

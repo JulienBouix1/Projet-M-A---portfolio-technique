@@ -1,0 +1,245 @@
+.shell {
+  display: grid;
+  gap: 14px;
+}
+
+/* ── Tabs ────────────────────────────────────────────────── */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tab {
+  appearance: none;
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.tab span {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tab strong {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display), serif;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.tabActive {
+  border-color: var(--border-focus);
+  background: #1a1a1d;
+}
+
+.tab:not(.tabActive):hover {
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+/* ── Preview ─────────────────────────────────────────────── */
+
+.preview {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.previewChrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.chromeDots { display: flex; gap: 5px; }
+.chromeDots i {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.slideContent {
+  padding: 28px 24px;
+  min-height: 340px;
+  animation: fadeIn 0.3s var(--ease);
+}
+
+.micro {
+  display: block;
+  margin-bottom: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── Cover ───────────────────────────────────────────────── */
+
+.coverLayout {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; min-height: 260px; gap: 14px;
+}
+
+.coverTitle {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.06em;
+  color: var(--accent-text);
+}
+
+.coverSub { margin: 0; color: var(--text-3); font-size: 13px; }
+
+.coverFooter {
+  display: flex; justify-content: space-between; width: 100%;
+  margin-top: auto; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+}
+
+/* ── Tables ──────────────────────────────────────────────── */
+
+.tableWrap { overflow-x: auto; scrollbar-width: none; }
+.tableWrap::-webkit-scrollbar { display: none; }
+
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table th, .table td { text-align: left; padding: 10px 14px; white-space: nowrap; }
+.table th {
+  font-family: var(--font-mono), monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); border-bottom: 1px solid var(--border); font-weight: 500;
+}
+.table td { border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--text-2); }
+.table tr:hover td { background: rgba(255,255,255,0.015); }
+.cellBold { color: var(--text) !important; font-weight: 600; }
+.cellGold { color: var(--accent-text) !important; font-weight: 600; }
+
+.tableFootnote {
+  margin: 12px 0 0; padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent);
+}
+
+/* ── Valo cards ──────────────────────────────────────────── */
+
+.valoGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 20px;
+}
+
+.valoCard {
+  padding: 18px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--bg);
+  text-align: center;
+}
+
+.valoCardHighlight {
+  border-color: var(--border-focus) !important;
+  background: var(--accent-glow);
+}
+
+.valoLabel {
+  display: block; font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+}
+
+.valoValue {
+  display: block; margin: 8px 0 4px;
+  font-family: var(--font-display), serif;
+  font-size: 2rem; letter-spacing: -0.02em; color: var(--accent-text);
+}
+
+.valoMultiple {
+  display: block; font-family: var(--font-mono), monospace;
+  font-size: 11px; color: var(--text-3);
+}
+
+.valoCard p { margin: 10px 0 0; font-size: 12px; color: var(--text-2); }
+
+/* ── Football field ──────────────────────────────────────── */
+
+.footballField { padding: 16px 0 4px; }
+
+.ffTrack {
+  position: relative; height: 24px;
+  border-radius: 12px; background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+
+.ffBar {
+  position: absolute; top: 3px; bottom: 3px; border-radius: 9px;
+  background: linear-gradient(90deg, var(--accent-glow), rgba(193,127,78,0.3), var(--accent-glow));
+}
+
+.ffMarker {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg);
+  box-shadow: 0 0 8px rgba(193,127,78,0.4);
+}
+
+.ffLabels {
+  display: flex; justify-content: space-between;
+  padding: 6px 8% 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; color: var(--text-3);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+
+.previewFooter {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.badge {
+  padding: 4px 10px; border-radius: 999px;
+  border: 1px solid rgba(90,138,94,0.2);
+  background: var(--live-bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--live);
+}
+
+.footerNote {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-3);
+}
+
+@media (max-width: 780px) {
+  .tabs {
+    grid-auto-flow: column; grid-auto-columns: minmax(180px, 70vw);
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .valoGrid { grid-template-columns: 1fr; }
+  .previewFooter { flex-direction: column; gap: 6px; align-items: flex-start; }
+}

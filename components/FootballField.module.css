@@ -1,0 +1,55 @@
+.container {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 28px;
+}
+
+.chartWrapper {
+  width: 100%;
+  aspect-ratio: 660 / 200;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.barLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  fill: var(--text-2);
+  letter-spacing: 0.02em;
+}
+
+.tickValue {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--text-3);
+}
+
+.axisLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--text-3);
+}
+
+.annotationLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--text-3);
+  opacity: 0.7;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-2);
+  font-size: 1.1rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
