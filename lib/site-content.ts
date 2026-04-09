@@ -604,6 +604,16 @@ export const comparisonRows: ComparisonRow[] = [
     property: "Learning",
     baseline: "Starts from zero every time. No compounding across engagements.",
     epoch: "Feedback compounds across deals. MEMORY files, golden examples, quarterly retro-learning. Deal 20 is dramatically better than Deal 1."
+  },
+  {
+    property: "Cost structure",
+    baseline: "Every API call billed. No local processing. Volume = cost.",
+    epoch: "Local Qwen 32B for batch tasks (entity resolution, classification) at zero marginal cost. Frontier models only where reasoning quality justifies it."
+  },
+  {
+    property: "Audit trail",
+    baseline: "No traceability. No way to know which model produced what, when, at what cost.",
+    epoch: "Langfuse observability on every LLM call. Prompt versioning, token costs, latency, quality scores. Full lineage from source document to deliverable figure."
   }
 ];
 

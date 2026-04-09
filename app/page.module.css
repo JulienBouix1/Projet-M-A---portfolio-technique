@@ -33,12 +33,23 @@
 
 .sectionTag {
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.section + .section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 28px;
+  right: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(193, 127, 78, 0.2), transparent);
 }
 
 .sectionTitle {
@@ -307,6 +318,8 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
 }
 
 .teamName {
@@ -336,8 +349,9 @@
 }
 
 .teamQuote {
-  margin: 14px 0 0;
-  padding-left: 14px;
+  margin: 0;
+  margin-top: auto;
+  padding: 14px 0 0 14px;
   border-left: 2px solid var(--accent);
   font-family: var(--font-display), serif;
   font-style: italic;

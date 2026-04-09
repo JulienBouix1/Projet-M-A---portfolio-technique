@@ -625,7 +625,17 @@ const comparisonRowsFR: ComparisonRow[] = [
   {
     property: "Apprentissage",
     baseline: "Repart de z\u00E9ro \u00E0 chaque fois. Aucune capitalisation entre les mandats.",
-    epoch: "Les corrections se capitalisent d\u2019un dossier \u00E0 l\u2019autre. Fichiers MEMORY, exemples de r\u00E9f\u00E9rence, r\u00E9tro-apprentissage trimestriel. Le dossier 20 est radicalement meilleur que le dossier 1."
+    epoch: "Les corrections se capitalisent d'un dossier à l'autre. Fichiers MEMORY, exemples de référence, rétro-apprentissage trimestriel. Le dossier 20 est radicalement meilleur que le dossier 1."
+  },
+  {
+    property: "Structure de coûts",
+    baseline: "Chaque appel API facturé. Aucun traitement local. Volume = coût.",
+    epoch: "Qwen 32B local pour les tâches batch (résolution d'entités, classification) à coût marginal zéro. Modèles frontier uniquement là où la qualité de raisonnement le justifie."
+  },
+  {
+    property: "Audit trail",
+    baseline: "Aucune traçabilité. Impossible de savoir quel modèle a produit quoi, quand, à quel coût.",
+    epoch: "Observabilité Langfuse sur chaque appel LLM. Versioning des prompts, coûts par token, latence, scores qualité. Lignage complet du document source au chiffre du livrable."
   }
 ];
 

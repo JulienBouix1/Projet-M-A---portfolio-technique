@@ -40,7 +40,7 @@ const textsEN: TextMap = {
   },
   arch: {
     tag: "System Architecture",
-    title: "10 infrastructure components. Each one exists because M&A broke without it.",
+    title: "12 infrastructure components. Each one exists because M&A broke without it.",
     lead: "Hybrid RAG because embed-only search gets the numbers wrong. A knowledge graph because facts are connected across entities. Local LLM because resolving 500K entities via API is economically absurd. An LLM gateway because models change monthly. Every layer solves a specific failure mode that a generic AI setup cannot handle."
   },
   pipe: {
@@ -70,65 +70,65 @@ const textsEN: TextMap = {
   team: { tag: "Team", title: "Two people. One system." },
   julien: {
     name: "Julien Bouix", role: "President",
-    desc: "Ex-Lincoln International, Technology Team (Associate level). 10+ transactions mid-cap. Domain expertise in M&A execution, module design, spec authorship, and validation.",
-    quote: "\"Every spec and every HITL correction.\""
+    desc: "Ex-Lincoln International, Technology Team (Associate level). 10+ transactions mid-cap. Domain: M&A execution, system design, spec authorship, HITL validation, and co-development of the platform.",
+    quote: "\"Specs, architecture decisions, validation, and code.\""
   },
   louis: {
     name: "Louis Germain", role: "CTO / DG",
     desc: "MSc Computer Science. Full-stack implementation: infrastructure, agent orchestration, data pipelines, deployment. RTX 4090, Docker, PostgreSQL, Qdrant, the works.",
-    quote: "\"Every line of code.\""
+    quote: "\"Architecture, infrastructure, and every pipeline.\""
   },
-  footer: ["Epoch Associes", "AI-native M&A advisory", "Paris, France", "Go-live: June 2026"]
+  footer: ["Epoch Associes", "AI-native M&A advisory", "Paris, France"]
 };
 
 const textsFR: TextMap = {
   hero: {
-    tag: "Epoch Associes · Paris",
-    title: "Un systeme d'exploitation de transactions, ",
-    titleEm: "construit de zero pour le M&A small-cap.",
-    lead: "14+ modules sur mesure executent des mandats de cession francais (500K-10M euros EV) de bout en bout. D'un moteur de sourcing de 500K leads a un classeur de valorisation entierement formule. Chaque module a ses propres agents, outils, garde-fous et portes de controle humain. Rien de generique. Tout auditable."
+    tag: "Epoch Associés · Paris",
+    title: "Un système d'exécution de transactions, ",
+    titleEm: "construit de zéro pour le M&A small-cap.",
+    lead: "14+ modules sur mesure exécutent des mandats de cession français (500K-10M euros EV) de bout en bout. D'un moteur de sourcing de 500K leads à un classeur de valorisation entièrement formulé. Chaque module a ses propres agents, outils, garde-fous et portes de contrôle humain. Rien de générique. Tout auditable."
   },
   arch: {
-    tag: "Architecture systeme",
-    title: "10 briques d'infrastructure. Chacune existe parce que le M&A cassait sans elle.",
-    lead: "Un RAG hybride parce que la recherche par embeddings seuls se trompe sur les chiffres. Un knowledge graph parce que les faits sont relies entre entites. Un LLM local parce que resoudre 500K entites via API est economiquement absurde. Un gateway LLM parce que les modeles changent tous les mois. Chaque couche resout un mode de defaillance specifique qu'une IA generique ne sait pas gerer."
+    tag: "Architecture système",
+    title: "12 briques d'infrastructure. Chacune existe parce que le M&A cassait sans elle.",
+    lead: "Un RAG hybride parce que la recherche par embeddings seuls se trompe sur les chiffres. Un knowledge graph parce que les faits sont reliés entre entités. Un LLM local parce que résoudre 500K entités via API est économiquement absurde. Un gateway LLM parce que les modèles changent tous les mois. Chaque couche résout un mode de défaillance spécifique qu'une IA générique ne sait pas gérer."
   },
   pipe: {
     tag: "Pipeline de transaction",
-    title: "L'integralite du cycle sell-side, decomposee en etapes auditables.",
-    lead: "10 etapes sequentielles, 2 couches transversales en parallele. Chaque etape a des contrats Pydantic I/O, des portes HITL et un suivi de statut. Le pipeline attend la validation humaine entre les etapes. Des heures, des jours. Il ne saute pas."
+    title: "L'intégralité du cycle sell-side, décomposée en étapes auditables.",
+    lead: "10 étapes séquentielles, 2 couches transversales en parallèle. Chaque étape a des contrats Pydantic I/O, des portes HITL et un suivi de statut. Le pipeline attend la validation humaine entre les étapes. Des heures, des jours. Il ne saute pas."
   },
-  valo: { tag: "Moteur de valorisation", title: "Trois branches independantes, un football field." },
+  valo: { tag: "Moteur de valorisation", title: "Trois branches indépendantes, un football field." },
   deliv: {
     tag: "Premier livrable",
-    title: "24 slides. 15 minutes. Zero intervention manuelle sur le contenu.",
-    lead: "Le pitch Medadom a ete genere de bout en bout : l'Agent Info Publique a fait une recherche complete de donnees publiques, le Buyer Matching a produit une liste preliminaire d'acquereurs, le moteur de Valorisation a calcule une fourchette a partir de 400K comparables transactionnels. Le meme livrable prend une journee entiere a un analyste junior."
+    title: "24 slides. 15 minutes. Zéro intervention manuelle sur le contenu.",
+    lead: "Le pitch Medadom a été généré de bout en bout : l'Agent Info Publique a fait une recherche complète de données publiques, le Buyer Matching a produit une liste préliminaire d'acquéreurs, le moteur de Valorisation a calculé une fourchette à partir de 400K comparables transactionnels. Le même livrable prend une journée entière à un analyste junior."
   },
   diff: {
-    tag: "Proprietes systeme",
-    title: "Pas des fonctionnalites. De l'architecture.",
-    lead: "La difference n'est pas ce que le systeme peut faire en un prompt. C'est ce qu'il maintient sur des mois d'execution : isolation entre mandats, memoire persistante par dossier, couche de faits avec verification des sources, et feedback qui compose a chaque transaction."
+    tag: "Propriétés système",
+    title: "Pas des fonctionnalités. De l'architecture.",
+    lead: "La différence n'est pas ce que le système peut faire en un prompt. C'est ce qu'il maintient sur des mois d'exécution : isolation entre mandats, mémoire persistante par dossier, couche de faits avec vérification des sources, et feedback qui compose à chaque transaction."
   },
   hitl: { tag: "Philosophie HITL", title: "\"No Send Ever\"" },
   hitlSteps: [
     { strong: "L'agent produit", p: "Brouillon, analyse ou recommandation" },
     { strong: "File HITL", p: "Le livrable entre dans l'onglet Analyste" },
     { strong: "Le banquier valide", p: "Approuver / Modifier / Rejeter" },
-    { strong: "Correction routee", p: "Categorisee, envoyee au fichier SKILL ou MEMORY" },
-    { strong: "Le deal suivant est meilleur", p: "Le feedback compose. Deal 20 > Deal 1." }
+    { strong: "Correction routée", p: "Catégorisée, envoyée au fichier SKILL ou MEMORY" },
+    { strong: "Le deal suivant est meilleur", p: "Le feedback composé. Deal 20 > Deal 1." }
   ],
   team: { tag: "Equipe", title: "Deux personnes. Un systeme." },
   julien: {
-    name: "Julien Bouix", role: "President",
-    desc: "Ex-Lincoln International, equipe Technology (niveau Associate). 10+ transactions mid-cap. Expertise M&A : execution, conception des modules, redaction des specs et validation.",
-    quote: "\"Chaque spec et chaque correction HITL.\""
+    name: "Julien Bouix", role: "Président",
+    desc: "Ex-Lincoln International, équipe Technology (niveau Associate). 10+ transactions mid-cap. Domaine : exécution M&A, conception du système, rédaction des specs, validation HITL et co-développement de la plateforme.",
+    quote: "\"Specs, décisions d'architecture, validation et code.\""
   },
   louis: {
     name: "Louis Germain", role: "CTO / DG",
-    desc: "MSc Informatique. Implementation integrale : infrastructure, orchestration d'agents, pipelines de donnees, deploiement. RTX 4090, Docker, PostgreSQL, Qdrant.",
-    quote: "\"Chaque ligne de code.\""
+    desc: "MSc Informatique. Implémentation intégrale : infrastructure, orchestration d'agents, pipelines de données, déploiement. RTX 4090, Docker, PostgreSQL, Qdrant.",
+    quote: "\"Architecture, infrastructure et chaque pipeline.\""
   },
-  footer: ["Epoch Associes", "Conseil M&A augmente par l'IA", "Paris, France", "Go-live : juin 2026"]
+  footer: ["Epoch Associés", "Conseil M&A augmenté par l'IA", "Paris, France"]
 };
 
 export function PageContent() {

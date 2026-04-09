@@ -17,11 +17,12 @@
 }
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
   width: 100%;
-  padding: 20px 24px;
+  padding: 18px 24px;
   background: none;
   border: none;
   cursor: pointer;
@@ -30,32 +31,37 @@
   font: inherit;
 }
 
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .number {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
   font-size: 12px;
   color: var(--text-3);
-  min-width: 28px;
-  flex-shrink: 0;
+  min-width: 24px;
 }
 
 .title {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-family: var(--font-display), serif;
+  font-size: 1.2rem;
   color: var(--text);
   letter-spacing: -0.02em;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
   font-size: 9px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 999px;
-  flex-shrink: 0;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .live {
@@ -76,7 +82,7 @@
 .oneLiner {
   color: var(--text-2);
   font-size: 14px;
-  flex: 1;
+  line-height: 1.5;
   min-width: 0;
 }
 
@@ -93,7 +99,7 @@
 .body {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s var(--ease, cubic-bezier(0.4, 0, 0.2, 1));
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bodyInner {
@@ -117,7 +123,7 @@
 }
 
 .insightLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono), monospace;
   font-size: 9px;
   letter-spacing: 0.12em;
   color: var(--accent);
@@ -134,4 +140,14 @@
   font-size: 14px;
   color: var(--text);
   line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .oneLiner {
+    grid-column: 1 / -1;
+  }
 }

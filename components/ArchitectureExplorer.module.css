@@ -168,13 +168,15 @@
 
 .loupeTech,
 .loupeBusiness {
-  padding: 28px 28px 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .loupeTech h4 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-family: var(--font-display), serif;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -185,7 +187,7 @@
   margin: 0;
   color: var(--text-2);
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .specList {
@@ -244,15 +246,13 @@
 }
 
 .loupeBusiness {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .loupeBusiness p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--text);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
 }
 
 /* ── Module layer ──────────────────────────────────────────── */

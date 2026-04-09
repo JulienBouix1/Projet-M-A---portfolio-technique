@@ -70,10 +70,12 @@ export default function DealPipeline({ stages }: DealPipelineProps) {
               aria-expanded={isExpanded}
               type="button"
             >
-              <span className={s.number}>{stage.number}</span>
-              <span className={s.title}>{stage.title}</span>
-              <span className={`${s.badge} ${s[stage.status]}`}>
-                {statusLabel[stage.status]}
+              <span className={s.meta}>
+                <span className={s.number}>{stage.number}</span>
+                <span className={s.title}>{stage.title}</span>
+                <span className={`${s.badge} ${s[stage.status]}`}>
+                  {statusLabel[stage.status]}
+                </span>
               </span>
               <span className={s.oneLiner}>{stage.oneLiner}</span>
               <Chevron expanded={isExpanded} />
