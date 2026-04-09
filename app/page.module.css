@@ -182,28 +182,22 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 24px;
-  align-items: stretch;
 }
 
 .valoBranch {
+  display: grid;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  row-gap: 0;
   padding: 24px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--bg-card);
   transition: border-color 0.25s ease;
-  display: flex;
-  flex-direction: column;
 }
 
 .valoBranch:hover {
   border-color: rgba(255, 255, 255, 0.09);
-}
-
-.valoBranchHead {
-  min-height: 110px;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
-  border-bottom: 1px solid var(--border);
 }
 
 .valoBranchLabel {
@@ -213,6 +207,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
+  line-height: 1.45;
 }
 
 .valoBranchTitle {
@@ -226,6 +221,9 @@
 
 .valoBranchRole {
   display: block;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
   font-family: var(--font-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -234,7 +232,8 @@
 }
 
 .valoBranchDesc {
-  margin: 0 0 14px;
+  margin: 0;
+  padding-bottom: 14px;
   font-size: 14px;
   color: var(--text-2);
   line-height: 1.65;
@@ -243,11 +242,11 @@
 .valoBranchDetails {
   list-style: none;
   margin: 0;
-  padding: 12px 0 0;
+  padding: 14px 0 0;
   border-top: 1px solid var(--border);
   display: grid;
   gap: 8px;
-  margin-top: auto;
+  align-content: start;
 }
 
 .valoBranchDetails li {
@@ -293,16 +292,17 @@
 }
 
 .hitlStep strong {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 8px;
   font-family: var(--font-mono), monospace;
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-text);
-  min-height: 28px;
-  display: flex;
-  align-items: center;
+  height: 32px;
 }
 
 .hitlStep p {
@@ -310,6 +310,7 @@
   font-size: 11px;
   color: var(--text-3);
   line-height: 1.45;
+  text-align: center;
 }
 
 .hitlStep .hitlArrow {
@@ -416,6 +417,13 @@
 /* ── Responsive ──────────────────────────────────────────── */
 
 @media (max-width: 900px) {
+  .valoBranch {
+    grid-row: span 1;
+    grid-template-rows: none;
+    display: flex;
+    flex-direction: column;
+  }
+
   .thesisGrid,
   .valoGrid,
   .teamGrid {
