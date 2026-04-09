@@ -3,11 +3,11 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   width: 100%;
+  border-bottom: 1px solid var(--border);
 }
 
 .counter {
   padding: 28px 20px 28px 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .valueRow {

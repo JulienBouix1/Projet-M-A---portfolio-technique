@@ -206,7 +206,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
-  min-height: 28px;
+  min-height: 36px;
 }
 
 .valoBranchTitle {
@@ -271,40 +271,42 @@
 
 .hitlFlow {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 2px;
   margin-bottom: 40px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  align-items: stretch;
 }
 
 .hitlStep {
-  padding: 20px 16px;
+  padding: 18px 14px;
   background: var(--bg-card);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100px;
+  min-height: 110px;
 }
 
 .hitlStep strong {
   display: block;
   margin-bottom: 8px;
   font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-text);
+  min-height: 28px;
+  display: flex;
+  align-items: center;
 }
 
 .hitlStep p {
   margin: 0;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-3);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .hitlStep .hitlArrow {
