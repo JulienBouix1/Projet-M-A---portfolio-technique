@@ -1,25 +1,32 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto;
   gap: 0;
   width: 100%;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--border);
 }
 
-/* Row 1: numbers — all in the same grid row = guaranteed same baseline */
+/* Each counter spans 2 implicit rows via subgrid */
+.counter {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  text-align: center;
+}
+
 .numberCell {
-  padding: 24px 0 0;
   display: flex;
   align-items: baseline;
   justify-content: center;
   white-space: nowrap;
+  padding-top: 24px;
 }
 
 .number {
   font-family: var(--font-display), serif;
-  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 700;
   color: var(--accent-text);
   line-height: 1;
@@ -28,16 +35,15 @@
 
 .suffix {
   font-family: var(--font-display), serif;
-  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 700;
   color: var(--accent);
   line-height: 1;
   letter-spacing: -0.03em;
 }
 
-/* Row 2: labels — all in the same grid row = guaranteed same top */
 .label {
-  padding: 10px 0 0;
+  padding: 10px 8px 0;
   font-family: var(--font-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -47,10 +53,25 @@
   text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .counter {
+    grid-row: span 1;
+    grid-template-rows: none;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .numberCell {
+    padding-top: 0;
+  }
 }
 
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

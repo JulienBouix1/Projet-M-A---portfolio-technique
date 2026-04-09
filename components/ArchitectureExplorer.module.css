@@ -453,7 +453,16 @@
   }
 
   .nodeGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .loupeColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .loupeCol + .loupeCol {
+    border-left: 0;
+    border-top: 1px solid var(--border);
   }
 
   .loupeTech,

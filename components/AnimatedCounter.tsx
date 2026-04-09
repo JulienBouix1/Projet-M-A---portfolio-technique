@@ -26,12 +26,8 @@ export default function AnimatedCounter({ items }: AnimatedCounterProps) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = easeOutExpo(progress);
-
       setCurrentValues(items.map((item) => Math.round(eased * item.value)));
-
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      }
+      if (progress < 1) requestAnimationFrame(tick);
     }
 
     requestAnimationFrame(tick);
@@ -58,18 +54,14 @@ export default function AnimatedCounter({ items }: AnimatedCounterProps) {
 
   return (
     <div ref={containerRef} className={styles.grid}>
-      {/* Row 1: All numbers on the SAME grid row */}
       {items.map((item, i) => (
-        <div key={`num-${item.label}`} className={styles.numberCell}>
-          <span className={styles.number}>{currentValues[i]}</span>
-          <span className={styles.suffix}>{item.suffix}</span>
+        <div key={item.label} className={styles.counter}>
+          <div className={styles.numberCell}>
+            <span className={styles.number}>{currentValues[i]}</span>
+            <span className={styles.suffix}>{item.suffix}</span>
+          </div>
+          <span className={styles.label}>{item.label}</span>
         </div>
-      ))}
-      {/* Row 2: All labels on the SAME grid row */}
-      {items.map((item) => (
-        <span key={`lbl-${item.label}`} className={styles.label}>
-          {item.label}
-        </span>
       ))}
     </div>
   );
