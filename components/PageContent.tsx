@@ -280,10 +280,10 @@ export function PageContent() {
                 </div>
                 <div className={styles.hitlFlow}>
                   {t.hitlSteps.map((step) => (
-                    <div key={step.strong} className={styles.hitlStep}>
-                      <strong>{step.strong}</strong>
-                      <p>{step.p}</p>
-                    </div>
+                    <strong key={`t-${step.strong}`} className={styles.hitlTitle}>{step.strong}</strong>
+                  ))}
+                  {t.hitlSteps.map((step) => (
+                    <p key={`d-${step.strong}`} className={styles.hitlDesc}>{step.p}</p>
                   ))}
                 </div>
               </div>

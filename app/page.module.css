@@ -274,43 +274,45 @@
 .hitlFlow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
+  grid-template-rows: auto auto;
+  gap: 0 2px;
   margin-bottom: 40px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-}
-
-.hitlStep {
-  padding: 18px 14px;
   background: var(--bg-card);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 110px;
+  border: 1px solid var(--border);
 }
 
-.hitlStep strong {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Row 1: all titles — same grid row = guaranteed alignment */
+.hitlTitle {
+  padding: 18px 14px 10px;
   text-align: center;
-  margin-bottom: 8px;
   font-family: var(--font-mono), monospace;
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-text);
-  height: 32px;
+  border-right: 1px solid var(--border);
 }
 
-.hitlStep p {
+.hitlTitle:last-of-type {
+  border-right: none;
+}
+
+/* Row 2: all descriptions — same grid row = guaranteed alignment */
+.hitlDesc {
   margin: 0;
-  font-size: 11px;
-  color: var(--text-3);
-  line-height: 1.45;
+  padding: 0 14px 18px;
   text-align: center;
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.5;
+  border-right: 1px solid var(--border);
+}
+
+.hitlDesc:last-of-type {
+  border-right: none;
 }
 
 .hitlStep .hitlArrow {

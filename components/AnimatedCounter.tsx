@@ -58,14 +58,18 @@ export default function AnimatedCounter({ items }: AnimatedCounterProps) {
 
   return (
     <div ref={containerRef} className={styles.grid}>
+      {/* Row 1: All numbers on the SAME grid row */}
       {items.map((item, i) => (
-        <div key={item.label} className={styles.counter}>
-          <div className={styles.valueRow}>
-            <span className={styles.number}>{currentValues[i]}</span>
-            <span className={styles.suffix}>{item.suffix}</span>
-          </div>
-          <span className={styles.label}>{item.label}</span>
+        <div key={`num-${item.label}`} className={styles.numberCell}>
+          <span className={styles.number}>{currentValues[i]}</span>
+          <span className={styles.suffix}>{item.suffix}</span>
         </div>
+      ))}
+      {/* Row 2: All labels on the SAME grid row */}
+      {items.map((item) => (
+        <span key={`lbl-${item.label}`} className={styles.label}>
+          {item.label}
+        </span>
       ))}
     </div>
   );
