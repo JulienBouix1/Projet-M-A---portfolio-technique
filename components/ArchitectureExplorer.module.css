@@ -450,10 +450,26 @@
   .layerHeader {
     flex-direction: column;
     gap: 6px;
+    padding: 16px 18px;
   }
 
   .nodeGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+  }
+
+  .node {
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .nodeIcon {
+    width: 36px;
+    height: 36px;
+    font-size: 10px;
+  }
+
+  .nodeText strong {
+    font-size: 13px;
   }
 
   .loupeColumns {
@@ -465,16 +481,31 @@
     border-top: 1px solid var(--border);
   }
 
-  .loupeTech,
-  .loupeBusiness {
-    padding: 20px;
+  .loupeCol {
+    padding: 14px 18px 18px;
+  }
+
+  .loupeTitle {
+    padding: 16px 18px 0;
+  }
+
+  .moduleLayer {
+    padding: 16px 18px 18px;
   }
 
   .moduleStrip {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .guardrailStrip {
+    padding: 16px 18px;
   }
 
   .guardrailGrid {
     grid-template-columns: 1fr;
+  }
+
+  .loupeModules {
+    padding: 12px 18px 14px;
   }
 }

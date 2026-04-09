@@ -236,10 +236,47 @@
 
 @media (max-width: 780px) {
   .tabs {
-    grid-auto-flow: column; grid-auto-columns: minmax(180px, 70vw);
-    overflow-x: auto; scrollbar-width: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
-  .tabs::-webkit-scrollbar { display: none; }
+
+  .tab {
+    padding: 12px 14px;
+  }
+
+  .tab strong {
+    font-size: 0.95rem;
+  }
+
+  .slideContent {
+    padding: 20px 18px;
+    min-height: 280px;
+  }
+
   .valoGrid { grid-template-columns: 1fr; }
   .previewFooter { flex-direction: column; gap: 6px; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .tabs {
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 10px 12px;
+  }
+
+  .tab span {
+    font-size: 9px;
+  }
+
+  .tab strong {
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+
+  .coverTitle {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+  }
 }

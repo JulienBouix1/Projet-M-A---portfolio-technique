@@ -461,16 +461,61 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 56px 18px;
+    padding: 48px 16px;
   }
 
   .section + .section::before {
-    left: 18px;
-    right: 18px;
+    left: 16px;
+    right: 16px;
   }
 
   .hero {
     padding-top: 72px;
     padding-bottom: 40px;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .hitlFlow {
+    grid-template-columns: 1fr;
+  }
+
+  .hitlStep {
+    grid-row: span 1;
+    grid-template-rows: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+
+  .hitlStep:last-child {
+    border-bottom: none;
+  }
+
+  .hitlTitle {
+    padding: 0 0 4px;
+    align-items: center;
+  }
+
+  .hitlDesc {
+    padding: 0;
+  }
+
+  .teamCard {
+    padding: 20px;
+  }
+
+  .thesisCard {
+    padding: 20px;
+  }
+
+  .valoBranch {
+    padding: 18px;
   }
 }
