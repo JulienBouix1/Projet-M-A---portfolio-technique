@@ -1,0 +1,122 @@
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 22px 26px 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(168, 84, 42, 0.04), transparent 70%),
+    var(--bg-card);
+  box-shadow: 0 8px 28px rgba(42, 28, 16, 0.04);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.total {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.total strong {
+  font-family: var(--font-display), serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 4px;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.cell {
+  padding: 18px 20px;
+  background: var(--bg-card);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  position: relative;
+}
+
+.cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+
+.cellNum {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.cellLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cellLive::before { background: #3c6a42; }
+.cellLive .cellNum { color: #2d5232; }
+
+.cellTesting::before { background: #3a5a78; }
+.cellTesting .cellNum { color: #2c445c; }
+
+.cellSpec::before { background: #7d6a30; }
+.cellSpec .cellNum { color: #6a5a28; }
+
+.honest {
+  margin: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .head {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

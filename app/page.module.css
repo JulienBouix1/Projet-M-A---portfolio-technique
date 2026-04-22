@@ -516,6 +516,79 @@
   color: var(--text-2);
 }
 
+/* ── Scope limits list ───────────────────────────────────── */
+
+.limitsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.limitsItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  padding: 22px 26px 24px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: background 0.2s ease;
+}
+
+.limitsItem:hover {
+  background: rgba(168, 84, 42, 0.03);
+}
+
+.limitsNum {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  padding-top: 4px;
+}
+
+.limitsBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.limitsTitle {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.25;
+  position: relative;
+  padding-left: 22px;
+}
+
+.limitsTitle::before {
+  content: "✕";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.limitsWhy {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-2);
+  padding-left: 22px;
+}
+
 /* ── Pipeline Gantt ───────────────────────────────────────── */
 
 .gantt {

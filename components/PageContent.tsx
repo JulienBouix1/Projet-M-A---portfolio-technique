@@ -15,10 +15,46 @@ import DealPipeline from "@/components/DealPipeline";
 import FootballField from "@/components/FootballField";
 import { Navigation } from "@/components/Navigation";
 import { PitchShowcase } from "@/components/PitchShowcase";
+import { POCStatus } from "@/components/POCStatus";
 import { Reveal } from "@/components/Reveal";
 import { SectionObserver } from "@/components/SectionObserver";
 
 import styles from "../app/page.module.css";
+
+// ── Scope limits — honest "not yet" list, shown before Team ─────
+type ScopeLimit = { title: string; why: string };
+type ScopeLimitsCopy = { tag: string; title: string; lead: string; items: ScopeLimit[] };
+
+const scopeLimitsEN: ScopeLimitsCopy = {
+  tag: "Scope limits",
+  title: "What the system does NOT do yet.",
+  lead: "The honest edges of the POC. None of these are close to shipping — listing them up front keeps the rest of this site defensible.",
+  items: [
+    { title: "Mandates above €10M EV", why: "The cost structure and the module library are calibrated for small-cap. Mid-cap deals bring different buyer universes, different comps, different DD depth. Not a drop-in upgrade." },
+    { title: "Buy-side mandates", why: "Everything here is sell-side. Buy-side would mean a different sourcing pipeline, a different scoring model, and a different negotiation posture. On paper, not built." },
+    { title: "LOI and SPA drafting", why: "Legal document generation is deliberately out of scope. The system feeds the lawyer with structured facts; it does not draft the agreement." },
+    { title: "Fairness opinions", why: "Independent fairness reviews require a regulated process and a signing officer. Outside the scope of a two-person POC." },
+    { title: "Regulated sectors (banking, insurance, defense)", why: "Sector-specific regulatory filings, AMF/ACPR-side process requirements — the module library does not carry the templates or the legal nuance." },
+    { title: "Cross-border transactions", why: "Multi-jurisdiction tax structuring, LOI variants, and buyer universe mapping beyond France are unbuilt. The buyer database is France-only." },
+    { title: "Auto-sending any external communication", why: "Product invariant. Not now, not in V2, not ever. Every email, every Q&A response, every buyer outreach passes through the banker's HITL queue." }
+  ]
+};
+
+const scopeLimitsFR: ScopeLimitsCopy = {
+  tag: "Limites de scope",
+  title: "Ce que le système ne fait pas encore.",
+  lead: "Les bords honnêtes du POC. Aucun de ces éléments n'est proche de sortir — les lister en clair rend le reste du site défendable.",
+  items: [
+    { title: "Mandats au-delà de 10 M€ EV", why: "La structure de coûts et la bibliothèque de modules sont calibrées pour le small-cap. Le mid-cap implique d'autres univers d'acquéreurs, d'autres comps, d'autres profondeurs de DD. Pas une simple extension." },
+    { title: "Mandats buy-side", why: "Tout ici est sell-side. Le buy-side exigerait un autre pipeline de sourcing, un autre scoring, une autre posture de négociation. Sur le papier, pas construit." },
+    { title: "Rédaction LOI / SPA", why: "La génération de documents juridiques est délibérément hors scope. Le système fournit à l'avocat des faits structurés ; il ne rédige pas l'acte." },
+    { title: "Fairness opinions", why: "Les avis d'équité indépendants exigent un process régulé et un signataire habilité. Hors périmètre d'un POC à deux." },
+    { title: "Secteurs régulés (banque, assurance, défense)", why: "Dépôts réglementaires sectoriels, exigences process AMF/ACPR — la bibliothèque de modules ne porte ni les modèles ni la finesse juridique requis." },
+    { title: "Transactions cross-border", why: "Structuration fiscale multi-juridictions, variantes de LOI, univers d'acquéreurs hors France — non construit. La base acquéreurs est France uniquement." },
+    { title: "Envoi automatique d'une communication externe", why: "Invariant produit. Ni maintenant, ni en V2, ni jamais. Chaque email, chaque réponse Q&A, chaque relance acquéreur passe par la file HITL du banquier." }
+  ]
+};
+
 
 type TextMap = {
   hero: { tag: string; title: string; titleEm: string; lead: string };
@@ -359,6 +395,11 @@ export function PageContent() {
               <AnimatedCounter items={c.heroMetrics} />
             </div>
           </Reveal>
+          <Reveal delay={400}>
+            <div className={styles.container} style={{ marginTop: 48 }}>
+              <POCStatus stages={c.pipelineStages} crossCutting={c.crossCuttingLayers} lang={lang} />
+            </div>
+          </Reveal>
         </section>
 
         {/* ── Thesis ────────────────────────────────── */}
@@ -560,6 +601,32 @@ export function PageContent() {
               </div>
             </Reveal>
             <Reveal delay={100}><ComparisonTable rows={c.comparisonRows} /></Reveal>
+          </div>
+        </section>
+
+        {/* ── Scope limits — honest "not yet" ─────── */}
+        <section className={styles.section} id="limits">
+          <div className={styles.container}>
+            <Reveal>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionTag}>{(lang === "fr" ? scopeLimitsFR : scopeLimitsEN).tag}</span>
+                <h2 className={styles.sectionTitle}>{(lang === "fr" ? scopeLimitsFR : scopeLimitsEN).title}</h2>
+                <p className={styles.sectionLead}>{(lang === "fr" ? scopeLimitsFR : scopeLimitsEN).lead}</p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <ol className={styles.limitsList}>
+                {(lang === "fr" ? scopeLimitsFR : scopeLimitsEN).items.map((item, i) => (
+                  <li key={item.title} className={styles.limitsItem}>
+                    <span className={styles.limitsNum}>{String(i + 1).padStart(2, "0")}</span>
+                    <div className={styles.limitsBody}>
+                      <h3 className={styles.limitsTitle}>{item.title}</h3>
+                      <p className={styles.limitsWhy}>{item.why}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
           </div>
         </section>
 

@@ -59,16 +59,16 @@ function CompsSlide() {
           </tbody>
         </table>
       </div>
-      <p className={styles.tableFootnote}>Médiane : 8.5x EV/CA sur 6 transactions</p>
+      <p className={styles.tableFootnote}>Médiane : 8.5x EV/CA sur 6 transactions. Décote de taille -50 à -70 % appliquée à la cible small-cap (pairs cotés / levés significatifs).</p>
     </div>
   );
 }
 
 function ValoSlide() {
   const ranges = [
-    { label: "Standalone", value: "225 M€", multiple: "5.0x CA", note: "Valorisation conservatrice" },
-    { label: "Marché", value: "380 M€", multiple: "8.5x CA", note: "Transactions comparables", highlight: true },
-    { label: "Premium", value: "675 M€", multiple: "15.0x CA", note: "Scénario compétitif" }
+    { label: "Standalone", value: "6 M€", multiple: "7.0x EBITDA · 1.2x CA", note: "Scénario conservateur, acquéreur financier" },
+    { label: "Marché", value: "10 M€", multiple: "11.0x EBITDA · 2.0x CA", note: "Médiane après décote de taille", highlight: true },
+    { label: "Premium", value: "16 M€", multiple: "17.0x EBITDA · 3.2x CA", note: "Processus compétitif, acquéreur stratégique" }
   ];
 
   return (
@@ -93,9 +93,9 @@ function ValoSlide() {
           </div>
         </div>
         <div className={styles.ffLabels}>
-          <span>225 M€</span>
-          <span>380 M€</span>
-          <span>675 M€</span>
+          <span>6 M€</span>
+          <span>10 M€</span>
+          <span>16 M€</span>
         </div>
       </div>
     </div>

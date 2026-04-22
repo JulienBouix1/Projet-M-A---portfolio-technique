@@ -16,6 +16,7 @@ export const navSections: NavSection[] = [
   { id: "valuation",       label: "Valuation" },
   { id: "deliverable",     label: "Deliverable" },
   { id: "differentiation", label: "Why" },
+  { id: "limits",          label: "Limits" },
   { id: "team",            label: "Team" },
   { id: "contact",         label: "Contact" }
 ];

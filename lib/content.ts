@@ -112,6 +112,7 @@ const navSectionsFR: NavSection[] = [
   { id: "valuation",       label: "Valorisation" },
   { id: "deliverable",     label: "Livrable" },
   { id: "differentiation", label: "Pourquoi" },
+  { id: "limits",          label: "Limites" },
   { id: "team",            label: "\u00C9quipe" },
   { id: "contact",         label: "Contact" }
 ];
