@@ -17,11 +17,11 @@
   max-width: var(--max);
   margin: 0 auto;
   height: var(--nav-h);
-  padding: 0 28px;
+  padding: 0 36px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 28px;
 }
 
 /* ── Brand ───────────────────────────────────────────────── */
@@ -63,20 +63,37 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .nav a {
   display: inline-flex;
   align-items: center;
-  padding: 7px 13px;
+  padding: 8px 14px;
   border-radius: 8px;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-size: 10.5px;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-3);
   transition: color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav > *:not(:first-child) + .audienceGroup,
+.nav > *:not(:first-child) + .langToggle,
+.nav > *:not(:first-child) + .printBtn {
+  margin-left: 4px;
+}
+
+.controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 12px;
+  margin-left: 4px;
+  border-left: 1px solid var(--border);
 }
 
 .nav a:hover {
@@ -98,7 +115,6 @@
   border: 1px solid var(--border);
   background: var(--bg-card);
   overflow: hidden;
-  margin-right: 4px;
   flex-shrink: 0;
 }
 
@@ -181,32 +197,19 @@
   background: rgba(193, 127, 78, 0.25);
 }
 
-.printHint {
-  font-family: var(--font-mono), monospace;
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  color: var(--text-3);
-  max-width: 200px;
-  line-height: 1.35;
-  flex-shrink: 1;
-}
-
 /* ── Responsive ──────────────────────────────────────────── */
 
-@media (max-width: 780px) {
-  .inner {
-    padding: 0 18px;
-  }
+@media (max-width: 1100px) {
+  .inner { padding: 0 20px; gap: 16px; }
+  .controls { padding-left: 8px; margin-left: 0; }
+}
 
+@media (max-width: 900px) {
   .brandName { display: none; }
-
   .nav {
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-
   .nav::-webkit-scrollbar { display: none; }
-
-  .printHint { display: none; }
 }

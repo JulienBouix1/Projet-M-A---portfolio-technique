@@ -48,43 +48,40 @@ export function Navigation({ sections }: NavigationProps) {
               {s.label}
             </a>
           ))}
-          <div
-            className={styles.audienceGroup}
-            role="group"
-            aria-label={lang === "fr" ? "Audience" : "Audience"}
-          >
-            <button
-              type="button"
-              className={`${styles.audienceBtn} ${audience === "banker" ? styles.audienceActive : ""}`}
-              onClick={() => setAudience("banker")}
-              aria-pressed={audience === "banker"}
+          <div className={styles.controls}>
+            <div
+              className={styles.audienceGroup}
+              role="group"
+              aria-label={lang === "fr" ? "Audience" : "Audience"}
             >
-              {lang === "fr" ? "Banquier" : "Banker"}
-            </button>
+              <button
+                type="button"
+                className={`${styles.audienceBtn} ${audience === "banker" ? styles.audienceActive : ""}`}
+                onClick={() => setAudience("banker")}
+                aria-pressed={audience === "banker"}
+              >
+                {lang === "fr" ? "Banquier" : "Banker"}
+              </button>
+              <button
+                type="button"
+                className={`${styles.audienceBtn} ${audience === "engineer" ? styles.audienceActive : ""}`}
+                onClick={() => setAudience("engineer")}
+                aria-pressed={audience === "engineer"}
+              >
+                {lang === "fr" ? "Ingénieur" : "Engineer"}
+              </button>
+            </div>
             <button
-              type="button"
-              className={`${styles.audienceBtn} ${audience === "engineer" ? styles.audienceActive : ""}`}
-              onClick={() => setAudience("engineer")}
-              aria-pressed={audience === "engineer"}
+              className={styles.langToggle}
+              onClick={toggleLang}
+              aria-label={`Switch to ${lang === "fr" ? "English" : "French"}`}
             >
-              {lang === "fr" ? "Ingénieur" : "Engineer"}
+              {lang === "fr" ? "EN" : "FR"}
             </button>
+            <a className={styles.printBtn} href="/portfolio/print" target="_blank" rel="noopener" title={lang === "fr" ? "Version PDF imprimable" : "Printable PDF version"}>
+              PDF
+            </a>
           </div>
-          <button
-            className={styles.langToggle}
-            onClick={toggleLang}
-            aria-label={`Switch to ${lang === "fr" ? "English" : "French"}`}
-          >
-            {lang === "fr" ? "EN" : "FR"}
-          </button>
-          <a className={styles.printBtn} href="/portfolio/print" target="_blank" rel="noopener">
-            PDF
-          </a>
-          <span className={styles.printHint}>
-            {lang === "fr"
-              ? "Cette présentation a été automatisée et a pris moins de 5 minutes à être générée"
-              : "This presentation was automated and took less than 5 minutes to generate"}
-          </span>
         </nav>
       </div>
     </header>

@@ -9,15 +9,14 @@ import Link from "next/link";
 
 import AnimatedCounter from "@/components/AnimatedCounter";
 import { ArchitectureExplorer } from "@/components/ArchitectureExplorer";
+import { CockpitMockup } from "@/components/CockpitMockup";
 import ComparisonTable from "@/components/ComparisonTable";
 import DealPipeline from "@/components/DealPipeline";
-import { Figure } from "@/components/Figure";
 import FootballField from "@/components/FootballField";
 import { Navigation } from "@/components/Navigation";
 import { PitchShowcase } from "@/components/PitchShowcase";
 import { Reveal } from "@/components/Reveal";
 import { SectionObserver } from "@/components/SectionObserver";
-import { VideoLoop } from "@/components/VideoLoop";
 
 import styles from "../app/page.module.css";
 
@@ -51,33 +50,33 @@ type TextMap = {
 
 const textsEN: TextMap = {
   hero: {
-    tag: "Epoch Associes · Paris",
-    title: "A deal operating system ",
-    titleEm: "built from scratch for small-cap M&A.",
-    lead: "14+ purpose-built modules execute French sell-side transactions (500K-10M euros EV) end-to-end. From a 500K-lead sourcing engine to a fully formulaic valuation workbook. Each module has its own agents, tools, guardrails, and human control gates. Nothing off-the-shelf. Everything auditable."
+    tag: "Technical portfolio · Julien Bouix · Paris",
+    title: "The system I built for small-cap M&A. ",
+    titleEm: "14 agents, 12 infra components, two builders.",
+    lead: "A full sell-side mandate runs on it — pitch deck, financial datapack, business plan, valuation, buyer short-list, information memorandum. The pages below walk through the architecture, the engineering tradeoffs, and one concrete deliverable produced end-to-end. The domain happens to be M&A; the problem was how to make LLM output safe enough to leave the building."
   },
   arch: {
-    tag: "System Architecture",
-    title: "12 infrastructure components. Each one exists because M&A broke without it.",
-    lead: "Hybrid RAG because embed-only search gets the numbers wrong. A knowledge graph because facts are connected across entities. Local LLM because resolving 500K entities via API is economically absurd. An LLM gateway because models change monthly. Every layer solves a specific failure mode that a generic AI setup cannot handle."
+    tag: "Architecture",
+    title: "12 infra components, each blocking a concrete way a deal can break.",
+    lead: "Hallucinated numbers, cross-mandate leakage, runaway API bills on 500,000 entities, stale models — each component below fixes one of these. Click any node: you'll see the tech specs AND the M&A reason it exists."
   },
   pipe: {
     tag: "Deal Pipeline",
-    title: "The entire sell-side lifecycle, decomposed into auditable stages.",
-    lead: "10 sequential stages, 2 cross-cutting layers running in parallel. Each stage has Pydantic I/O contracts, HITL gates, and status tracking. The pipeline waits for human validation between stages. Hours, days. It does not skip ahead."
+    title: "14 modules. The full sell-side lifecycle, from first contact to signed SPA.",
+    lead: "10 sequential stages from lead to closing. 2 cross-cutting layers that run in parallel (CRM + Email). Between every stage, the pipeline stops and waits for the banker to validate. Hours or days if that's what it takes. Nothing skips ahead."
   },
-  valo: { tag: "Valuation Engine", title: "Three independent branches, one football field." },
+  valo: { tag: "Valuation engine", title: "Three independent branches, one football field." },
   deliv: {
-    tag: "First Deliverable",
-    title: "24 slides generated in 15 minutes. Every figure sourced, then reviewed by the banker.",
-    lead: "The Medadom pitch deck was produced end-to-end by the system: Agent Info Publique ran a full public data research, Buyer Matching produced a preliminary acquirer list, the Valuation Engine computed a range from 400K transaction comps. No number is typed by hand. Every output still passes the banker's review before it leaves the building. The same deliverable takes a junior analyst a full working day."
+    tag: "Demo deliverable",
+    title: "A 24-slide pitch deck. 15 minutes to generate.",
+    lead: "On the Medadom file (synthetic), the system ran end-to-end: full public research, buyer short-list, a valuation range cross-checked against 400K transaction comps. Zero numbers typed by hand — every figure traces back to its source document. The banker reviews, edits, then sends. A junior analyst takes a full working day to produce the equivalent."
   },
   diff: {
-    tag: "Why Epoch",
-    title: "What separates Epoch from ChatGPT plus a banker.",
-    lead: "The difference is not what a single prompt can produce. It is what Epoch maintains across months of deal execution: isolation between mandates, persistent memory per deal, a facts layer with source verification, and feedback that compounds across every transaction."
+    tag: "Why build a system",
+    title: "Why a ChatGPT prompt cannot do this.",
+    lead: "ChatGPT forgets everything between conversations; this system keeps a dedicated memory across 6–9 months of execution. ChatGPT invents numbers; here every figure is tied to its source document. ChatGPT has no access to 400,000 recent French transaction comps; this one does. ChatGPT starts from zero every deal — this system compounds: every banker correction becomes a gain on the next mandate."
   },
-  hitl: { tag: "HITL Philosophy", title: "\"No Send Ever\"" },
+  hitl: { tag: "Human guardrail", title: "\"No Send Ever\"" },
   hitlSteps: [
     { strong: "Agent produces", p: "Draft, analysis, or recommendation" },
     { strong: "HITL Queue", p: "Output enters the Analyst review tab" },
@@ -85,7 +84,7 @@ const textsEN: TextMap = {
     { strong: "Correction routed", p: "Categorized, sent to SKILL or MEMORY file" },
     { strong: "Next deal is better", p: "Feedback compounds. Deal 20 > Deal 1." }
   ],
-  team: { tag: "Team", title: "Two people. One system." },
+  team: { tag: "Who built this", title: "Two people. A senior M&A banker and a full-stack engineer." },
   julien: {
     name: "Julien Bouix", role: "President",
     desc: "Ex-Lincoln International, Technology Team (Associate level). 10+ transactions mid-cap. Domain: M&A execution, system design, spec authorship, HITL validation, and co-development of the platform.",
@@ -97,9 +96,9 @@ const textsEN: TextMap = {
     quote: "\"Architecture, infrastructure, and every pipeline.\""
   },
   contact: {
-    tag: "Get in touch",
-    title: "Two doors. Same system.",
-    lead: "If you run a French SME and are thinking about a sale — or if you build AI systems and want to compare notes on agent architecture, HITL, or RAG for high-stakes domains — write to us.",
+    tag: "Reach out",
+    title: "Questions on the build, the stack, or hiring? Write.",
+    lead: "Open to tech conversations (agents, RAG, HITL, local LLM), hiring / collab opportunities, and M&A discussions on the French small-cap side. Reply within 48 hours.",
     emailLabel: "Email",
     email: "julien@jbouix.com",
     linkedinLabel: "LinkedIn",
@@ -114,33 +113,33 @@ const textsEN: TextMap = {
 
 const textsFR: TextMap = {
   hero: {
-    tag: "Epoch Associés · Paris",
-    title: "Un système d'exécution de transactions, ",
-    titleEm: "construit de zéro pour le M&A small-cap.",
-    lead: "14+ modules sur mesure exécutent des mandats de cession français (500K-10M euros EV) de bout en bout. D'un moteur de sourcing de 500K leads à un classeur de valorisation entièrement formulé. Chaque module a ses propres agents, outils, garde-fous et portes de contrôle humain. Rien de générique. Tout auditable."
+    tag: "Portfolio technique · Julien Bouix · Paris",
+    title: "Le système que j'ai construit pour le M&A small-cap. ",
+    titleEm: "14 agents, 12 briques d'infra, à deux.",
+    lead: "Un mandat de cession complet tourne dessus — pitch deck, datapack financier, business plan, valorisation, short-list d'acquéreurs, mémorandum d'information. Les pages suivantes parcourent l'architecture, les arbitrages d'ingénierie, et un livrable concret généré de bout en bout. Le domaine est le M&A ; la vraie question, c'était comment rendre une sortie de LLM assez fiable pour sortir du bâtiment."
   },
   arch: {
-    tag: "Architecture système",
-    title: "12 briques d'infrastructure. Chacune existe parce que le M&A cassait sans elle.",
-    lead: "Un RAG hybride parce que la recherche par embeddings seuls se trompe sur les chiffres. Un knowledge graph parce que les faits sont reliés entre entités. Un LLM local parce que résoudre 500K entités via API est économiquement absurde. Un gateway LLM parce que les modèles changent tous les mois. Chaque couche résout un mode de défaillance spécifique qu'une IA générique ne sait pas gérer."
+    tag: "Architecture",
+    title: "12 briques d'infra, chacune pour bloquer une façon concrète de casser un dossier.",
+    lead: "Chiffre halluciné, fuite d'un mandat A vers un mandat B, coût d'API qui explose sur 500 000 entités, modèle qui devient obsolète — chaque brique ci-dessous règle un de ces problèmes. Cliquez sur un nœud : vous verrez les specs techniques ET la raison M&A de son existence."
   },
   pipe: {
     tag: "Pipeline de transaction",
-    title: "L'intégralité du cycle sell-side, décomposée en étapes auditables.",
-    lead: "10 étapes séquentielles, 2 couches transversales en parallèle. Chaque étape a des contrats Pydantic I/O, des portes HITL et un suivi de statut. Le pipeline attend la validation humaine entre les étapes. Des heures, des jours. Il ne saute pas."
+    title: "14 modules. L'intégralité du cycle sell-side, du sourcing au closing.",
+    lead: "10 étapes séquentielles, du premier contact à la signature. 2 couches transversales qui tournent en parallèle (CRM + Email). Entre chaque étape, le pipeline s'arrête et attend la validation du banquier. Des heures ou des jours s'il le faut. Aucune étape ne saute."
   },
-  valo: { tag: "Moteur de valorisation", title: "Trois branches indépendantes, un football field." },
+  valo: { tag: "Moteur de valorisation", title: "Trois branches indépendantes qui se croisent dans un football field." },
   deliv: {
-    tag: "Premier livrable",
-    title: "24 slides générées en 15 minutes. Chaque chiffre sourcé, puis validé par le banquier.",
-    lead: "Le pitch Medadom a été produit de bout en bout par le système : l'Agent Info Publique a fait une recherche complète de données publiques, le Buyer Matching a produit une liste préliminaire d'acquéreurs, le moteur de Valorisation a calculé une fourchette à partir de 400K comparables transactionnels. Aucun chiffre n'est saisi à la main. Chaque livrable passe encore par la revue du banquier avant de sortir. Le même livrable prend une journée entière à un analyste junior."
+    tag: "Livrable démo",
+    title: "Un deck pitch de 24 slides. 15 minutes de génération.",
+    lead: "Sur le dossier Medadom (fictif), le système a tourné de bout en bout : recherche publique complète, short-list d'acquéreurs, fourchette de valo croisée sur 400K comparables. Aucun chiffre saisi à la main — chaque figure remonte à son document source. Le banquier relit, corrige, puis envoie. Un analyste junior met une journée entière pour produire l'équivalent."
   },
   diff: {
-    tag: "Pourquoi Epoch",
-    title: "Ce qui distingue Epoch d'un ChatGPT augmenté d'un banquier.",
-    lead: "La différence n'est pas ce qu'un prompt isolé peut produire. C'est ce qu'Epoch maintient sur des mois d'exécution : isolation entre mandats, mémoire persistante par dossier, couche de faits avec vérification des sources, et feedback qui se capitalise à chaque transaction."
+    tag: "Pourquoi construire un système",
+    title: "Pourquoi un prompt ChatGPT ne peut pas faire ça.",
+    lead: "ChatGPT oublie tout entre deux conversations ; ici le système tient une mémoire dédiée sur 6 à 9 mois de dossier. ChatGPT invente des chiffres ; ici chaque figure est rattachée à son document source. ChatGPT n'a pas accès aux 400 000 transactions françaises récentes ; ce système si. Et ChatGPT repart de zéro à chaque dossier, là où ce système capitalise : chaque correction du banquier devient un gain sur le dossier suivant."
   },
-  hitl: { tag: "Philosophie HITL", title: "\"No Send Ever\"" },
+  hitl: { tag: "Garde-fou humain", title: "« No Send Ever »" },
   hitlSteps: [
     { strong: "L'agent produit", p: "Brouillon, analyse ou recommandation" },
     { strong: "File HITL", p: "Le livrable entre dans l'onglet Analyste" },
@@ -148,7 +147,7 @@ const textsFR: TextMap = {
     { strong: "Correction routée", p: "Catégorisée, envoyée au fichier SKILL ou MEMORY" },
     { strong: "Le deal suivant est meilleur", p: "Le feedback composé. Deal 20 > Deal 1." }
   ],
-  team: { tag: "Équipe", title: "Deux personnes. Un système." },
+  team: { tag: "Qui a construit ça", title: "Deux personnes. Un banquier M&A senior et un ingénieur full-stack." },
   julien: {
     name: "Julien Bouix", role: "Président",
     desc: "Ex-Lincoln International, équipe Technology (niveau Associate). 10+ transactions mid-cap. Domaine : exécution M&A, conception du système, rédaction des specs, validation HITL et co-développement de la plateforme.",
@@ -160,9 +159,9 @@ const textsFR: TextMap = {
     quote: "\"Architecture, infrastructure et chaque pipeline.\""
   },
   contact: {
-    tag: "Nous contacter",
-    title: "Deux portes. Un même système.",
-    lead: "Si vous dirigez une PME française et réfléchissez à une cession — ou si vous construisez des systèmes d'IA et voulez échanger sur l'architecture d'agents, le HITL ou le RAG dans un domaine à forts enjeux — écrivez-nous.",
+    tag: "Parler",
+    title: "Questions sur le système, le stack, ou opportunité pro ? Écrivez.",
+    lead: "Ouvert aux discussions tech (agents, RAG, HITL, LLM local), opportunités d'embauche ou de collaboration, et dossiers M&A small-cap. Réponse sous 48h.",
     emailLabel: "Email",
     email: "julien@jbouix.com",
     linkedinLabel: "LinkedIn",
@@ -184,63 +183,61 @@ type TextOverride = Partial<Pick<TextMap, "hero" | "arch" | "pipe" | "deliv" | "
 const engineerEN: TextOverride = {
   hero: {
     tag: "Engineering portfolio · Paris",
-    title: "A multi-agent OS for high-stakes document production, ",
-    titleEm: "built on hybrid RAG, knowledge graphs, and local inference."
-  ,
-    lead: "Next.js, FastAPI+HTMX, LangGraph, Qdrant, Neo4j, PostgreSQL, Docling, vLLM+Qwen 2.5 32B on an RTX 4090. 14+ business modules with Pydantic I/O contracts, 4-level anti-hallucination guards, persistent per-deal memory, and observability on every LLM call. The domain happens to be M&A; the system design generalises to any workflow where figures must be auditable and humans must stay in the loop."
+    title: "14 agents. 12 infra components. ",
+    titleEm: "One high-stakes document-production system.",
+    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B on an RTX 4090. Every figure carries a source tag. Every agent output hits a human queue before it ships. Entity resolution runs at €1K a day instead of €250K through a 3-tier cascade. The domain is M&A; the patterns port to any workflow where a fabricated number poisons everything downstream."
   },
   arch: {
-    tag: "System architecture",
-    title: "Why 12 separate infra components and not one framework.",
-    lead: "Embed-only retrieval under-recalls exact numerics, so retrieval is hybrid dense+sparse with cross-encoder rerank. Entity resolution through a 3-tier cascade keeps 98% of work at zero marginal cost. A gateway abstracts all frontier model calls into a single Python client so model migration is a config change. LangGraph only where stateful memory across weeks matters. Everything else is explicit sequential pipelines — simpler, more testable, fewer surprises in prod."
+    tag: "Architecture",
+    title: "12 infra pieces. No framework to hide behind.",
+    lead: "Retrieval is hybrid (dense + BM25 + RRF + cross-encoder rerank) because embeddings alone miss exact numbers. Entity resolution is a 3-tier cascade so 98% of the work never hits a paid API. Model calls go through one gateway — switching from Claude to GPT is a config change, not a refactor. LangGraph shows up exactly once, where stateful memory across weeks earns its keep. Everywhere else: plain Python, Pydantic at the seams, and fewer surprises in prod."
   },
   pipe: {
     tag: "Pipeline",
-    title: "12 stages, strict I/O contracts, and no agent ships output untouched by a human.",
-    lead: "Each stage is a Python module with Pydantic schemas at the boundary. HITL checkpoints persist to Postgres so the pipeline can wait hours or days for validation without holding memory. Circuit breakers kill runaway revision loops. Every figure carries a reliability tag (certified / declarative / estimated / public_web). This is what it takes to run LLM output through a domain where one wrong EBITDA poisons the rest of the deal."
+    title: "14 modules. Strict I/O contracts. No agent ships output a human hasn't seen.",
+    lead: "Each stage is a Python module with Pydantic schemas at the boundary. HITL checkpoints persist to Postgres, so the pipeline can wait hours or days without holding state in memory. Circuit breakers kill revision loops at 3 iterations. Every figure is tagged certified / declarative / estimated / public_web. This is the minimum to run LLM output through a domain where one wrong EBITDA poisons the whole deal."
   },
   deliv: {
     tag: "Proof",
-    title: "24 slides generated in 15 minutes — every number traceable to source.",
-    lead: "The Medadom pitch deck was produced end-to-end: public data ingestion, buyer matching against a 7M-record database, valuation from 400K transaction comps, deck composition via python-pptx against 20 layout taxonomies. Zero hardcoded numbers; every figure links back through the lineage tab to (file, page, cell, extraction date). The banker still reviews before anything ships."
+    title: "24 slides. 15 minutes. Every figure back-linked to its source document.",
+    lead: "Public data ingestion → buyer matching against 7M records → valuation from 400K transaction comps → python-pptx across 20 layout taxonomies. Zero hardcoded numbers. The lineage tab maps every figure to (file, page, cell, extraction date). The banker still reviews before anything ships — that's the point."
   },
   diff: {
-    tag: "What makes it work",
-    title: "The six properties that separate a production system from a prompt.",
-    lead: "Namespace isolation per deal. Persistent memory with checkpointing. A facts layer with citation enforcement. Multi-module orchestration with Pydantic contracts. Structural guardrails (circuit breakers, adversarial agents, confidence thresholds). Local inference for batch work, frontier models only where reasoning quality pays for itself. Observability on every call. None of this comes out of the box."
+    tag: "What holds it together",
+    title: "Six properties that turn an LLM prompt into a production system.",
+    lead: "Per-deal namespace isolation. Persistent memory with checkpointing. A facts layer with citation enforcement. Multi-module orchestration on Pydantic contracts. Structural guardrails — circuit breakers, adversarial agents, confidence thresholds. Local inference for batch work; frontier models only where reasoning pays. Observability on every call. None of this comes out of the box."
   },
-  team: { tag: "Team", title: "Two-person team. Senior domain expert plus full-stack builder." }
+  team: { tag: "Team", title: "Senior domain expert + full-stack builder. That's the whole team." }
 };
 
 const engineerFR: TextOverride = {
   hero: {
     tag: "Portfolio technique · Paris",
-    title: "Un OS multi-agents pour la production de documents à fort enjeu, ",
-    titleEm: "bâti sur RAG hybride, graphes de connaissances et inférence locale."
-  ,
-    lead: "Next.js, FastAPI+HTMX, LangGraph, Qdrant, Neo4j, PostgreSQL, Docling, vLLM+Qwen 2.5 32B sur une RTX 4090. 14+ modules métier avec contrats d'I/O Pydantic, garde-fous anti-hallucination à 4 niveaux, mémoire persistante par dossier et observabilité sur chaque appel LLM. Le domaine est le M&A ; la conception système se généralise à tout workflow où chaque chiffre doit être auditable et chaque humain rester dans la boucle."
+    title: "14 agents. 12 briques d'infra. ",
+    titleEm: "Un système de production de documents à fort enjeu.",
+    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B sur RTX 4090. Chaque chiffre porte son tag de source. Chaque sortie d'agent passe par une file humaine avant de partir. La résolution d'entités tourne à 1K€/jour au lieu de 250K€/jour via une cascade à 3 niveaux. Le domaine, c'est le M&A ; les patterns valent pour tout workflow où un chiffre inventé pollue toute la chaîne."
   },
   arch: {
-    tag: "Architecture système",
-    title: "Pourquoi 12 briques d'infra séparées plutôt qu'un framework unique.",
-    lead: "La recherche par embeddings seuls rate les valeurs numériques exactes ; d'où un RAG hybride dense+sparse avec re-ranking cross-encoder. La résolution d'entités passe par une cascade à 3 niveaux qui maintient 98 % du travail à coût marginal nul. Une passerelle isole tous les appels frontier derrière un client Python unique : changer de modèle devient un changement de config. LangGraph est réservé aux cas où la mémoire stateful sur plusieurs semaines compte ; partout ailleurs, des pipelines séquentiels explicites — plus simples, plus testables, moins de surprises en prod."
+    tag: "Architecture",
+    title: "12 briques d'infra. Pas de framework pour se cacher derrière.",
+    lead: "La recherche est hybride (dense + BM25 + RRF + reranker cross-encoder) parce que les embeddings seuls ratent les chiffres exacts. La résolution d'entités passe par une cascade à 3 niveaux : 98 % du travail ne touche jamais une API payante. Tous les appels modèle passent par une passerelle unique — changer de Claude à GPT, c'est un changement de config. LangGraph n'apparaît qu'une seule fois, là où la mémoire stateful sur plusieurs semaines gagne sa place. Partout ailleurs : du Python simple, du Pydantic aux jointures, et moins de surprises en prod."
   },
   pipe: {
     tag: "Pipeline",
-    title: "12 étapes, contrats d'I/O stricts, aucun agent ne livre sans relecture humaine.",
-    lead: "Chaque étape est un module Python avec des schémas Pydantic aux frontières. Les points de contrôle HITL sont persistés en Postgres : le pipeline attend des heures ou des jours sans occuper de mémoire. Des circuit breakers stoppent les boucles de révision. Chaque chiffre porte un tag de fiabilité (certifié / déclaratif / estimé / web_public). C'est le minimum pour faire tourner des sorties LLM dans un domaine où un EBITDA faux empoisonne tout le deal."
+    title: "14 modules. Contrats I/O stricts. Aucun agent ne livre sans relecture humaine.",
+    lead: "Chaque étape est un module Python avec des schémas Pydantic aux frontières. Les points HITL sont persistés en Postgres : le pipeline peut attendre des heures ou des jours sans tenir l'état en mémoire. Les circuit breakers tuent les boucles de révision à 3 itérations. Chaque chiffre est tagué certifié / déclaratif / estimé / web_public. C'est le minimum pour faire tourner des sorties LLM dans un domaine où un EBITDA faux empoisonne tout le dossier."
   },
   deliv: {
     tag: "Preuve",
-    title: "24 slides générées en 15 minutes — chaque chiffre traçable à sa source.",
-    lead: "Le pitch Medadom a été produit de bout en bout : ingestion de données publiques, matching contre une base de 7M acquéreurs, valorisation à partir de 400K comparables, composition du deck via python-pptx sur 20 taxonomies de mise en page. Zéro valeur codée en dur ; chaque chiffre remonte via l'onglet lineage vers (fichier, page, cellule, date d'extraction). Le banquier valide toujours avant toute sortie."
+    title: "24 slides. 15 minutes. Chaque chiffre tracé jusqu'à son document source.",
+    lead: "Ingestion de données publiques → matching contre 7M fiches → valorisation à partir de 400K comparables → composition du deck via python-pptx sur 20 taxonomies de mise en page. Zéro valeur en dur. L'onglet lineage mappe chaque chiffre à (fichier, page, cellule, date). Le banquier valide avant toute sortie — c'est précisément le but."
   },
   diff: {
     tag: "Ce qui fait tenir",
-    title: "Les six propriétés qui séparent un système en production d'un prompt.",
-    lead: "Isolation de namespace par dossier. Mémoire persistante avec checkpointing. Couche factuelle avec citation obligatoire. Orchestration multi-modules avec contrats Pydantic. Garde-fous structurels (circuit breakers, agents adverses, seuils de confiance). Inférence locale pour le batch, modèles frontier uniquement quand la qualité de raisonnement le justifie. Observabilité sur chaque appel. Rien de tout cela ne sort d'une boîte."
+    title: "Six propriétés qui transforment un prompt en système de production.",
+    lead: "Isolation de namespace par dossier. Mémoire persistante avec checkpointing. Couche factuelle avec citation obligatoire. Orchestration multi-modules sur contrats Pydantic. Garde-fous structurels — circuit breakers, agents adverses, seuils de confiance. Inférence locale pour le batch ; frontier uniquement quand le raisonnement le justifie. Observabilité sur chaque appel. Rien de tout ça ne sort d'une boîte."
   },
-  team: { tag: "Équipe", title: "Deux personnes. Expert domaine senior + full-stack." }
+  team: { tag: "Équipe", title: "Expert domaine senior + full-stack. C'est toute l'équipe." }
 };
 
 function selectTexts(base: TextMap, audience: Audience, lang: "en" | "fr"): TextMap {
@@ -381,21 +378,6 @@ export function PageContent() {
             <Reveal delay={100}>
               <ArchitectureExplorer nodes={c.infraNodes} guardrails={c.guardrails} modules={c.pipelineStages} />
             </Reveal>
-            <Reveal delay={180}>
-              <Figure
-                src="/portfolio/screenshots/arch-explorer-panel.png"
-                alt={lang === "fr" ? "Exploration d'une brique d'infrastructure" : "Infra node drill-down"}
-                caption={lang === "fr"
-                  ? "Vue détaillée d'un nœud d'infrastructure (specs techniques / rationale M&A / modules connectés)."
-                  : "Drill-down panel on a single infra node (tech specs / M&A rationale / connected modules)."}
-                placeholderTitle={lang === "fr"
-                  ? "Capture : drill-down sur un nœud d'infrastructure"
-                  : "Screenshot: infra-node drill-down panel"}
-                placeholderHint={lang === "fr"
-                  ? "Drop un PNG 16:9 dans /public/screenshots/arch-explorer-panel.png pour remplacer ce placeholder."
-                  : "Drop a 16:9 PNG at /public/screenshots/arch-explorer-panel.png to replace this placeholder."}
-              />
-            </Reveal>
           </div>
         </section>
 
@@ -409,7 +391,47 @@ export function PageContent() {
                 <p className={styles.sectionLead}>{t.pipe.lead}</p>
               </div>
             </Reveal>
-            <Reveal delay={100}>
+            <Reveal delay={80}>
+              <div className={styles.moduleStrip}>
+                <div className={styles.moduleStripHead}>
+                  <span className={styles.moduleCount}>14</span>
+                  <div className={styles.moduleStripHeadText}>
+                    <strong>
+                      {lang === "fr" ? "Modules métier" : "Business modules"}
+                    </strong>
+                    <span>
+                      {lang === "fr"
+                        ? "10 étapes séquentielles · 2 en spec · 2 couches transversales permanentes"
+                        : "10 sequential stages · 2 in spec · 2 always-on cross-cutting layers"}
+                    </span>
+                  </div>
+                </div>
+                <ol className={styles.moduleList}>
+                  {c.pipelineStages.map((stage) => (
+                    <li key={stage.id} className={`${styles.moduleChip} ${styles[`moduleChip_${stage.status}`]}`}>
+                      <span className={styles.moduleChipNum}>{stage.number}</span>
+                      <span className={styles.moduleChipName}>{stage.title}</span>
+                    </li>
+                  ))}
+                  {c.crossCuttingLayers.map((layer) => (
+                    <li key={layer.id} className={`${styles.moduleChip} ${styles.moduleChipCross} ${styles[`moduleChip_${layer.status}`]}`}>
+                      <span className={styles.moduleChipNum}>✕</span>
+                      <span className={styles.moduleChipName}>{layer.title}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className={styles.moduleLegend}>
+                  <span><i className={`${styles.legendDot} ${styles.legendLive}`} /> Live</span>
+                  <span><i className={`${styles.legendDot} ${styles.legendTesting}`} /> {lang === "fr" ? "En test" : "Testing"}</span>
+                  <span><i className={`${styles.legendDot} ${styles.legendSpec}`} /> Spec</span>
+                  <span>
+                    <i className={styles.legendCross}>✕</i>
+                    {lang === "fr" ? "Couche transversale" : "Cross-cutting"}
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={140}>
               <DealPipeline stages={c.pipelineStages} />
             </Reveal>
           </div>
@@ -440,21 +462,6 @@ export function PageContent() {
               </div>
             </Reveal>
             <Reveal delay={180}><FootballField /></Reveal>
-            <Reveal delay={240}>
-              <Figure
-                src="/portfolio/screenshots/valo-football-field.png"
-                alt={lang === "fr" ? "Synthèse de valorisation — Excel" : "Valuation synthesis — Excel"}
-                caption={lang === "fr"
-                  ? "Onglet Synthèse du classeur de valorisation. Chaque cellule est une formule, chaque source est traçable."
-                  : "Synthesis tab of the valuation workbook. Every cell is a formula, every source is traceable."}
-                placeholderTitle={lang === "fr"
-                  ? "Capture : classeur de valorisation"
-                  : "Screenshot: valuation workbook"}
-                placeholderHint={lang === "fr"
-                  ? "Drop un PNG 16:9 dans /public/screenshots/valo-football-field.png"
-                  : "Drop a 16:9 PNG at /public/screenshots/valo-football-field.png"}
-              />
-            </Reveal>
           </div>
         </section>
 
@@ -469,21 +476,6 @@ export function PageContent() {
               </div>
             </Reveal>
             <Reveal delay={100}><PitchShowcase /></Reveal>
-            <Reveal delay={180}>
-              <Figure
-                src="/portfolio/screenshots/medadom-deck-cover.png"
-                alt={lang === "fr" ? "Couverture du deck Medadom généré" : "Generated Medadom deck cover"}
-                caption={lang === "fr"
-                  ? "Slide 01 du pitch Medadom, exporté depuis python-pptx."
-                  : "Slide 01 of the Medadom pitch, exported from python-pptx."}
-                placeholderTitle={lang === "fr"
-                  ? "Capture : couverture du deck Medadom"
-                  : "Screenshot: generated Medadom deck cover"}
-                placeholderHint={lang === "fr"
-                  ? "Drop un PNG 16:9 dans /public/screenshots/medadom-deck-cover.png"
-                  : "Drop a 16:9 PNG at /public/screenshots/medadom-deck-cover.png"}
-              />
-            </Reveal>
           </div>
         </section>
 
@@ -512,32 +504,7 @@ export function PageContent() {
                     </div>
                   ))}
                 </div>
-                <Figure
-                  src="/portfolio/screenshots/cockpit-hitl.png"
-                  alt={lang === "fr" ? "CRM Cockpit — onglet Analyste / file HITL" : "CRM Cockpit — Analyst tab / HITL queue"}
-                  caption={lang === "fr"
-                    ? "La file HITL dans le cockpit. Tout ce qu'un agent produit y atterrit avant de partir."
-                    : "HITL queue in the cockpit. Everything an agent produces lands here before it ships."}
-                  placeholderTitle={lang === "fr"
-                    ? "Capture : onglet Analyste du cockpit"
-                    : "Screenshot: cockpit Analyst tab"}
-                  placeholderHint={lang === "fr"
-                    ? "Drop un PNG 16:9 dans /public/screenshots/cockpit-hitl.png"
-                    : "Drop a 16:9 PNG at /public/screenshots/cockpit-hitl.png"}
-                />
-                <VideoLoop
-                  src="/portfolio/videos/cockpit-hitl.mp4"
-                  poster="/portfolio/screenshots/cockpit-hitl.png"
-                  caption={lang === "fr"
-                    ? "Démo ~30s : un output d'agent entre dans la file, le banquier approuve, la correction part en MEMORY."
-                    : "~30s loop: agent output enters the queue, the banker approves, the correction is routed into MEMORY."}
-                  placeholderTitle={lang === "fr"
-                    ? "Vidéo : le cockpit HITL en action"
-                    : "Video: the HITL cockpit in action"}
-                  placeholderHint={lang === "fr"
-                    ? "Drop une MP4 ~30s / 16:9 dans /public/videos/cockpit-hitl.mp4"
-                    : "Drop a ~30s 16:9 MP4 at /public/videos/cockpit-hitl.mp4"}
-                />
+                <CockpitMockup lang={lang} />
               </div>
             </Reveal>
           </div>
