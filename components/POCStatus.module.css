@@ -91,14 +91,14 @@
   color: var(--text-3);
 }
 
-.cellLive::before { background: #3c6a42; }
-.cellLive .cellNum { color: #2d5232; }
+.cellLive::before { background: var(--live); }
+.cellLive .cellNum { color: var(--live); }
 
-.cellTesting::before { background: #3a5a78; }
-.cellTesting .cellNum { color: #2c445c; }
+.cellTesting::before { background: var(--testing); }
+.cellTesting .cellNum { color: var(--testing); }
 
-.cellSpec::before { background: #7d6a30; }
-.cellSpec .cellNum { color: #6a5a28; }
+.cellSpec::before { background: var(--spec); }
+.cellSpec .cellNum { color: var(--spec); }
 
 .honest {
   margin: 0;

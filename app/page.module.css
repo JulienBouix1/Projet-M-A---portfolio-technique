@@ -146,8 +146,8 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(168, 84, 42, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 84, 42, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(200, 164, 90, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 164, 90, 0.055) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
@@ -541,7 +541,7 @@
 }
 
 .limitsItem:hover {
-  background: rgba(168, 84, 42, 0.03);
+  background: rgba(200, 164, 90, 0.05);
 }
 
 .limitsNum {
@@ -658,9 +658,9 @@
   display: inline-block;
 }
 
-.legendLive { background: rgba(76, 175, 80, 0.85); box-shadow: 0 0 6px rgba(76, 175, 80, 0.35); }
-.legendTesting { background: rgba(100, 181, 246, 0.85); }
-.legendSpec { background: rgba(255, 183, 77, 0.85); }
+.legendLive { background: var(--live); box-shadow: 0 0 6px rgba(122, 163, 128, 0.35); }
+.legendTesting { background: var(--testing); }
+.legendSpec { background: var(--spec); }
 
 /* Phase row above the track */
 .ganttPhase {
@@ -735,17 +735,17 @@
   letter-spacing: -0.005em;
 }
 
-.ganttBar_live::before { background: rgba(76, 175, 80, 0.8); }
-.ganttBar_live { background: linear-gradient(180deg, rgba(76, 175, 80, 0.07), transparent 60%), var(--bg-card); }
-.ganttBar_live .ganttBarNum { color: rgba(76, 175, 80, 0.9); }
+.ganttBar_live::before { background: var(--live); }
+.ganttBar_live { background: linear-gradient(180deg, var(--live-bg), transparent 60%), var(--bg-card); }
+.ganttBar_live .ganttBarNum { color: var(--live); }
 
-.ganttBar_testing::before { background: rgba(100, 181, 246, 0.8); }
-.ganttBar_testing { background: linear-gradient(180deg, rgba(100, 181, 246, 0.06), transparent 60%), var(--bg-card); }
-.ganttBar_testing .ganttBarNum { color: rgba(100, 181, 246, 0.9); }
+.ganttBar_testing::before { background: var(--testing); }
+.ganttBar_testing { background: linear-gradient(180deg, var(--testing-bg), transparent 60%), var(--bg-card); }
+.ganttBar_testing .ganttBarNum { color: var(--testing); }
 
-.ganttBar_spec::before { background: rgba(255, 183, 77, 0.8); }
+.ganttBar_spec::before { background: var(--spec); }
 .ganttBar_spec { border-style: dashed; }
-.ganttBar_spec .ganttBarNum { color: rgba(255, 183, 77, 0.9); }
+.ganttBar_spec .ganttBarNum { color: var(--spec); }
 
 /* Cross-cutting rails label */
 .ganttCrossLabel {

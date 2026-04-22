@@ -73,7 +73,7 @@
 .chromeDots i {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: rgba(40, 28, 18, 0.2);
+  background: rgba(200, 164, 90, 0.25);
 }
 
 .slideContent {

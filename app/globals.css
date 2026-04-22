@@ -1,43 +1,46 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* ── Palette — warm paper editorial ─────────────────────── */
-  --bg:          #f3ede2;   /* warm cream paper */
-  --bg-raised:   #ebe4d5;
-  --bg-card:     #fbf7ee;   /* slight warm off-white for cards */
-  --border:      rgba(40, 28, 18, 0.10);
-  --border-focus: rgba(168, 84, 42, 0.4);
+  /* ── Palette — elite-IB: deep navy · parchment · brass ────────
+     Reference: Lazard, Rothschild & Co, Perella Weinberg.
+     Deep oxford-navy base, parchment-cream type, muted brass accent.
+  */
+  --bg:          #0b1524;          /* deep oxford navy */
+  --bg-raised:   #142036;
+  --bg-card:     #18263f;
+  --border:      rgba(200, 164, 90, 0.16);
+  --border-focus: rgba(200, 164, 90, 0.4);
 
-  --accent:      #a8542a;          /* deeper terracotta for contrast on cream */
-  --accent-dim:  #8a4420;
-  --accent-glow: rgba(168, 84, 42, 0.12);
-  --accent-text: #8a4420;
+  --accent:      #c8a45a;          /* antique brass */
+  --accent-dim:  #a68641;
+  --accent-glow: rgba(200, 164, 90, 0.12);
+  --accent-text: #dcb876;          /* lighter brass for text-on-navy */
 
-  --live:        #3c6a42;
-  --live-bg:     rgba(60, 106, 66, 0.12);
-  --testing:     #3a5a78;
-  --testing-bg:  rgba(58, 90, 120, 0.12);
-  --spec:        #7d6a30;
-  --spec-bg:     rgba(125, 106, 48, 0.12);
+  --live:        #7aa380;
+  --live-bg:     rgba(122, 163, 128, 0.14);
+  --testing:     #8ab1cf;
+  --testing-bg:  rgba(138, 177, 207, 0.14);
+  --spec:        #c8a45a;
+  --spec-bg:     rgba(200, 164, 90, 0.12);
 
-  --text:        #19140e;          /* warm near-black ink */
-  --text-2:      #5a4d3f;
-  --text-3:      #8a7a68;
+  --text:        #efe6cf;          /* parchment cream */
+  --text-2:      #c2b899;
+  --text-3:      #8e8572;
 
-  --shadow:      0 14px 40px rgba(42, 28, 16, 0.08);
-  --shadow-glow: 0 0 50px rgba(168, 84, 42, 0.08);
+  --shadow:      0 20px 60px rgba(0, 8, 22, 0.50);
+  --shadow-glow: 0 0 60px rgba(200, 164, 90, 0.08);
 
-  /* Dark-island tokens — used by mockups and code-preview surfaces that
-     should stay visually dark even when the page is on warm paper. */
-  --dark-bg:        #0a0a0c;
-  --dark-bg-raised: #111113;
-  --dark-bg-card:   #141418;
-  --dark-border:    rgba(255, 255, 255, 0.08);
-  --dark-text:      #e8e6e1;
-  --dark-text-2:    #a09a92;
-  --dark-text-3:    #6b6560;
-  --dark-accent:    #e8b889;
-  --dark-accent-text: #f5cfa4;
+  /* Dark-island tokens — used by the CockpitMockup which needs to feel
+     like a separate production UI surface, darker than the page. */
+  --dark-bg:        #060c17;
+  --dark-bg-raised: #0d1524;
+  --dark-bg-card:   #101a2c;
+  --dark-border:    rgba(200, 164, 90, 0.12);
+  --dark-text:      #efe6cf;
+  --dark-text-2:    #c2b899;
+  --dark-text-3:    #8e8572;
+  --dark-accent:    #c8a45a;
+  --dark-accent-text: #dcb876;
 
   /* ── Layout ──────────────────────────────────────────────── */
   --max:         1280px;
@@ -80,9 +83,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' fill='%235a4d3f'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a { color: inherit; text-decoration: none; }

@@ -23,28 +23,29 @@ function CoverSlide() {
 }
 
 function CompsSlide() {
-  // Fictive small-cap transaction comps in French industrial-services / levage.
-  // Multiples are sector-realistic (4-6.5x EBITDA, 0.5-1.2x CA).
+  // Real French small-cap levage M&A transactions 2020-2025 (sources: CONSTRUCTIONBTP,
+  // Usine Nouvelle, JDL Groupe, KHL, Batiactu, Construction Cayola). Multiples are
+  // rarely publicly disclosed for small-cap private deals — we cite our internal
+  // EBITDA range from the MAKB + CFNews aggregate for the sector.
   const comps = [
-    { cible: "Levage Pyrénées",        secteur: "Levage mobile",        ev: "12 M€", multiple: "5.8x",  annee: "2025" },
-    { cible: "Manutention Occitanie",  secteur: "Manutention industrielle", ev: "9 M€",  multiple: "5.2x",  annee: "2024" },
-    { cible: "Grues Atlantique",       secteur: "Grues & levage lourd", ev: "7 M€",  multiple: "4.8x",  annee: "2024" },
-    { cible: "Nord Levage Services",   secteur: "Location + levage",    ev: "11 M€", multiple: "5.5x",  annee: "2023" },
-    { cible: "Coubertin Maintenance",  secteur: "Maintenance indus.",   ev: "8 M€",  multiple: "4.6x",  annee: "2023" },
-    { cible: "Levage Normandie",       secteur: "Transport exceptionnel", ev: "6 M€",  multiple: "4.2x",  annee: "2025" }
+    { cible: "MARTIN LEVAGE",  acquereur: "Foselev",       region: "Occitanie",       annee: "2025" },
+    { cible: "STL",            acquereur: "Foselev",       region: "Pas-de-Calais",   annee: "2024" },
+    { cible: "Bour",           acquereur: "Noblet",        region: "Île-de-France",   annee: "2024" },
+    { cible: "BETKA",          acquereur: "Foselev",       region: "Savoie",          annee: "2023" },
+    { cible: "SISE",           acquereur: "Foselev",       region: "Nord",            annee: "2023" },
+    { cible: "SE Levage",      acquereur: "Mediaco",       region: "Haute-Savoie",    annee: "2020" }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Transactions comparables — levage & services industriels FR</span>
+      <span className={styles.micro}>Transactions comparables — levage FR, 2020-2025</span>
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>Cible</th>
-              <th>Secteur</th>
-              <th>EV</th>
-              <th>EV/EBITDA</th>
+              <th>Acquéreur</th>
+              <th>Région</th>
               <th>Année</th>
             </tr>
           </thead>
@@ -52,16 +53,15 @@ function CompsSlide() {
             {comps.map((row) => (
               <tr key={row.cible}>
                 <td className={styles.cellBold}>{row.cible}</td>
-                <td>{row.secteur}</td>
-                <td>{row.ev}</td>
-                <td className={styles.cellGold}>{row.multiple}</td>
+                <td className={styles.cellGold}>{row.acquereur}</td>
+                <td>{row.region}</td>
                 <td>{row.annee}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className={styles.tableFootnote}>Médiane : 5.1x EV/EBITDA sur 6 transactions small-cap 2023–2025. Données fictives, calibrées sur la base MAKB + CFNews du secteur.</p>
+      <p className={styles.tableFootnote}>Transactions privées, multiples non divulgués. Fourchette indicative interne : 4.0x–6.5x EBITDA sur comparables small-cap levage FR (base MAKB + CFNews).</p>
     </div>
   );
 }
@@ -106,27 +106,29 @@ function ValoSlide() {
 }
 
 function BuyersSlide() {
-  // Small-cap industrial-services buyer universe: regional consolidators,
-  // mid-cap PE doing build-ups, corporate adjacent sectors.
+  // Hyper-niche strategic acquirers — no PE, no search funds, no MBI.
+  // Mix of active sector consolidators and adjacency plays the 7M-record
+  // matching engine surfaces: aerospace (Daher · Toulouse), industrial
+  // piping (Ponticelli), BTP-adjacent (Fayat · Gironde).
   const buyers = [
-    { name: "Foselev Group",          type: "Consolidateur sectoriel",  logique: "Build-up régional levage — complément géographique sud-ouest", prio: 3 },
-    { name: "Mediaco Levage",         type: "Leader indépendant",       logique: "Extension flotte + couverture clients industrie locale", prio: 3 },
-    { name: "Fayat Services",         type: "Groupe BTP / services",    logique: "Intégration verticale — levage pour chantiers propres", prio: 2 },
-    { name: "Capza (small-cap)",      type: "PE — services B2B",        logique: "Plateforme services industriels régionaux", prio: 2 },
-    { name: "Andera MidCap",          type: "PE — industrie",           logique: "Build-up national, synergie avec portefeuille existant", prio: 2 },
-    { name: "Dirigeant sortant MBI",  type: "Repreneur / search fund",  logique: "Reprise opérationnelle, continuité équipe", prio: 1 }
+    { name: "Foselev Group",       type: "Consolidateur levage",      logique: "7 build-ups 2023-25 (STL, BETKA, SISE, MARTIN LEVAGE) — maillage sud-ouest manquant", prio: 3 },
+    { name: "Mediaco Groupe",      type: "#1 levage FR",              logique: "Ex-Altéad levage post-2019, agence Occitanie à renforcer sur transport exceptionnel", prio: 3 },
+    { name: "Capelle Transports",  type: "#1 transport exceptionnel", logique: "Ex-Altéad transport, cherche capacité levage intégrée — mariage vertical évident", prio: 2 },
+    { name: "Daher Industrial Services", type: "Aéro & industrie (Toulouse)", logique: "Post-acquisition AAA (2023, 270 M€) — besoin de levage AOG pour sites Airbus sud-ouest", prio: 2 },
+    { name: "Ponticelli Frères",   type: "Levage + piping nucléaire", logique: "Exposition Lacq / Golfech — bolt-on levage pour maintenance industrielle lourde", prio: 2 },
+    { name: "Fayat Industries",    type: "Groupe Gironde / BTP",      logique: "HQ Bordeaux, filiale ADC Fayat (ponts roulants) — synergie géographique + flotte", prio: 1 }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Acquéreurs prioritaires — matching 7M base Epoch</span>
+      <span className={styles.micro}>Short-list stratégique — matching hyper-niche · 7M fiches indexées</span>
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>Acquéreur</th>
-              <th>Type</th>
-              <th>Logique stratégique</th>
+              <th>Positionnement</th>
+              <th>Rationale</th>
               <th>Priorité</th>
             </tr>
           </thead>
