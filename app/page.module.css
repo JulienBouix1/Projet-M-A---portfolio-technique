@@ -9,6 +9,67 @@
   padding: 112px 36px;
 }
 
+/* Section chapter marks (§ 01, § 02, …) */
+.page main {
+  counter-reset: section 0;
+}
+
+.section[id]:not(.hero) {
+  counter-increment: section;
+}
+
+.section[id]:not(.hero) > .container > :first-child .sectionHeader {
+  position: relative;
+  padding-left: 72px;
+}
+
+.section[id]:not(.hero) > .container > :first-child .sectionHeader::before {
+  content: "§ " counter(section, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  padding-right: 16px;
+  border-right: 1px solid var(--border);
+  line-height: 1.4;
+  width: 56px;
+}
+
+/* Accent band (full-bleed terracotta — used on the Why section) */
+.accentBand {
+  background: linear-gradient(180deg, #d2885a 0%, #c17f4e 45%, #a66a40 100%);
+  color: #0a0a0b;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.accentBand + .section::before,
+.section + .accentBand::before {
+  display: none !important;
+}
+
+.accentBand .sectionTag {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.accentBand > .container > :first-child .sectionHeader::before {
+  color: rgba(0, 0, 0, 0.55) !important;
+  border-right-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.accentBand .sectionTitle {
+  color: #0a0a0b !important;
+}
+
+.accentBand .sectionLead {
+  color: rgba(0, 0, 0, 0.78) !important;
+}
+
 .section + .section::before {
   content: "";
   position: absolute;
@@ -73,23 +134,54 @@
 /* ── Hero ────────────────────────────────────────────────── */
 
 .hero {
-  padding-top: 140px;
-  padding-bottom: 72px;
-  text-align: center;
+  position: relative;
+  padding-top: 160px;
+  padding-bottom: 88px;
+  text-align: left;
+  overflow: hidden;
+}
+
+.heroGridTexture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(193, 127, 78, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(193, 127, 78, 0.05) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
 }
 
 .heroInner {
-  max-width: 820px;
+  position: relative;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
 .heroSupertitle {
-  margin: 0 0 28px;
-  font-family: var(--font-display), serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--accent-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 36px;
+  padding: 6px 14px 6px 36px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  position: relative;
+}
+
+.heroSupertitle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
 }
 
 .heroTag {
@@ -107,26 +199,73 @@
 }
 
 .heroTitle {
-  margin: 0 0 20px;
+  margin: 0 0 32px;
   font-family: var(--font-display), serif;
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  font-size: clamp(2.8rem, 7.5vw, 6.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
   color: var(--text);
+  max-width: 14ch;
 }
 
-.heroTitle em {
-  font-style: normal;
+.heroTitle em,
+.heroTitleEm {
+  position: relative;
+  font-style: italic;
+  font-weight: 500;
   color: var(--accent-text);
+  display: inline;
+  padding-bottom: 2px;
+  background-image: linear-gradient(90deg, var(--accent) 0%, var(--accent) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 4px;
+  background-position: 0 100%;
 }
 
 .heroLead {
-  margin: 0 auto 40px;
-  max-width: 600px;
-  font-size: 16px;
+  margin: 0 0 32px;
+  max-width: 58ch;
+  font-size: 16.5px;
   line-height: 1.75;
   color: var(--text-2);
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  margin-bottom: 56px;
+  max-width: 58ch;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.heroMeta > span {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+
+.heroJump {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: rgba(193, 127, 78, 0.08);
+  transition: background 0.2s ease;
+}
+
+.heroJump:hover {
+  background: rgba(193, 127, 78, 0.2);
 }
 
 /* ── Thesis ──────────────────────────────────────────────── */
@@ -377,129 +516,58 @@
   color: var(--text-2);
 }
 
-/* ── 14-module strip (Pipeline section intro) ─────────────── */
+/* ── Pipeline Gantt ───────────────────────────────────────── */
 
-.moduleStrip {
-  margin: 0 0 32px;
-  padding: 22px 24px 20px;
+.gantt {
+  margin: 0 0 48px;
+  padding: 28px 28px 24px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(193, 127, 78, 0.045), rgba(193, 127, 78, 0.01));
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(193, 127, 78, 0.06), transparent 60%),
+    var(--bg-card);
 }
 
-.moduleStripHead {
+.ganttHead {
   display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  padding-bottom: 18px;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 16px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
 }
 
-.moduleCount {
-  font-family: var(--font-display), serif;
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: var(--accent-text);
-  flex-shrink: 0;
-}
-
-.moduleStripHeadText {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
-}
-
-.moduleStripHeadText strong {
+.ganttKicker {
+  display: block;
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
+  margin-bottom: 6px;
 }
 
-.moduleStripHeadText span {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.55;
-}
-
-.moduleList {
-  list-style: none;
+.ganttTitle {
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 8px;
-}
-
-.moduleChip {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-}
-
-.moduleChip:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
-.moduleChipNum {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-3);
-  min-width: 24px;
-  text-align: left;
-}
-
-.moduleChipName {
-  font-size: 13px;
-  font-weight: 500;
+  letter-spacing: -0.015em;
   color: var(--text);
-  letter-spacing: -0.005em;
-  line-height: 1.3;
+  line-height: 1.25;
+  max-width: 52ch;
 }
 
-.moduleChip_live {
-  border-left: 2px solid rgba(76, 175, 80, 0.65);
-}
-.moduleChip_testing {
-  border-left: 2px solid rgba(100, 181, 246, 0.65);
-}
-.moduleChip_spec {
-  border-left: 2px solid rgba(255, 183, 77, 0.65);
-}
-
-.moduleChipCross {
-  background: rgba(193, 127, 78, 0.05);
-  border-color: rgba(193, 127, 78, 0.22);
-}
-
-.moduleChipCross .moduleChipNum {
-  color: var(--accent);
-}
-
-.moduleLegend {
+.ganttLegend {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
+  gap: 14px;
 }
 
-.moduleLegend > span {
+.ganttLegend > span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -517,20 +585,219 @@
   display: inline-block;
 }
 
-.legendLive { background: rgba(76, 175, 80, 0.7); }
-.legendTesting { background: rgba(100, 181, 246, 0.7); }
-.legendSpec { background: rgba(255, 183, 77, 0.7); }
+.legendLive { background: rgba(76, 175, 80, 0.85); box-shadow: 0 0 6px rgba(76, 175, 80, 0.35); }
+.legendTesting { background: rgba(100, 181, 246, 0.85); }
+.legendSpec { background: rgba(255, 183, 77, 0.85); }
 
-.legendCross {
-  width: 12px;
-  height: 12px;
-  display: inline-flex;
-  align-items: center;
+/* Phase row above the track */
+.ganttPhase {
+  display: grid;
+  grid-template-columns: 3fr 7fr 2fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.ganttPhase > span {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  padding: 4px 2px;
+  border-top: 1px dashed rgba(193, 127, 78, 0.35);
+}
+
+/* The 12-module track */
+.ganttTrack {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ganttBar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: 11px;
-  color: var(--accent);
-  font-style: normal;
+  gap: 4px;
+  min-height: 62px;
+  padding: 10px 10px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.ganttBar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+}
+
+.ganttBar:hover {
+  transform: translateY(-2px);
+  border-color: rgba(193, 127, 78, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ganttBarNum {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
   line-height: 1;
+}
+
+.ganttBarName {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+
+.ganttBar_live::before { background: rgba(76, 175, 80, 0.8); }
+.ganttBar_live { background: linear-gradient(180deg, rgba(76, 175, 80, 0.07), transparent 60%), var(--bg-card); }
+.ganttBar_live .ganttBarNum { color: rgba(76, 175, 80, 0.9); }
+
+.ganttBar_testing::before { background: rgba(100, 181, 246, 0.8); }
+.ganttBar_testing { background: linear-gradient(180deg, rgba(100, 181, 246, 0.06), transparent 60%), var(--bg-card); }
+.ganttBar_testing .ganttBarNum { color: rgba(100, 181, 246, 0.9); }
+
+.ganttBar_spec::before { background: rgba(255, 183, 77, 0.8); }
+.ganttBar_spec { border-style: dashed; }
+.ganttBar_spec .ganttBarNum { color: rgba(255, 183, 77, 0.9); }
+
+/* Cross-cutting rails label */
+.ganttCrossLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0 10px;
+}
+
+.ganttCrossLabel::before,
+.ganttCrossLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(193, 127, 78, 0.4), transparent);
+}
+
+.ganttCrossLabelText {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Cross-cutting rails — full-width bars under the track */
+.ganttRails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.ganttRail {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(193, 127, 78, 0.25);
+  background: linear-gradient(90deg, rgba(193, 127, 78, 0.08), rgba(193, 127, 78, 0.02));
+  overflow: hidden;
+}
+
+.ganttRail::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(193, 127, 78, 0.5), transparent);
+  opacity: 0;
+  animation: railSweep 4s ease-in-out infinite;
+}
+
+.ganttRail_live::before { opacity: 1; }
+
+@keyframes railSweep {
+  0%, 100% { transform: translateX(-100%); opacity: 0.2; }
+  50% { transform: translateX(100%); opacity: 0.8; }
+}
+
+.ganttRailPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(193, 127, 78, 0.6);
+  animation: railPulse 2s ease-in-out infinite;
+}
+
+.ganttRail_live .ganttRailPulse { animation-play-state: running; }
+.ganttRail_testing .ganttRailPulse { background: rgba(100, 181, 246, 0.85); animation-play-state: running; }
+.ganttRail_spec .ganttRailPulse { background: rgba(255, 183, 77, 0.85); animation: none; opacity: 0.6; }
+
+@keyframes railPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(193, 127, 78, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(193, 127, 78, 0); }
+}
+
+.ganttRailName {
+  font-family: var(--font-display), serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.ganttRailDesc {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
+
+.ganttRailStatus {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(193, 127, 78, 0.35);
+  color: var(--accent-text);
+  background: rgba(193, 127, 78, 0.08);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .ganttTrack { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .ganttPhase { display: none; }
+  .ganttRail {
+    grid-template-columns: auto 1fr auto;
+  }
+  .ganttRailDesc { grid-column: 1 / -1; }
+}
+
+@media (max-width: 520px) {
+  .ganttTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ── Contact ─────────────────────────────────────────────── */

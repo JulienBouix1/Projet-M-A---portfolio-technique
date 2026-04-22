@@ -578,43 +578,43 @@ export type ComparisonRow = {
 export const comparisonRows: ComparisonRow[] = [
   {
     property: "Isolation",
-    baseline: "No structural isolation between deals. Context shared across queries.",
-    epoch: "Strict namespace isolation per deal. Qdrant deal_{id}_{type}. No cross-contamination."
+    baseline: "No cloisonnement between deals. Context from one mandate can surface in another.",
+    epoch: "Every deal lives in its own silo. No data from one mandate can ever surface in another."
   },
   {
     property: "Memory",
-    baseline: "Session-based memory. No persistent per-deal state across weeks.",
-    epoch: "Persistent per-deal memory. LangGraph checkpointing for email agent (thread_id = deal_id). Workshop N+1 reads Workshop N."
+    baseline: "Session memory only. No persistent state from one conversation to the next.",
+    epoch: "The system remembers the deal across its full lifecycle (6–9 months). What's said at Workshop 1 feeds Workshop 2, the business plan, the IM."
   },
   {
     property: "Facts layer",
-    baseline: "Generates plausible text. No source verification or reliability classification.",
-    epoch: "Every figure tagged: certified / declarative / estimated / public_web. require_citation=True. Zero hallucination tolerance."
+    baseline: "Generates plausible text. No source verification, no reliability grading.",
+    epoch: "Every figure is tagged by reliability (audited / stated by management / estimated / public) and traces back to its source document. The system would rather return \"not available\" than invent."
   },
   {
     property: "Orchestration",
-    baseline: "Single prompt, single output. No multi-module pipeline coordination.",
-    epoch: "14 modules with Pydantic I/O contracts. Each output feeds the next. HITL gates between phases. Pipeline waits for human validation."
+    baseline: "Single prompt, single output. No coordination between stages.",
+    epoch: "14 chained modules. The output of one feeds the next, with a mandatory banker sign-off between every stage."
   },
   {
     property: "Guardrails",
-    baseline: "Relies on prompt engineering for accuracy. No structural safeguards.",
-    epoch: "4-level anti-hallucination. Circuit breakers. Devil's Advocate agent. Structured parsing for numbers. Confidence thresholds."
+    baseline: "Relies on prompt wording. No structural safeguards.",
+    epoch: "Four anti-hallucination layers: structured number extraction, confidence thresholds, adversarial agent (Devil's Advocate), auto-escalation after 3 revisions."
   },
   {
     property: "Learning",
-    baseline: "Starts from zero every time. No compounding across engagements.",
-    epoch: "Feedback compounds across deals. MEMORY files, golden examples, quarterly retro-learning. Deal 20 is dramatically better than Deal 1."
+    baseline: "Starts from zero on every new deal. No memory from one correction to the next.",
+    epoch: "Every banker correction is compounded: the 20th deal is materially better than the first."
   },
   {
     property: "Cost structure",
-    baseline: "Every API call billed. No local processing. Volume = cost.",
-    epoch: "Local Qwen 32B for batch tasks (entity resolution, classification) at zero marginal cost. Frontier models only where reasoning quality justifies it."
+    baseline: "Every call to a frontier model is billed. Volume blows up the bill.",
+    epoch: "Batch tasks (entity resolution, document classification) run on a local LLM. Paid models are reserved for tasks where reasoning quality earns it."
   },
   {
     property: "Audit trail",
-    baseline: "No traceability. No way to know which model produced what, when, at what cost.",
-    epoch: "Langfuse observability on every LLM call. Prompt versioning, token costs, latency, quality scores. Full lineage from source document to deliverable figure."
+    baseline: "No traceability. No way to know which model produced what, when.",
+    epoch: "Every model call is logged: who produced what, when, at what cost. Every figure in a deliverable traces back to the exact cell in the source document."
   }
 ];
 

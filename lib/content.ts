@@ -82,12 +82,12 @@ const thesisFR: ThesisContent = {
     {
       number: "01",
       heading: "L\u2019\u00E9quation \u00E9conomique ne fonctionne pas",
-      body: "Un mandat de cession sur une transaction de 2M\u20AC g\u00E9n\u00E8re des honoraires de succ\u00E8s de 80-150K\u20AC. Une \u00E9quipe IB compl\u00E8te (MD, Directeur, VP, Associ\u00E9, Analyste) co\u00FBte 40-60K\u20AC/mois charges comprises. Le calcul est implacable : impossible de mobiliser une vraie \u00E9quipe sur un dossier de 6-9 mois dont les honoraires couvrent \u00E0 peine deux mois de masse salariale."
+      body: "Un mandat de cession sur une transaction de 2M\u20AC g\u00E9n\u00E8re 80–150K\u20AC d\u2019honoraires de succ\u00E8s. Une \u00E9quipe IB compl\u00E8te (MD, Directeur, VP, Associ\u00E9, Analyste) co\u00FBte 40-60K\u20AC/mois charges comprises. Le compte n\u2019y est pas : impossible de mobiliser une vraie \u00E9quipe sur 6-9 mois quand les honoraires couvrent \u00E0 peine deux mois de masse salariale."
     },
     {
       number: "02",
       heading: "Le march\u00E9 s\u2019adapte mal",
-      body: "Soit les boutiques rognent sur la qualit\u00E9 (pas de vraie valorisation, pas de recherche structur\u00E9e d\u2019acqu\u00E9reurs, pas de m\u00E9morandum d\u2019information confidentiel, juste un coup de t\u00E9l\u00E9phone et une poign\u00E9e de main), soit le dossier ne b\u00E9n\u00E9ficie d\u2019aucun conseil. 400 000 PME fran\u00E7aises doivent changer de mains d\u2019ici 2030. La plupart le feront sans accompagnement de qualit\u00E9 IB, faute de mod\u00E8le \u00E9conomique viable."
+      body: "Soit les boutiques rognent sur la qualit\u00E9 (pas de vraie valorisation, pas de recherche structur\u00E9e d\u2019acqu\u00E9reurs, pas de m\u00E9morandum d\u2019information confidentiel, un gr\u00E9-\u00E0-gr\u00E9 non concurrentiel), soit le dossier ne b\u00E9n\u00E9ficie d\u2019aucun conseil. 400 000 PME fran\u00E7aises doivent changer de mains d\u2019ici 2030 ; la plupart le feront sans accompagnement de qualit\u00E9 IB, faute de mod\u00E8le \u00E9conomique viable."
     },
     {
       number: "03",
@@ -97,7 +97,7 @@ const thesisFR: ThesisContent = {
     {
       number: "04",
       heading: "L\u2019infrastructure d\u00E9coule de la contrainte",
-      body: "Si l\u2019on veut un livrable de qualit\u00E9 IB sans \u00E9quipe junior, chaque module doit \u00EAtre auditable, chaque chiffre tra\u00E7able, chaque livrable valid\u00E9 par un banquier senior. C\u2019est pourquoi Epoch n\u2019est pas un chatbot avec une base de donn\u00E9es. C\u2019est un syst\u00E8me d\u2019exploitation transactionnel avec isolation, m\u00E9moire, couche factuelle et points de contr\u00F4le humain \u00E0 chaque \u00E9tape."
+      body: "Si l\u2019on veut un livrable de qualit\u00E9 IB sans \u00E9quipe junior, chaque module doit \u00EAtre auditable, chaque chiffre tra\u00E7able, chaque livrable valid\u00E9 par un banquier senior. Ce n\u2019est donc pas un chatbot avec une base de donn\u00E9es : c\u2019est une infrastructure de process — isolation par dossier, m\u00E9moire persistante, tra\u00E7abilit\u00E9 de chaque chiffre, validation banquier \u00E0 chaque \u00E9tape."
     }
   ]
 };
@@ -600,43 +600,43 @@ const valoBranchesFR: ValoBranch[] = [
 const comparisonRowsFR: ComparisonRow[] = [
   {
     property: "Isolation",
-    baseline: "Aucune isolation structurelle entre les dossiers. Contexte partag\u00E9 entre les requ\u00EAtes.",
-    epoch: "Isolation stricte par namespace et par dossier. Qdrant deal_{id}_{type}. Z\u00E9ro contamination crois\u00E9e."
+    baseline: "Aucun cloisonnement entre dossiers. Le contexte d\u2019un mandat peut ressortir dans un autre.",
+    epoch: "Chaque dossier vit dans son propre silo. Aucune donn\u00E9e d\u2019un mandat ne peut remonter dans un autre."
   },
   {
     property: "M\u00E9moire",
-    baseline: "M\u00E9moire de session. Aucun \u00E9tat persistant par dossier sur plusieurs semaines.",
-    epoch: "M\u00E9moire persistante par dossier. Checkpointing LangGraph pour l\u2019agent email (thread_id = deal_id). Le Workshop N+1 lit le Workshop N."
+    baseline: "M\u00E9moire de session. Aucun \u00E9tat persistant entre deux conversations.",
+    epoch: "Le syst\u00E8me se souvient du dossier sur toute sa dur\u00E9e (6–9 mois). Ce qui est dit au Workshop 1 alimente le Workshop 2, le BP, le m\u00E9morandum."
   },
   {
     property: "Couche factuelle",
-    baseline: "G\u00E9n\u00E8re du texte plausible. Aucune v\u00E9rification de source ni classification de fiabilit\u00E9.",
-    epoch: "Chaque chiffre qualifi\u00E9 : certifi\u00E9 / d\u00E9claratif / estim\u00E9 / web_public. require_citation=True. Tol\u00E9rance z\u00E9ro \u00E0 l\u2019hallucination."
+    baseline: "G\u00E9n\u00E8re du texte plausible. Aucune v\u00E9rification de source, aucune \u00E9chelle de fiabilit\u00E9.",
+    epoch: "Chaque chiffre est tagu\u00E9 par niveau de fiabilit\u00E9 (audit\u00E9 / d\u00E9clar\u00E9 management / estim\u00E9 / public) et remonte \u00E0 son document source. Le syst\u00E8me pr\u00E9f\u00E8re r\u00E9pondre \u00AB non disponible \u00BB plut\u00F4t qu\u2019inventer."
   },
   {
     property: "Orchestration",
-    baseline: "Un prompt, un output. Aucune coordination de pipeline multi-modules.",
-    epoch: "14 modules avec contrats I/O Pydantic. Chaque output alimente le suivant. Points de contr\u00F4le HITL entre les phases. Le pipeline attend la validation humaine."
+    baseline: "Un prompt, un output. Aucune coordination entre \u00E9tapes.",
+    epoch: "14 modules cha\u00EEn\u00E9s. La sortie de l\u2019un alimente le suivant, avec une validation banquier obligatoire entre chaque \u00E9tape."
   },
   {
     property: "Garde-fous",
-    baseline: "Repose sur le prompt engineering pour la pr\u00E9cision. Aucune protection structurelle.",
-    epoch: "Anti-hallucination \u00E0 4 niveaux. Circuit breakers. Agent Devil\u2019s Advocate. Parsing structur\u00E9 pour les chiffres. Seuils de confiance."
+    baseline: "Repose sur la formulation du prompt. Aucune protection structurelle.",
+    epoch: "Quatre couches anti-hallucination : extraction structur\u00E9e des chiffres, seuils de confiance, agent contradictoire (Devil\u2019s Advocate), escalade automatique apr\u00E8s 3 r\u00E9visions."
   },
   {
     property: "Apprentissage",
-    baseline: "Repart de z\u00E9ro \u00E0 chaque fois. Aucune capitalisation entre les mandats.",
-    epoch: "Les corrections se capitalisent d'un dossier à l'autre. Fichiers MEMORY, exemples de référence, rétro-apprentissage trimestriel. Le dossier 20 est radicalement meilleur que le dossier 1."
+    baseline: "Repart de zéro à chaque nouveau dossier. Aucune mémoire d'une correction à l'autre.",
+    epoch: "Chaque correction du banquier est capitalisée : le 20ᵉ dossier est matériellement meilleur que le 1er."
   },
   {
     property: "Structure de coûts",
-    baseline: "Chaque appel API facturé. Aucun traitement local. Volume = coût.",
-    epoch: "Qwen 32B local pour les tâches batch (résolution d'entités, classification) à coût marginal zéro. Modèles frontier uniquement là où la qualité de raisonnement le justifie."
+    baseline: "Chaque appel à un modèle frontier est facturé. Le volume fait exploser la facture.",
+    epoch: "Les tâches de masse (résolution d'entités, classification documentaire) tournent sur un LLM local. Les modèles payants sont réservés aux tâches où la qualité de raisonnement le justifie."
   },
   {
     property: "Audit trail",
-    baseline: "Aucune traçabilité. Impossible de savoir quel modèle a produit quoi, quand, à quel coût.",
-    epoch: "Observabilité Langfuse sur chaque appel LLM. Versioning des prompts, coûts par token, latence, scores qualité. Lignage complet du document source au chiffre du livrable."
+    baseline: "Aucune traçabilité. Impossible de savoir quel modèle a produit quoi, quand.",
+    epoch: "Chaque appel modèle est loggé : qui a produit quoi, quand, à quel coût. Chaque chiffre du livrable est traçable jusqu'à la cellule du document source."
   }
 ];
 

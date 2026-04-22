@@ -50,10 +50,10 @@ type TextMap = {
 
 const textsEN: TextMap = {
   hero: {
-    tag: "Technical portfolio · Julien Bouix · Paris",
-    title: "The system I built for small-cap M&A. ",
-    titleEm: "14 agents, 12 infra components, two builders.",
-    lead: "A full sell-side mandate runs on it — pitch deck, financial datapack, business plan, valuation, buyer short-list, information memorandum. The pages below walk through the architecture, the engineering tradeoffs, and one concrete deliverable produced end-to-end. The domain happens to be M&A; the problem was how to make LLM output safe enough to leave the building."
+    tag: "Technical portfolio · AI-augmented M&A advisory",
+    title: "Can a full small-cap M&A mandate ",
+    titleEm: "run on AI agents alone?",
+    lead: "This is the POC I built to test it — with Louis Germain as CTO. A synthetic sell-side mandate was taken end-to-end: pitch deck, datapack, business plan, valuation, buyer short-list, information memorandum. 14 agents, 12 infra components. Every figure back-links to its source document; a senior banker signs off before anything ships. What follows is the system itself, and an honest line between what runs in prod and what's still on paper."
   },
   arch: {
     tag: "Architecture",
@@ -68,8 +68,8 @@ const textsEN: TextMap = {
   valo: { tag: "Valuation engine", title: "Three independent branches, one football field." },
   deliv: {
     tag: "Demo deliverable",
-    title: "A 24-slide pitch deck. 15 minutes to generate.",
-    lead: "On the Medadom file (synthetic), the system ran end-to-end: full public research, buyer short-list, a valuation range cross-checked against 400K transaction comps. Zero numbers typed by hand — every figure traces back to its source document. The banker reviews, edits, then sends. A junior analyst takes a full working day to produce the equivalent."
+    title: "24-slide pitch deck. 15 min generated, 45 min reviewed.",
+    lead: "Synthetic Medadom file, taken end-to-end: full public research, buyer short-list, a valuation range cross-checked against our base of 60–100K transactions with disclosed multiples. Zero numbers typed by hand — every figure traces back to its source document. An analyst produces the same deck in 2–3 full days."
   },
   diff: {
     tag: "Why build a system",
@@ -113,15 +113,15 @@ const textsEN: TextMap = {
 
 const textsFR: TextMap = {
   hero: {
-    tag: "Portfolio technique · Julien Bouix · Paris",
-    title: "Le système que j'ai construit pour le M&A small-cap. ",
-    titleEm: "14 agents, 12 briques d'infra, à deux.",
-    lead: "Un mandat de cession complet tourne dessus — pitch deck, datapack financier, business plan, valorisation, short-list d'acquéreurs, mémorandum d'information. Les pages suivantes parcourent l'architecture, les arbitrages d'ingénierie, et un livrable concret généré de bout en bout. Le domaine est le M&A ; la vraie question, c'était comment rendre une sortie de LLM assez fiable pour sortir du bâtiment."
+    tag: "Portfolio technique · Conseil M&A augmenté par l'IA",
+    title: "Peut-on exécuter un mandat M&A small-cap ",
+    titleEm: "avec des agents IA ?",
+    lead: "Voici le POC que j'ai construit pour le tester, avec Louis Germain au CTO. Un mandat sell-side fictif a été traité de bout en bout : pitch, datapack, business plan, valorisation, short-list acquéreurs, mémorandum. 14 agents, 12 briques d'infra. Chaque chiffre renvoie à son document source ; un banquier senior valide avant toute sortie. Les pages suivantes détaillent le système et la ligne honnête entre ce qui tourne en prod et ce qui reste à construire."
   },
   arch: {
     tag: "Architecture",
     title: "12 briques d'infra, chacune pour bloquer une façon concrète de casser un dossier.",
-    lead: "Chiffre halluciné, fuite d'un mandat A vers un mandat B, coût d'API qui explose sur 500 000 entités, modèle qui devient obsolète — chaque brique ci-dessous règle un de ces problèmes. Cliquez sur un nœud : vous verrez les specs techniques ET la raison M&A de son existence."
+    lead: "Chiffre halluciné, fuite d'un mandat A vers un mandat B, coût d'API qui explose sur 500 000 entités, modèle qui devient obsolète — chaque brique ci-dessous règle un de ces problèmes. Chaque nœud ouvre la spec technique et la raison M&A de son existence."
   },
   pipe: {
     tag: "Pipeline de transaction",
@@ -131,8 +131,8 @@ const textsFR: TextMap = {
   valo: { tag: "Moteur de valorisation", title: "Trois branches indépendantes qui se croisent dans un football field." },
   deliv: {
     tag: "Livrable démo",
-    title: "Un deck pitch de 24 slides. 15 minutes de génération.",
-    lead: "Sur le dossier Medadom (fictif), le système a tourné de bout en bout : recherche publique complète, short-list d'acquéreurs, fourchette de valo croisée sur 400K comparables. Aucun chiffre saisi à la main — chaque figure remonte à son document source. Le banquier relit, corrige, puis envoie. Un analyste junior met une journée entière pour produire l'équivalent."
+    title: "Deck pitch 24 slides. 15 min de génération, 45 min de relecture.",
+    lead: "Dossier fictif Medadom, traité de bout en bout : recherche publique complète, short-list d'acquéreurs, fourchette de valorisation recoupée sur notre base de 60-100K transactions avec multiples divulgués. Aucun chiffre saisi à la main — chaque figure remonte à son document source. Un analyste sort le même deck en 2-3 jours pleins."
   },
   diff: {
     tag: "Pourquoi construire un système",
@@ -182,10 +182,10 @@ type TextOverride = Partial<Pick<TextMap, "hero" | "arch" | "pipe" | "deliv" | "
 
 const engineerEN: TextOverride = {
   hero: {
-    tag: "Engineering portfolio · Paris",
-    title: "14 agents. 12 infra components. ",
-    titleEm: "One high-stakes document-production system.",
-    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B on an RTX 4090. Every figure carries a source tag. Every agent output hits a human queue before it ships. Entity resolution runs at €1K a day instead of €250K through a 3-tier cascade. The domain is M&A; the patterns port to any workflow where a fabricated number poisons everything downstream."
+    tag: "Engineering portfolio · Julien Bouix · Paris",
+    title: "A proof of concept: ",
+    titleEm: "can agents deliver a full M&A mandate, end-to-end?",
+    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B on an RTX 4090. 14 agents with Pydantic contracts at every seam, a facts layer with citation guards, per-deal namespace isolation, and a 3-tier entity-resolution cascade that keeps 98% of work at zero marginal cost. The domain is M&A; the patterns port anywhere a fabricated number poisons downstream."
   },
   arch: {
     tag: "Architecture",
@@ -322,20 +322,34 @@ export function PageContent() {
       <main>
         {/* ── Hero ──────────────────────────────────── */}
         <section className={`${styles.section} ${styles.hero}`} id="top">
+          <div className={styles.heroGridTexture} aria-hidden />
           <div className={styles.heroInner}>
             <Reveal>
-              <p className={styles.heroSupertitle}>
-                Portfolio technique — Epoch Associes — Julien Bouix
-              </p>
+              <p className={styles.heroSupertitle}>{t.hero.tag}</p>
             </Reveal>
             <Reveal delay={80}>
               <h1 className={styles.heroTitle}>
-                {t.hero.title}<em>{t.hero.titleEm}</em>
+                {t.hero.title}
+                <em className={styles.heroTitleEm}>{t.hero.titleEm}</em>
               </h1>
             </Reveal>
-            <Reveal delay={160}><p className={styles.heroLead}>{t.hero.lead}</p></Reveal>
+            <Reveal delay={160}>
+              <p className={styles.heroLead}>{t.hero.lead}</p>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className={styles.heroMeta}>
+                <span>
+                  {lang === "fr"
+                    ? "POC construit en 2025–2026 · avec Louis Germain (CTO)"
+                    : "POC built in 2025–2026 · with Louis Germain (CTO)"}
+                </span>
+                <a href="#architecture" className={styles.heroJump}>
+                  {lang === "fr" ? "Voir le système ↓" : "See the system ↓"}
+                </a>
+              </div>
+            </Reveal>
           </div>
-          <Reveal delay={280}>
+          <Reveal delay={320}>
             <div className={styles.container}>
               <AnimatedCounter items={c.heroMetrics} />
             </div>
@@ -392,43 +406,64 @@ export function PageContent() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className={styles.moduleStrip}>
-                <div className={styles.moduleStripHead}>
-                  <span className={styles.moduleCount}>14</span>
-                  <div className={styles.moduleStripHeadText}>
-                    <strong>
-                      {lang === "fr" ? "Modules métier" : "Business modules"}
-                    </strong>
-                    <span>
-                      {lang === "fr"
-                        ? "10 étapes séquentielles · 2 en spec · 2 couches transversales permanentes"
-                        : "10 sequential stages · 2 in spec · 2 always-on cross-cutting layers"}
+              <div className={styles.gantt}>
+                <header className={styles.ganttHead}>
+                  <div>
+                    <span className={styles.ganttKicker}>
+                      {lang === "fr" ? "Cartographie" : "Map"}
                     </span>
+                    <h3 className={styles.ganttTitle}>
+                      {lang === "fr"
+                        ? "10 étapes séquentielles, 2 en spec, 2 couches transversales."
+                        : "10 sequential stages, 2 in spec, 2 cross-cutting layers."}
+                    </h3>
                   </div>
+                  <div className={styles.ganttLegend}>
+                    <span><i className={`${styles.legendDot} ${styles.legendLive}`} /> Live</span>
+                    <span><i className={`${styles.legendDot} ${styles.legendTesting}`} /> {lang === "fr" ? "En test" : "Testing"}</span>
+                    <span><i className={`${styles.legendDot} ${styles.legendSpec}`} /> Spec</span>
+                  </div>
+                </header>
+
+                <div className={styles.ganttPhase}>
+                  <span>{lang === "fr" ? "Pré-mandat" : "Pre-mandate"}</span>
+                  <span>{lang === "fr" ? "Exécution" : "Execution"}</span>
+                  <span>{lang === "fr" ? "Post-IM" : "Post-IM"}</span>
                 </div>
-                <ol className={styles.moduleList}>
+
+                <ol className={styles.ganttTrack}>
                   {c.pipelineStages.map((stage) => (
-                    <li key={stage.id} className={`${styles.moduleChip} ${styles[`moduleChip_${stage.status}`]}`}>
-                      <span className={styles.moduleChipNum}>{stage.number}</span>
-                      <span className={styles.moduleChipName}>{stage.title}</span>
-                    </li>
-                  ))}
-                  {c.crossCuttingLayers.map((layer) => (
-                    <li key={layer.id} className={`${styles.moduleChip} ${styles.moduleChipCross} ${styles[`moduleChip_${layer.status}`]}`}>
-                      <span className={styles.moduleChipNum}>✕</span>
-                      <span className={styles.moduleChipName}>{layer.title}</span>
+                    <li key={stage.id} className={`${styles.ganttBar} ${styles[`ganttBar_${stage.status}`]}`}>
+                      <span className={styles.ganttBarNum}>{stage.number}</span>
+                      <span className={styles.ganttBarName}>{stage.title}</span>
                     </li>
                   ))}
                 </ol>
-                <div className={styles.moduleLegend}>
-                  <span><i className={`${styles.legendDot} ${styles.legendLive}`} /> Live</span>
-                  <span><i className={`${styles.legendDot} ${styles.legendTesting}`} /> {lang === "fr" ? "En test" : "Testing"}</span>
-                  <span><i className={`${styles.legendDot} ${styles.legendSpec}`} /> Spec</span>
-                  <span>
-                    <i className={styles.legendCross}>✕</i>
-                    {lang === "fr" ? "Couche transversale" : "Cross-cutting"}
+
+                <div className={styles.ganttCrossLabel}>
+                  <span className={styles.ganttCrossLabelText}>
+                    {lang === "fr"
+                      ? "Couches transversales — tournent sur toutes les étapes"
+                      : "Cross-cutting layers — running across every stage"}
                   </span>
                 </div>
+
+                <ol className={styles.ganttRails}>
+                  {c.crossCuttingLayers.map((layer) => (
+                    <li key={layer.id} className={`${styles.ganttRail} ${styles[`ganttRail_${layer.status}`]}`}>
+                      <span className={styles.ganttRailPulse} />
+                      <span className={styles.ganttRailName}>{layer.title}</span>
+                      <span className={styles.ganttRailDesc}>
+                        {layer.id === "crm"
+                          ? (lang === "fr" ? "File HITL · validation banquier" : "HITL queue · banker sign-off")
+                          : (lang === "fr" ? "Analyse Gmail stateful · jamais d'envoi auto" : "Stateful Gmail agent · never auto-sends")}
+                      </span>
+                      <span className={styles.ganttRailStatus}>
+                        {layer.status === "live" ? "Live" : layer.status === "testing" ? (lang === "fr" ? "En test" : "Testing") : "Spec"}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </Reveal>
             <Reveal delay={140}>
@@ -480,7 +515,7 @@ export function PageContent() {
         </section>
 
         {/* ── Differentiation ───────────────────────── */}
-        <section className={styles.section} id="differentiation">
+        <section className={`${styles.section} ${styles.accentBand}`} id="differentiation">
           <div className={styles.container}>
             <Reveal>
               <div className={styles.sectionHeader}>
