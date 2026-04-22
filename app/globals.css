@@ -23,9 +23,9 @@
   --spec:        #c8a45a;
   --spec-bg:     rgba(200, 164, 90, 0.12);
 
-  --text:        #efe6cf;          /* parchment cream */
-  --text-2:      #c2b899;
-  --text-3:      #8e8572;
+  --text:        #f6eed5;          /* parchment cream — higher luminance for navy */
+  --text-2:      #d4c9a7;          /* muted parchment, still readable */
+  --text-3:      #aa9f84;          /* tertiary labels — lifted for navy contrast */
 
   --shadow:      0 20px 60px rgba(0, 8, 22, 0.50);
   --shadow-glow: 0 0 60px rgba(200, 164, 90, 0.08);

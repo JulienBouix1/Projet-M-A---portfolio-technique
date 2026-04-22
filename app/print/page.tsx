@@ -439,8 +439,8 @@ export default function PrintPage() {
           <FootballFieldSVG />
           <p className={styles.footballQuote}>
             {isFR
-              ? "Les transaction comps sont l'ancre. Les trading comps confirment ou challengent. Le LBO fixe le plafond PE. Le banquier décide des pondérations. Le système propose, jamais ne conclut."
-              : "Transaction comps are the anchor. Trading comps confirm or challenge. LBO floor sets the PE buyer ceiling. The banker decides the weights. The system proposes, never concludes."}
+              ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. L'analyse LBO fixe le plancher. Le banquier arbitre les pondérations."
+              : "Transaction comps are the anchor. Trading comps confirm or challenge. LBO floor sets the minimum. The banker decides the weights."}
           </p>
           <div className={styles.source}>{src}</div>
         </div>

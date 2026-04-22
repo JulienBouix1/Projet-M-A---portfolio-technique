@@ -67,16 +67,16 @@ function CompsSlide() {
 }
 
 function ValoSlide() {
-  // Target profile: CA ~€9M, EBITDA ~€1.8M — realistic small-cap levage.
+  // Target profile: CA ~€4M, EBITDA ~€670K — small-cap levage, sud-ouest.
   const ranges = [
-    { label: "Standalone",  value: "7 M€",  multiple: "4.0x EBITDA · 0.8x CA", note: "Sortie financière conservatrice" },
-    { label: "Marché",      value: "10 M€", multiple: "5.5x EBITDA · 1.1x CA", note: "Médiane des comps small-cap récentes", highlight: true },
-    { label: "Premium",     value: "14 M€", multiple: "7.5x EBITDA · 1.5x CA", note: "Build-up stratégique, acquéreur régional" }
+    { label: "Standalone",  value: "2,7 M€", multiple: "4.0x EBITDA · 0.7x CA", note: "Sortie financière conservatrice" },
+    { label: "Marché",      value: "3,7 M€", multiple: "5.5x EBITDA · 0.9x CA", note: "Médiane des comps small-cap récentes", highlight: true },
+    { label: "Premium",     value: "5,3 M€", multiple: "8.0x EBITDA · 1.3x CA", note: "Build-up stratégique, acquéreur régional" }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Fourchette de valorisation — cible CA ~9 M€ / EBITDA ~1,8 M€</span>
+      <span className={styles.micro}>Fourchette de valorisation — cible CA ~4 M€ / EBITDA ~670 K€</span>
       <div className={styles.valoGrid}>
         {ranges.map((r) => (
           <div key={r.label} className={`${styles.valoCard} ${r.highlight ? styles.valoCardHighlight : ""}`}>
@@ -96,9 +96,9 @@ function ValoSlide() {
           </div>
         </div>
         <div className={styles.ffLabels}>
-          <span>7 M€</span>
-          <span>10 M€</span>
-          <span>14 M€</span>
+          <span>2,7 M€</span>
+          <span>3,7 M€</span>
+          <span>5,3 M€</span>
         </div>
       </div>
     </div>

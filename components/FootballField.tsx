@@ -1,5 +1,7 @@
 "use client";
 
+import { useLangStore } from "@/store/lang-store";
+
 import styles from "./FootballField.module.css";
 
 interface BarData {
@@ -37,6 +39,7 @@ function xScale(value: number): number {
 }
 
 export default function FootballField() {
+  const lang = useLangStore((s) => s.lang);
   const totalBarsHeight = bars.length * (BAR_HEIGHT + BAR_GAP) - BAR_GAP;
   const svgHeight = TOP_PADDING + totalBarsHeight + BOTTOM_PADDING;
 
@@ -164,8 +167,9 @@ export default function FootballField() {
       </div>
 
       <blockquote className={styles.quote}>
-        Transaction comps are the anchor. Trading comps confirm or challenge. LBO
-        floor sets the minimum. The banker decides the weights.
+        {lang === "fr"
+          ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. L'analyse LBO fixe le plancher. Le banquier arbitre les pondérations."
+          : "Transaction comps are the anchor. Trading comps confirm or challenge. LBO floor sets the minimum. The banker decides the weights."}
       </blockquote>
     </div>
   );

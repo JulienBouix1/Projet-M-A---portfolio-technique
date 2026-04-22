@@ -31,9 +31,9 @@ export type HeroMetric = {
 
 export const heroMetrics: HeroMetric[] = [
   { value: 500, suffix: "K",  label: "French SMEs scored: is the owner ready to sell?" },
-  { value: 7,   suffix: "M",  label: "Buyer records indexed & enriched (built without Pappers)" },
+  { value: 7,   suffix: "M",  label: "Buyer records indexed (built on French open data)" },
   { value: 400, suffix: "K",  label: "Deals in our transaction-comp database" },
-  { value: 14,  suffix: "+",  label: "Purpose-built business modules" }
+  { value: 14,  suffix: "",   label: "Purpose-built business modules" }
 ];
 
 // ── Infrastructure nodes (architecture explorer) ────────────────
@@ -78,7 +78,7 @@ export const infraNodes: InfraNode[] = [
       "Reranker: bge-reranker-v2-m3"
     ],
     maReason:
-      "A banker working 5 deals simultaneously cannot risk data from Deal A leaking into Deal B. Isolation is a legal requirement. And embed-only search misses exact numbers and names, the things that kill deals when wrong.",
+      "Qdrant powers all internal document retrieval (hybrid dense + BM25 + re-ranking) — it is the infrastructure that lets the system cite every figure to its source document instead of making one up. Two properties make it M&A-grade: strict per-deal isolation (zero leakage between mandates, a legal requirement) and search that does not miss exact numbers — unlike an embed-only setup that confuses \"EBITDA €1.24M\" with \"EBITDA €1.42M\".",
     moduleIds: ["sourcing", "pitch", "workshop", "datapack", "bp", "valo", "buyer", "im"]
   },
   {
@@ -179,18 +179,18 @@ export const infraNodes: InfraNode[] = [
   },
   {
     id: "pptx",
-    label: "python-pptx",
-    sublabel: "PowerPoint engine",
+    label: "HTML + Playwright",
+    sublabel: "Pitch rendering engine (HTML → PDF)",
     techDetail:
-      "Programmatic slide generation for pitch decks. 20 layout taxonomies, design language system, figures audit on every slide. Outputs editable .pptx files, not static PDFs.",
+      "Each pitch is an HTML site rendered from Jinja templates, converted to PDF by headless Playwright (print-perfect, 1:1 fidelity). We retired python-pptx for the v2 renderer: HTML gives total typographic control, an auditable CSS design system, and machine-readable data-attribute figure checks.",
     techSpecs: [
-      "20 layout taxonomies",
-      "Editable .pptx output",
-      "Figures audit per slide",
-      "Design language system"
+      "Jinja2 HTML templates per layout",
+      "Playwright headless PDF export",
+      "Per-figure data-attribute audit",
+      "CSS-vars design system"
     ],
     maReason:
-      "Pitch decks are the currency of M&A. A banker sends 3-5 pitches per week. If each takes a day to build manually, the bottleneck is not quality but throughput. Programmatic generation with IB-grade layouts changes the unit economics.",
+      "Pitch decks are the currency of M&A. Rendering in HTML instead of native .pptx buys us three things a banker actually notices: print-quality typography, machine-auditable numbers on every slide, and instant rollout of brand/design changes across every deal in flight.",
     moduleIds: ["pitch"]
   },
   {
@@ -367,7 +367,7 @@ export const pipelineStages: PipelineStage[] = [
       "Synthesis: football field chart. Cross-validation: if trading comps diverge >30% from transaction comps, flag to banker.",
       "5-tab Excel output: Synthesis, Transaction Comps, Trading Comps, LBO Analysis, Hypotheses & Limits."
     ],
-    architectureInsight: "Transaction comps are the anchor. Trading comps confirm or challenge. LBO analysis sets the PE buyer ceiling. The banker decides the weights. The system proposes, never concludes."
+    architectureInsight: "Transaction comps are the anchor. Trading comps confirm or challenge. LBO analysis sets the PE buyer ceiling. The banker sets the weights. The system does not conclude in their place."
   },
   {
     id: "buyer",
