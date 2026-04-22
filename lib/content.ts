@@ -108,9 +108,10 @@ const navSectionsFR: NavSection[] = [
   { id: "thesis",          label: "Th\u00E8se" },
   { id: "architecture",    label: "Architecture" },
   { id: "pipeline",        label: "Pipeline" },
+  { id: "hitl",            label: "HITL" },
   { id: "valuation",       label: "Valorisation" },
   { id: "deliverable",     label: "Livrable" },
-  { id: "differentiation", label: "Pourquoi Epoch" },
+  { id: "differentiation", label: "Pourquoi" },
   { id: "team",            label: "\u00C9quipe" },
   { id: "contact",         label: "Contact" }
 ];

@@ -61,11 +61,11 @@
 }
 
 .node:hover {
-  background: #1a1a1d;
+  background: var(--bg-raised);
 }
 
 .nodeFocused {
-  background: #1a1a1d !important;
+  background: var(--bg-raised) !important;
   z-index: 2;
 }
 

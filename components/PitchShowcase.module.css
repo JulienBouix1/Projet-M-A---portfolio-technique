@@ -40,11 +40,11 @@
 
 .tabActive {
   border-color: var(--border-focus);
-  background: #1a1a1d;
+  background: var(--bg-raised);
 }
 
 .tab:not(.tabActive):hover {
-  border-color: rgba(255, 255, 255, 0.09);
+  border-color: var(--border-focus);
 }
 
 /* ── Preview ─────────────────────────────────────────────── */
@@ -73,7 +73,7 @@
 .chromeDots i {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(40, 28, 18, 0.2);
 }
 
 .slideContent {

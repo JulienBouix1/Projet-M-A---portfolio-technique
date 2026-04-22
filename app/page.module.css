@@ -146,9 +146,9 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(193, 127, 78, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(193, 127, 78, 0.05) 1px, transparent 1px);
-  background-size: 88px 88px;
+    linear-gradient(rgba(168, 84, 42, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 84, 42, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at 30% 40%, rgba(0, 0, 0, 0.9), transparent 75%);
 }

@@ -1,10 +1,21 @@
 .shell {
+  /* Dark-island override — cockpit stays a dark UI surface even on light pages. */
+  --bg: var(--dark-bg);
+  --bg-raised: var(--dark-bg-raised);
+  --bg-card: var(--dark-bg-card);
+  --border: var(--dark-border);
+  --text: var(--dark-text);
+  --text-2: var(--dark-text-2);
+  --text-3: var(--dark-text-3);
+  --accent-text: var(--dark-accent-text);
+
   margin-top: 28px;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--bg-card);
+  border: 1px solid var(--dark-border);
+  background: var(--dark-bg-card);
+  color: var(--dark-text);
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(12, 8, 4, 0.28);
 }
 
 /* Chrome bar */

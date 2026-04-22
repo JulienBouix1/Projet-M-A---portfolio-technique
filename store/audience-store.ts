@@ -1,7 +1,11 @@
 "use client";
 import { create } from "zustand";
 
-export type Audience = "banker" | "engineer";
+// Two reader personas:
+//   "banker"   — M&A professional evaluating the POC against real deal execution
+//   "operator" — Chief of Staff / Product / Program Management lens:
+//                how the project was scoped, built, and delivered by a 2-person team
+export type Audience = "banker" | "operator";
 
 type AudienceState = {
   audience: Audience;
@@ -13,5 +17,5 @@ export const useAudienceStore = create<AudienceState>((set) => ({
   audience: "banker",
   setAudience: (audience) => set({ audience }),
   toggleAudience: () =>
-    set((s) => ({ audience: s.audience === "banker" ? "engineer" : "banker" })),
+    set((s) => ({ audience: s.audience === "banker" ? "operator" : "banker" })),
 }));

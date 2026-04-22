@@ -180,130 +180,135 @@ const textsFR: TextMap = {
 
 type TextOverride = Partial<Pick<TextMap, "hero" | "arch" | "pipe" | "deliv" | "diff" | "team">>;
 
-const engineerEN: TextOverride = {
+// Operator lens — Chief of Staff / Product / Program Management audience.
+// Reader is a recruiter or hiring manager evaluating: product scope control,
+// delivery under constraint, cross-functional orchestration, decisions.
+// This is NOT a deep-engineering view; the tech stack is context, not subject.
+const operatorEN: TextOverride = {
   hero: {
-    tag: "Engineering portfolio · Julien Bouix · Paris",
-    title: "A proof of concept: ",
-    titleEm: "can agents deliver a full M&A mandate, end-to-end?",
-    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B on an RTX 4090. 14 agents with Pydantic contracts at every seam, a facts layer with citation guards, per-deal namespace isolation, and a 3-tier entity-resolution cascade that keeps 98% of work at zero marginal cost. The domain is M&A; the patterns port anywhere a fabricated number poisons downstream."
+    tag: "Portfolio · Chief of Staff / Product lens",
+    title: "A proof of concept, ",
+    titleEm: "delivered by a two-person team against hard constraints.",
+    lead: "I own the product side: scoping the MVP across 14 modules, sequencing what ships vs what waits, running the human-in-the-loop reviews, and holding the build to a tight perimeter — no fundraising, no hiring, bounded bandwidth. What follows is the system my co-founder Louis Germain built, the decisions I made along the way, and an honest line between what runs, what's in test, and what's still on paper."
   },
   arch: {
-    tag: "Architecture",
-    title: "12 infra pieces. No framework to hide behind.",
-    lead: "Retrieval is hybrid (dense + BM25 + RRF + cross-encoder rerank) because embeddings alone miss exact numbers. Entity resolution is a 3-tier cascade so 98% of the work never hits a paid API. Model calls go through one gateway — switching from Claude to GPT is a config change, not a refactor. LangGraph shows up exactly once, where stateful memory across weeks earns its keep. Everywhere else: plain Python, Pydantic at the seams, and fewer surprises in prod."
+    tag: "Architecture, for a non-engineer",
+    title: "12 components. Each one carries a written rationale.",
+    lead: "Every node below has two explanations side-by-side: what it does, and why we chose to own it in-house rather than outsource or skip. Click any node. The architecture decisions log (linked in the footer) carries the full trail of why each choice got made, and what we rejected."
   },
   pipe: {
-    tag: "Pipeline",
-    title: "14 modules. Strict I/O contracts. No agent ships output a human hasn't seen.",
-    lead: "Each stage is a Python module with Pydantic schemas at the boundary. HITL checkpoints persist to Postgres, so the pipeline can wait hours or days without holding state in memory. Circuit breakers kill revision loops at 3 iterations. Every figure is tagged certified / declarative / estimated / public_web. This is the minimum to run LLM output through a domain where one wrong EBITDA poisons the whole deal."
+    tag: "Scope map",
+    title: "14 modules. Honest status. Zero vaporware.",
+    lead: "10 sequential stages covering the full sell-side lifecycle, plus 2 cross-cutting layers running in parallel. Green = live. Blue = in test. Amber = still on paper. We resist the temptation to inflate module status — a senior M&A reader will catch it inside 10 minutes of poking."
   },
   deliv: {
-    tag: "Proof",
-    title: "24 slides. 15 minutes. Every figure back-linked to its source document.",
-    lead: "Public data ingestion → buyer matching against 7M records → valuation from 400K transaction comps → python-pptx across 20 layout taxonomies. Zero hardcoded numbers. The lineage tab maps every figure to (file, page, cell, extraction date). The banker still reviews before anything ships — that's the point."
+    tag: "Proof on a synthetic file",
+    title: "24 slides, built end-to-end in 15 minutes of machine time.",
+    lead: "The Medadom file (synthetic) was pushed through every module: public research, buyer matching, valuation, deck composition. Every number back-links to its source. The banker still reviews before anything ships — that's a product decision, not a limitation. A banker-analyst pair produces the same deliverable in 2–3 full days."
   },
   diff: {
-    tag: "What holds it together",
-    title: "Six properties that turn an LLM prompt into a production system.",
-    lead: "Per-deal namespace isolation. Persistent memory with checkpointing. A facts layer with citation enforcement. Multi-module orchestration on Pydantic contracts. Structural guardrails — circuit breakers, adversarial agents, confidence thresholds. Local inference for batch work; frontier models only where reasoning pays. Observability on every call. None of this comes out of the box."
+    tag: "The product argument",
+    title: "Why this is a product, not a prompt.",
+    lead: "A prompt forgets the deal between two questions; this system holds state for 6–9 months. A prompt invents numbers; this system cites every figure back to its source document. A prompt has no access to 400,000 recent transactions; this one does. A prompt restarts from zero each time; this one compounds — every banker correction becomes a gain on the next mandate."
   },
-  team: { tag: "Team", title: "Senior domain expert + full-stack builder. That's the whole team." }
+  team: { tag: "The team", title: "Two people. Ex-Lincoln banker on product, one CTO on build." }
 };
 
-const engineerFR: TextOverride = {
+const operatorFR: TextOverride = {
   hero: {
-    tag: "Portfolio technique · Paris",
-    title: "14 agents. 12 briques d'infra. ",
-    titleEm: "Un système de production de documents à fort enjeu.",
-    lead: "Next.js, FastAPI + HTMX, LangGraph, Qdrant, Neo4j, Postgres, Docling, vLLM + Qwen 2.5 32B sur RTX 4090. Chaque chiffre porte son tag de source. Chaque sortie d'agent passe par une file humaine avant de partir. La résolution d'entités tourne à 1K€/jour au lieu de 250K€/jour via une cascade à 3 niveaux. Le domaine, c'est le M&A ; les patterns valent pour tout workflow où un chiffre inventé pollue toute la chaîne."
+    tag: "Portfolio · Angle Chief of Staff / Produit",
+    title: "Un POC, ",
+    titleEm: "livré à deux sous des contraintes serrées.",
+    lead: "Je porte le produit : cadrage du MVP sur 14 modules, séquencement de ce qui sort vs ce qui attend, revue humaine des livrables agents, et tenue du périmètre — pas de levée, pas d'embauche, bande passante bornée. Les pages suivantes montrent le système construit par mon cofondateur Louis Germain, les arbitrages que j'ai faits en chemin, et une ligne honnête entre ce qui tourne, ce qui est en test, et ce qui reste sur le papier."
   },
   arch: {
-    tag: "Architecture",
-    title: "12 briques d'infra. Pas de framework pour se cacher derrière.",
-    lead: "La recherche est hybride (dense + BM25 + RRF + reranker cross-encoder) parce que les embeddings seuls ratent les chiffres exacts. La résolution d'entités passe par une cascade à 3 niveaux : 98 % du travail ne touche jamais une API payante. Tous les appels modèle passent par une passerelle unique — changer de Claude à GPT, c'est un changement de config. LangGraph n'apparaît qu'une seule fois, là où la mémoire stateful sur plusieurs semaines gagne sa place. Partout ailleurs : du Python simple, du Pydantic aux jointures, et moins de surprises en prod."
+    tag: "Architecture, vue non-ingé",
+    title: "12 briques. Chacune a une justification écrite.",
+    lead: "Chaque nœud ci-dessous a deux explications consultables côte à côte : ce qu'il fait, et pourquoi on a choisi de le posséder en interne plutôt que de l'externaliser ou de s'en passer. Cliquez. Le journal des décisions d'architecture (lien en footer) porte le raisonnement complet et les alternatives rejetées."
   },
   pipe: {
-    tag: "Pipeline",
-    title: "14 modules. Contrats I/O stricts. Aucun agent ne livre sans relecture humaine.",
-    lead: "Chaque étape est un module Python avec des schémas Pydantic aux frontières. Les points HITL sont persistés en Postgres : le pipeline peut attendre des heures ou des jours sans tenir l'état en mémoire. Les circuit breakers tuent les boucles de révision à 3 itérations. Chaque chiffre est tagué certifié / déclaratif / estimé / web_public. C'est le minimum pour faire tourner des sorties LLM dans un domaine où un EBITDA faux empoisonne tout le dossier."
+    tag: "Cartographie du scope",
+    title: "14 modules. Statut honnête. Zéro vaporware.",
+    lead: "10 étapes séquentielles couvrant le cycle sell-side complet, plus 2 couches transversales en parallèle. Vert = live. Bleu = en test. Ambre = encore sur le papier. On évite de gonfler les statuts — un banquier senior le détectera en 10 minutes d'utilisation."
   },
   deliv: {
-    tag: "Preuve",
-    title: "24 slides. 15 minutes. Chaque chiffre tracé jusqu'à son document source.",
-    lead: "Ingestion de données publiques → matching contre 7M fiches → valorisation à partir de 400K comparables → composition du deck via python-pptx sur 20 taxonomies de mise en page. Zéro valeur en dur. L'onglet lineage mappe chaque chiffre à (fichier, page, cellule, date). Le banquier valide avant toute sortie — c'est précisément le but."
+    tag: "Preuve sur un dossier fictif",
+    title: "24 slides, construites de bout en bout en 15 minutes de temps machine.",
+    lead: "Le dossier Medadom (fictif) a traversé tous les modules : recherche publique, matching acquéreurs, valorisation, composition du deck. Chaque chiffre remonte à son document source. Le banquier valide avant toute sortie — c'est un choix produit, pas une limite. Un binôme banquier-analyste produit le même livrable en 2–3 jours pleins."
   },
   diff: {
-    tag: "Ce qui fait tenir",
-    title: "Six propriétés qui transforment un prompt en système de production.",
-    lead: "Isolation de namespace par dossier. Mémoire persistante avec checkpointing. Couche factuelle avec citation obligatoire. Orchestration multi-modules sur contrats Pydantic. Garde-fous structurels — circuit breakers, agents adverses, seuils de confiance. Inférence locale pour le batch ; frontier uniquement quand le raisonnement le justifie. Observabilité sur chaque appel. Rien de tout ça ne sort d'une boîte."
+    tag: "L'argument produit",
+    title: "Pourquoi c'est un produit, pas un prompt.",
+    lead: "Un prompt oublie le dossier entre deux questions ; ce système garde l'état sur 6–9 mois. Un prompt invente des chiffres ; ce système cite chaque figure à un document source. Un prompt n'a pas accès à 400 000 transactions récentes ; ce système si. Un prompt repart de zéro chaque fois ; ce système capitalise — chaque correction banquier devient un gain sur le dossier suivant."
   },
-  team: { tag: "Équipe", title: "Expert domaine senior + full-stack. C'est toute l'équipe." }
+  team: { tag: "L'équipe", title: "Deux personnes. Ex-banquier Lincoln au produit, un CTO au build." }
 };
 
 function selectTexts(base: TextMap, audience: Audience, lang: "en" | "fr"): TextMap {
   if (audience === "banker") return base;
-  const overlay = lang === "fr" ? engineerFR : engineerEN;
+  const overlay = lang === "fr" ? operatorFR : operatorEN;
   return { ...base, ...overlay };
 }
 
-// Engineer-audience thesis overrides (replace the 4 cards with tech-focused cards)
-const thesisEngineerEN: ThesisContent = {
-  tag: "The technical problem",
-  title: "Small-cap deals produce a very specific engineering constraint.",
+// Operator-lens thesis: reframe the problem as a product/delivery challenge,
+// not a technical one. Concrete numbers, decisions-made, no stack name-drops.
+const thesisOperatorEN: ThesisContent = {
+  tag: "The delivery problem",
+  title: "Building an IB-grade product with a two-person team, against real constraints.",
   cards: [
     {
       number: "01",
-      heading: "The economic envelope is tiny",
-      body: "A 2M€ transaction pays 80-150K€ in fees. A full IB team costs 40-60K€/month fully loaded. You cannot throw junior headcount at the problem. Every module has to produce output close to banker-final on the first pass."
+      heading: "Tiny fee envelope forces product discipline",
+      body: "A €2M transaction pays €80–150K. A junior IB team costs €40–60K a month. You cannot staff the traditional way. The product had to produce output close to final on the first pass, with a single human reviewer. That's the hard scoping constraint that shaped every choice below."
     },
     {
       number: "02",
-      heading: "Which means zero tolerance for hallucination",
-      body: "A fabricated EBITDA figure cascades into the valuation, into the IM, into every buyer conversation. So numbers never come from an LLM. Extraction is deterministic (Docling for PDFs, openpyxl for Excel). The LLM classifies and flags. A citation guard rejects any figure without source."
+      heading: "The hiring decision: two people, no juniors",
+      body: "A banker-analyst pair, a senior + junior IB team, a full engineering squad — all considered, all declined. We shipped as a pair: Julien on product + M&A domain, Louis on engineering. Every module was negotiated between us against the fee envelope. Every module in the Scope Map below carries the trace of that negotiation."
     },
     {
       number: "03",
-      heading: "And the throughput pattern forces local inference",
-      body: "Entity resolution across 500K candidate companies, daily. At $0.50/entity via frontier API, that's $250K/day. A cascade (deterministic → local Qwen 32B → frontier) keeps ~98% at zero marginal cost. Cost structure is architecture, not optimization."
+      heading: "Zero tolerance for hallucinated numbers",
+      body: "A fabricated EBITDA figure cascades into the valuation, the IM, every buyer conversation — reputation-fatal in M&A. So we built a product rule: no number ever comes from the LLM. Extraction is deterministic; the model only classifies and flags. The system would rather display \"not available\" than guess."
     },
     {
       number: "04",
-      heading: "The result is a deal operating system, not a chatbot",
-      body: "Isolation per deal (Qdrant namespaces), persistent memory (Postgres + LangGraph checkpoints), HITL queues at every boundary, observability via Langfuse, and a feedback loop that turns banker corrections into MEMORY and SKILL files. Deal 20 is meaningfully better than Deal 1."
+      heading: "Honest status, no vaporware",
+      body: "10 sequential modules + 2 cross-cutting layers, each shown below with its real status: live, in test, or still on paper. We resisted marking modules 'ready' until they could survive a senior banker's scrutiny. The Scope Map in section 03 is the truth of where the POC stands today."
     }
   ]
 };
 
-const thesisEngineerFR: ThesisContent = {
-  tag: "Le problème technique",
-  title: "Le M&A small-cap impose une contrainte d'ingénierie très spécifique.",
+const thesisOperatorFR: ThesisContent = {
+  tag: "Le problème de livraison",
+  title: "Construire un produit qualité IB à deux, sous contraintes réelles.",
   cards: [
     {
       number: "01",
-      heading: "L'enveloppe économique est minuscule",
-      body: "Une transaction à 2M€ rapporte 80-150K€ d'honoraires. Une équipe IB complète coûte 40-60K€/mois chargés. On ne peut pas noyer le problème sous du junior. Chaque module doit produire une sortie proche du livrable final dès le premier passage."
+      heading: "Enveloppe d'honoraires minuscule = discipline produit forcée",
+      body: "Une transaction à 2M€ rapporte 80–150K€. Une équipe IB junior coûte 40–60K€/mois. On ne peut pas staffer à la classique. Le produit devait sortir près du final au premier passage, avec un seul relecteur. C'est la contrainte de cadrage qui a façonné chaque décision en aval."
     },
     {
       number: "02",
-      heading: "Donc zéro tolérance à l'hallucination",
-      body: "Un EBITDA inventé se propage dans la valorisation, dans le mémorandum, dans chaque échange acquéreur. Les chiffres ne viennent donc jamais d'un LLM. L'extraction est déterministe (Docling pour les PDF, openpyxl pour Excel). Le LLM classe et signale. Un citation guard rejette tout chiffre sans source."
+      heading: "La décision d'équipe : deux personnes, zéro junior",
+      body: "Un binôme banquier-analyste, une équipe IB senior + junior, une squad ingé complète — tous considérés, tous refusés. On a livré à deux : Julien au produit + domaine M&A, Louis à l'ingénierie. Chaque module a été négocié entre nous contre l'enveloppe d'honoraires. La Cartographie du scope en §03 porte la trace de cette négociation."
     },
     {
       number: "03",
-      heading: "Et le volume impose l'inférence locale",
-      body: "Résoudre 500K entreprises candidates, chaque jour. À 0,50 $/entité via API frontier, c'est 250K$/jour. Une cascade (déterministe → Qwen 32B local → frontier) maintient ~98 % à coût marginal nul. La structure de coûts est une décision d'architecture, pas d'optimisation."
+      heading: "Tolérance zéro sur les chiffres inventés",
+      body: "Un EBITDA halluciné se propage dans la valorisation, le mémorandum, chaque échange acquéreur — fatal à la réputation en M&A. Règle produit : aucun chiffre ne vient jamais du LLM. L'extraction est déterministe ; le modèle se contente de classer et de signaler. Le système préfère afficher « non disponible » que deviner."
     },
     {
       number: "04",
-      heading: "Le résultat est un OS transactionnel, pas un chatbot",
-      body: "Isolation par dossier (namespaces Qdrant), mémoire persistante (Postgres + checkpoints LangGraph), files HITL à chaque frontière, observabilité via Langfuse, et boucle de feedback qui transforme les corrections banquier en fichiers MEMORY et SKILL. Le dossier 20 est vraiment meilleur que le dossier 1."
+      heading: "Statut honnête, pas de vaporware",
+      body: "10 modules séquentiels + 2 couches transversales, chacun affiché ci-dessous avec son vrai statut : live, en test, ou encore sur le papier. On refuse de marquer un module « prêt » tant qu'il ne résiste pas à l'examen d'un banquier senior. La Cartographie du scope en §03 est la vérité du POC aujourd'hui."
     }
   ]
 };
 
 function selectThesis(base: ThesisContent, audience: Audience, lang: "en" | "fr"): ThesisContent {
   if (audience === "banker") return base;
-  return lang === "fr" ? thesisEngineerFR : thesisEngineerEN;
+  return lang === "fr" ? thesisOperatorFR : thesisOperatorEN;
 }
 
 export function PageContent() {
@@ -472,6 +477,36 @@ export function PageContent() {
           </div>
         </section>
 
+        {/* ── HITL / Cockpit ───────────────────────── */}
+        <section className={styles.section} id="hitl">
+          <div className={styles.container}>
+            <Reveal>
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionTag}>{t.hitl.tag}</span>
+                <h2 className={styles.sectionTitle}>{t.hitl.title}</h2>
+                <p className={styles.sectionLead}>
+                  {lang === "fr"
+                    ? "Chaque sortie d'agent atterrit dans la file de revue du cockpit. Le banquier approuve, modifie ou rejette. La correction est routée vers la mémoire du système, et le dossier suivant en bénéficie."
+                    : "Every agent output lands in the cockpit review queue. The banker approves, edits, or rejects. The correction is routed to the system's memory — and the next mandate benefits from it."}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className={styles.hitlFlow}>
+                {t.hitlSteps.map((step) => (
+                  <div key={step.strong} className={styles.hitlStep}>
+                    <strong className={styles.hitlTitle}>{step.strong}</strong>
+                    <p className={styles.hitlDesc}>{step.p}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal delay={180}>
+              <CockpitMockup lang={lang} />
+            </Reveal>
+          </div>
+        </section>
+
         {/* ── Valuation ─────────────────────────────── */}
         <section className={styles.section} id="valuation">
           <div className={styles.container}>
@@ -515,7 +550,7 @@ export function PageContent() {
         </section>
 
         {/* ── Differentiation ───────────────────────── */}
-        <section className={`${styles.section} ${styles.accentBand}`} id="differentiation">
+        <section className={styles.section} id="differentiation">
           <div className={styles.container}>
             <Reveal>
               <div className={styles.sectionHeader}>
@@ -525,23 +560,6 @@ export function PageContent() {
               </div>
             </Reveal>
             <Reveal delay={100}><ComparisonTable rows={c.comparisonRows} /></Reveal>
-            <Reveal delay={200}>
-              <div style={{ marginTop: 48 }}>
-                <div className={styles.sectionHeader}>
-                  <span className={styles.sectionTag}>{t.hitl.tag}</span>
-                  <h2 className={styles.sectionTitle}>{t.hitl.title}</h2>
-                </div>
-                <div className={styles.hitlFlow}>
-                  {t.hitlSteps.map((step) => (
-                    <div key={step.strong} className={styles.hitlStep}>
-                      <strong className={styles.hitlTitle}>{step.strong}</strong>
-                      <p className={styles.hitlDesc}>{step.p}</p>
-                    </div>
-                  ))}
-                </div>
-                <CockpitMockup lang={lang} />
-              </div>
-            </Reveal>
           </div>
         </section>
 

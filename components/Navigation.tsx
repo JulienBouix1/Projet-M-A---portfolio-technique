@@ -64,11 +64,11 @@ export function Navigation({ sections }: NavigationProps) {
               </button>
               <button
                 type="button"
-                className={`${styles.audienceBtn} ${audience === "engineer" ? styles.audienceActive : ""}`}
-                onClick={() => setAudience("engineer")}
-                aria-pressed={audience === "engineer"}
+                className={`${styles.audienceBtn} ${audience === "operator" ? styles.audienceActive : ""}`}
+                onClick={() => setAudience("operator")}
+                aria-pressed={audience === "operator"}
               >
-                {lang === "fr" ? "Ingénieur" : "Engineer"}
+                {lang === "fr" ? "Opérateur" : "Operator"}
               </button>
             </div>
             <button

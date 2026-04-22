@@ -9,14 +9,15 @@
 export type NavSection = { id: string; label: string };
 
 export const navSections: NavSection[] = [
-  { id: "thesis",       label: "Thesis" },
-  { id: "architecture", label: "Architecture" },
-  { id: "pipeline",     label: "Pipeline" },
-  { id: "valuation",    label: "Valuation" },
-  { id: "deliverable",  label: "Deliverable" },
-  { id: "differentiation", label: "Why Epoch" },
-  { id: "team",         label: "Team" },
-  { id: "contact",      label: "Contact" }
+  { id: "thesis",          label: "Thesis" },
+  { id: "architecture",    label: "Architecture" },
+  { id: "pipeline",        label: "Pipeline" },
+  { id: "hitl",            label: "HITL" },
+  { id: "valuation",       label: "Valuation" },
+  { id: "deliverable",     label: "Deliverable" },
+  { id: "differentiation", label: "Why" },
+  { id: "team",            label: "Team" },
+  { id: "contact",         label: "Contact" }
 ];
 
 // ── Hero metrics (animated counters) ────────────────────────────
