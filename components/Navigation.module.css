@@ -89,6 +89,48 @@
   background: var(--accent-glow) !important;
 }
 
+/* ── Audience toggle (Banker / Engineer) ─────────────────── */
+
+.audienceGroup {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  overflow: hidden;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.audienceBtn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 7px 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.audienceBtn + .audienceBtn {
+  border-left: 1px solid var(--border);
+}
+
+.audienceBtn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.audienceActive {
+  color: var(--accent-text) !important;
+  background: var(--accent-glow) !important;
+}
+
 /* ── Language toggle ─────────────────────────────────────── */
 
 .langToggle {

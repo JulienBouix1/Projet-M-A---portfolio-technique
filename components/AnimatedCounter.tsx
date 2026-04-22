@@ -11,6 +11,9 @@ function easeOutExpo(t: number): number {
   return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
 }
 
+const DURATION = 1400;
+const STAGGER = 220;
+
 export default function AnimatedCounter({ items }: AnimatedCounterProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -19,15 +22,22 @@ export default function AnimatedCounter({ items }: AnimatedCounterProps) {
   );
 
   const animate = useCallback(() => {
-    const duration = 1500;
     const start = performance.now();
 
     function tick(now: number) {
       const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOutExpo(progress);
-      setCurrentValues(items.map((item) => Math.round(eased * item.value)));
-      if (progress < 1) requestAnimationFrame(tick);
+      let stillRunning = false;
+      const next = items.map((item, i) => {
+        const localElapsed = elapsed - i * STAGGER;
+        if (localElapsed <= 0) return 0;
+        const progress = Math.min(localElapsed / DURATION, 1);
+        if (progress < 1) stillRunning = true;
+        return Math.round(easeOutExpo(progress) * item.value);
+      });
+      setCurrentValues(next);
+      if (stillRunning || elapsed < items.length * STAGGER + DURATION) {
+        requestAnimationFrame(tick);
+      }
     }
 
     requestAnimationFrame(tick);
@@ -55,7 +65,11 @@ export default function AnimatedCounter({ items }: AnimatedCounterProps) {
   return (
     <div ref={containerRef} className={styles.grid}>
       {items.map((item, i) => (
-        <div key={item.label} className={styles.counter}>
+        <div
+          key={item.label}
+          className={styles.counter}
+          style={{ transitionDelay: `${i * STAGGER}ms` }}
+        >
           <div className={styles.numberCell}>
             <span className={styles.number}>{currentValues[i]}</span>
             <span className={styles.suffix}>{item.suffix}</span>

@@ -50,7 +50,7 @@ export type ThesisContent = { tag: string; title: string; cards: ThesisCard[] };
 
 const thesisEN: ThesisContent = {
   tag: "The Problem",
-  title: "Small-cap M&A is structurally underserved.",
+  title: "400,000 French SMEs must change hands by 2030. Half will do it without IB-grade advisory.",
   cards: [
     {
       number: "01",
@@ -77,7 +77,7 @@ const thesisEN: ThesisContent = {
 
 const thesisFR: ThesisContent = {
   tag: "Le probl\u00E8me",
-  title: "Le M&A small-cap est structurellement sous-servi.",
+  title: "400 000 PME fran\u00E7aises doivent changer de mains d\u2019ici 2030. La moiti\u00E9 le fera sans conseil de qualit\u00E9.",
   cards: [
     {
       number: "01",
@@ -110,15 +110,16 @@ const navSectionsFR: NavSection[] = [
   { id: "pipeline",        label: "Pipeline" },
   { id: "valuation",       label: "Valorisation" },
   { id: "deliverable",     label: "Livrable" },
-  { id: "differentiation", label: "Pourquoi" },
-  { id: "team",            label: "\u00C9quipe" }
+  { id: "differentiation", label: "Pourquoi Epoch" },
+  { id: "team",            label: "\u00C9quipe" },
+  { id: "contact",         label: "Contact" }
 ];
 
 const heroMetricsFR: HeroMetric[] = [
-  { value: 500, suffix: "K",  label: "C\u00E9dants potentiels \u00E9valu\u00E9s par propension \u00E0 la cession" },
-  { value: 7,   suffix: "M",  label: "Fiches acqu\u00E9reurs index\u00E9es" },
-  { value: 400, suffix: "K",  label: "Transactions dans la base de comparables" },
-  { value: 14,  suffix: "",   label: "Modules interconnect\u00E9s" }
+  { value: 500, suffix: "K",  label: "Entreprises fran\u00E7aises scor\u00E9es : le dirigeant est-il pr\u00EAt \u00E0 c\u00E9der ?" },
+  { value: 7,   suffix: "M",  label: "Acqu\u00E9reurs index\u00E9s et enrichis (base construite sans Pappers)" },
+  { value: 400, suffix: "K",  label: "Transactions dans notre base de comparables" },
+  { value: 14,  suffix: "+",  label: "Modules m\u00E9tier interconnect\u00E9s" }
 ];
 
 const infraNodesFR: InfraNode[] = [
@@ -255,15 +256,15 @@ const infraNodesFR: InfraNode[] = [
     label: "python-pptx",
     sublabel: "PowerPoint engine",
     techDetail:
-      "Generation programmatique de slides pour les pitch decks. 20 taxonomies de mise en page, systeme de design, audit des chiffres sur chaque slide. Produit des fichiers .pptx editables, pas des PDF statiques.",
+      "G\u00E9n\u00E9ration programmatique de slides pour les pitch decks. 20 taxonomies de mise en page, syst\u00E8me de design, audit des chiffres sur chaque slide. Produit des fichiers .pptx \u00E9ditables, pas des PDF statiques.",
     techSpecs: [
       "20 taxonomies de mise en page",
-      "Sortie .pptx editable",
+      "Sortie .pptx \u00E9ditable",
       "Audit des chiffres par slide",
-      "Systeme de design"
+      "Syst\u00E8me de design"
     ],
     maReason:
-      "Les pitch decks sont la monnaie du M&A. Un banquier envoie 3 a 5 pitchs par semaine. Si chacun prend une journee a construire manuellement, le goulot d'etranglement n'est pas la qualite mais le debit. La generation programmatique avec des mises en page IB-grade change l'equation economique.",
+      "Les pitch decks sont la monnaie du M&A. Un banquier envoie 3 \u00E0 5 pitchs par semaine. Si chacun prend une journ\u00E9e \u00E0 construire manuellement, le goulot d'\u00E9tranglement n'est pas la qualit\u00E9 mais le d\u00E9bit. La g\u00E9n\u00E9ration programmatique avec des mises en page IB-grade change l'\u00E9quation \u00E9conomique.",
     moduleIds: ["pitch"]
   },
   {
@@ -271,15 +272,15 @@ const infraNodesFR: InfraNode[] = [
     label: "Langfuse",
     sublabel: "LLM observability",
     techDetail:
-      "Monitoring specifique LLM : versioning des prompts, suivi des couts par token, mesure de latence, scoring qualite. Chaque appel LLM sur l'ensemble des modules est trace, chiffre et auditable.",
+      "Monitoring sp\u00E9cifique LLM : versioning des prompts, suivi des co\u00FBts par token, mesure de latence, scoring qualit\u00E9. Chaque appel LLM sur l'ensemble des modules est trac\u00E9, chiffr\u00E9 et auditable.",
     techSpecs: [
-      "Controle de version des prompts",
-      "Suivi des couts par appel",
+      "Contr\u00F4le de version des prompts",
+      "Suivi des co\u00FBts par appel",
       "Monitoring de latence",
-      "Scoring qualite"
+      "Scoring qualit\u00E9"
     ],
     maReason:
-      "Quand 14 modules font des milliers d'appels LLM par dossier, il faut savoir quels appels coutent de l'argent, lesquels sont lents, et lesquels produisent de mauvais resultats. Sans observabilite, on pilote a l'aveugle le poste de cout le plus variable du systeme.",
+      "Quand 14 modules font des milliers d'appels LLM par dossier, il faut savoir quels appels co\u00FBtent de l'argent, lesquels sont lents, et lesquels produisent de mauvais r\u00E9sultats. Sans observabilit\u00E9, on pilote \u00E0 l'aveugle le poste de co\u00FBt le plus variable du syst\u00E8me.",
     moduleIds: ["pitch", "workshop", "datapack", "bp", "valo", "im", "buyer"]
   },
   {

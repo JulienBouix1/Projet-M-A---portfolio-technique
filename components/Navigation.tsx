@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import type { NavSection } from "@/lib/site-content";
 import { useUIStore } from "@/store/ui-store";
 import { useLangStore } from "@/store/lang-store";
+import { useAudienceStore } from "@/store/audience-store";
 
 import styles from "./Navigation.module.css";
 
@@ -15,6 +16,7 @@ type NavigationProps = {
 export function Navigation({ sections }: NavigationProps) {
   const activeSection = useUIStore((s) => s.activeSection);
   const { lang, toggleLang } = useLangStore();
+  const { audience, setAudience } = useAudienceStore();
   const [scrolled, setScrolled] = useState(false);
   const shellRef = useRef<HTMLElement>(null);
 
@@ -46,6 +48,28 @@ export function Navigation({ sections }: NavigationProps) {
               {s.label}
             </a>
           ))}
+          <div
+            className={styles.audienceGroup}
+            role="group"
+            aria-label={lang === "fr" ? "Audience" : "Audience"}
+          >
+            <button
+              type="button"
+              className={`${styles.audienceBtn} ${audience === "banker" ? styles.audienceActive : ""}`}
+              onClick={() => setAudience("banker")}
+              aria-pressed={audience === "banker"}
+            >
+              {lang === "fr" ? "Banquier" : "Banker"}
+            </button>
+            <button
+              type="button"
+              className={`${styles.audienceBtn} ${audience === "engineer" ? styles.audienceActive : ""}`}
+              onClick={() => setAudience("engineer")}
+              aria-pressed={audience === "engineer"}
+            >
+              {lang === "fr" ? "Ingénieur" : "Engineer"}
+            </button>
+          </div>
           <button
             className={styles.langToggle}
             onClick={toggleLang}

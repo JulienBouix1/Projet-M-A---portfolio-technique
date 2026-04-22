@@ -14,8 +14,9 @@ export const navSections: NavSection[] = [
   { id: "pipeline",     label: "Pipeline" },
   { id: "valuation",    label: "Valuation" },
   { id: "deliverable",  label: "Deliverable" },
-  { id: "differentiation", label: "Why" },
-  { id: "team",         label: "Team" }
+  { id: "differentiation", label: "Why Epoch" },
+  { id: "team",         label: "Team" },
+  { id: "contact",      label: "Contact" }
 ];
 
 // ── Hero metrics (animated counters) ────────────────────────────
@@ -27,10 +28,10 @@ export type HeroMetric = {
 };
 
 export const heroMetrics: HeroMetric[] = [
-  { value: 500, suffix: "K",  label: "Seller leads scored by exit readiness" },
-  { value: 7,   suffix: "M",  label: "Indexed buyer records" },
-  { value: 400, suffix: "K",  label: "Deals in transaction comp database" },
-  { value: 14,  suffix: "+",  label: "Interconnected modules" }
+  { value: 500, suffix: "K",  label: "French SMEs scored: is the owner ready to sell?" },
+  { value: 7,   suffix: "M",  label: "Buyer records indexed & enriched (built without Pappers)" },
+  { value: 400, suffix: "K",  label: "Deals in our transaction-comp database" },
+  { value: 14,  suffix: "+",  label: "Purpose-built business modules" }
 ];
 
 // ── Infrastructure nodes (architecture explorer) ────────────────
