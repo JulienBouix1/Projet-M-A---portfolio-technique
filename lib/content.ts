@@ -350,7 +350,7 @@ const pipelineStagesFR: PipelineStage[] = [
       "Audit des chiffres : chaque nombre trac\u00E9 \u00E0 sa source, qualifi\u00E9 par fiabilit\u00E9 (certifi\u00E9 / d\u00E9claratif / estim\u00E9 / web_public).",
       "Circuit breaker \u00E0 3 r\u00E9visions : si la m\u00EAme section est r\u00E9vis\u00E9e 3x, escalade vers le banquier."
     ],
-    architectureInsight: "Agent Info Publique tourne INTEGRALEMENT au stade du pitch, pas post-mandat. Il faut le dossier public complet pour r\u00E9diger un pitch cr\u00E9dible. Le deck 24 slides Medadom a \u00E9t\u00E9 g\u00E9n\u00E9r\u00E9 en 15 minutes (relecture et it\u00E9rations ajoutent du temps banquier)."
+    architectureInsight: "Agent Info Publique tourne INTEGRALEMENT au stade du pitch, pas post-mandat. Il faut le dossier public complet pour r\u00E9diger un pitch cr\u00E9dible. Le deck 24 slides Projet Atlas a \u00E9t\u00E9 g\u00E9n\u00E9r\u00E9 en 15 minutes (relecture et it\u00E9rations ajoutent du temps banquier)."
   },
   {
     id: "mandate",

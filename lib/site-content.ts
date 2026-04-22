@@ -292,7 +292,7 @@ export const pipelineStages: PipelineStage[] = [
       "Figures audit: every number traced to source, flagged by reliability (certified / declarative / estimated / public_web).",
       "3-revision circuit breaker: if same section revised 3x, escalate to human."
     ],
-    architectureInsight: "Agent Info Publique runs FULL at pitch stage, not post-mandate. You need the complete public dossier to write a credible pitch. The 24-slide Medadom deck was generated in 15 minutes (review and iteration add banker time on top)."
+    architectureInsight: "Agent Info Publique runs FULL at pitch stage, not post-mandate. You need the complete public dossier to write a credible pitch. The 24-slide Projet Atlas deck was generated in 15 minutes (review and iteration add banker time on top)."
   },
   {
     id: "mandate",

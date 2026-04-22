@@ -27,31 +27,29 @@ type ScopeLimitsCopy = { tag: string; title: string; lead: string; items: ScopeL
 
 const scopeLimitsEN: ScopeLimitsCopy = {
   tag: "Scope limits",
-  title: "What the system does NOT do yet.",
-  lead: "The honest edges of the POC. None of these are close to shipping — listing them up front keeps the rest of this site defensible.",
+  title: "Where the POC stops.",
+  lead: "Real limitations, not excuses. Each one is a concrete feature a banker could ask for that isn't built.",
   items: [
-    { title: "Mandates above €10M EV", why: "The cost structure and the module library are calibrated for small-cap. Mid-cap deals bring different buyer universes, different comps, different DD depth. Not a drop-in upgrade." },
-    { title: "Buy-side mandates", why: "Everything here is sell-side. Buy-side would mean a different sourcing pipeline, a different scoring model, and a different negotiation posture. On paper, not built." },
-    { title: "LOI and SPA drafting", why: "Legal document generation is deliberately out of scope. The system feeds the lawyer with structured facts; it does not draft the agreement." },
-    { title: "Fairness opinions", why: "Independent fairness reviews require a regulated process and a signing officer. Outside the scope of a two-person POC." },
-    { title: "Regulated sectors (banking, insurance, defense)", why: "Sector-specific regulatory filings, AMF/ACPR-side process requirements — the module library does not carry the templates or the legal nuance." },
-    { title: "Cross-border transactions", why: "Multi-jurisdiction tax structuring, LOI variants, and buyer universe mapping beyond France are unbuilt. The buyer database is France-only." },
-    { title: "Auto-sending any external communication", why: "Product invariant. Not now, not in V2, not ever. Every email, every Q&A response, every buyer outreach passes through the banker's HITL queue." }
+    { title: "Mandates above €10M EV", why: "The module library is calibrated for small-cap: buyer universe, comps database, fee structure, DD depth. Mid-cap is a different product." },
+    { title: "Cross-border transactions", why: "Buyer database is France-only (INSEE / INPI / BODACC). No multi-jurisdiction tax structuring, no foreign-acquirer mapping outside France." },
+    { title: "Heavily regulated sectors", why: "Banking, insurance, defense: sector-specific filings and process requirements (AMF, ACPR, DGSI) are not in the templates." },
+    { title: "Live Q&A during management presentations", why: "The Q&A agent produces prepared answers from the knowledge base. It doesn't join the buyer call." },
+    { title: "Data-room anonymization at closing", why: "Module specced and queued, not yet deployed. Today the banker redacts manually before data-room upload." },
+    { title: "Late-stage negotiation support (LOI→SPA)", why: "System stops at indicative-offer comparison. Term-sheet negotiation, drag-along clauses, and final-round tactics stay with the banker." }
   ]
 };
 
 const scopeLimitsFR: ScopeLimitsCopy = {
   tag: "Limites de scope",
-  title: "Ce que le système ne fait pas encore.",
-  lead: "Les bords honnêtes du POC. Aucun de ces éléments n'est proche de sortir — les lister en clair rend le reste du site défendable.",
+  title: "Où le POC s'arrête.",
+  lead: "Des limites réelles, pas des excuses. Chaque item est une fonctionnalité concrète qu'un banquier pourrait demander et qui n'est pas construite.",
   items: [
-    { title: "Mandats au-delà de 10 M€ EV", why: "La structure de coûts et la bibliothèque de modules sont calibrées pour le small-cap. Le mid-cap implique d'autres univers d'acquéreurs, d'autres comps, d'autres profondeurs de DD. Pas une simple extension." },
-    { title: "Mandats buy-side", why: "Tout ici est sell-side. Le buy-side exigerait un autre pipeline de sourcing, un autre scoring, une autre posture de négociation. Sur le papier, pas construit." },
-    { title: "Rédaction LOI / SPA", why: "La génération de documents juridiques est délibérément hors scope. Le système fournit à l'avocat des faits structurés ; il ne rédige pas l'acte." },
-    { title: "Fairness opinions", why: "Les avis d'équité indépendants exigent un process régulé et un signataire habilité. Hors périmètre d'un POC à deux." },
-    { title: "Secteurs régulés (banque, assurance, défense)", why: "Dépôts réglementaires sectoriels, exigences process AMF/ACPR — la bibliothèque de modules ne porte ni les modèles ni la finesse juridique requis." },
-    { title: "Transactions cross-border", why: "Structuration fiscale multi-juridictions, variantes de LOI, univers d'acquéreurs hors France — non construit. La base acquéreurs est France uniquement." },
-    { title: "Envoi automatique d'une communication externe", why: "Invariant produit. Ni maintenant, ni en V2, ni jamais. Chaque email, chaque réponse Q&A, chaque relance acquéreur passe par la file HITL du banquier." }
+    { title: "Mandats au-delà de 10 M€ EV", why: "La bibliothèque de modules est calibrée small-cap : univers acquéreurs, base de comps, structure d'honoraires, profondeur de DD. Le mid-cap, c'est un autre produit." },
+    { title: "Transactions cross-border", why: "Base acquéreurs 100 % France (INSEE / INPI / BODACC). Pas de structuring fiscal multi-juridictions, pas de mapping d'acquéreurs hors France." },
+    { title: "Secteurs très régulés", why: "Banque, assurance, défense : les dépôts réglementaires spécifiques et les exigences process (AMF, ACPR, DGSI) ne sont pas dans les templates." },
+    { title: "Q&A en direct pendant les présentations management", why: "L'agent Q&A produit des réponses préparées à partir de la base de connaissances. Il ne rejoint pas la réunion avec l'acquéreur." },
+    { title: "Anonymisation de la dataroom au closing", why: "Module spec'é et en file, pas encore déployé. Aujourd'hui le banquier expurge manuellement avant upload de la dataroom." },
+    { title: "Support négociation finale (LOI → SPA)", why: "Le système s'arrête à la comparaison des offres indicatives. Négociation du term sheet, clauses de sortie, tactique de dernier tour — ça reste chez le banquier." }
   ]
 };
 
@@ -105,7 +103,7 @@ const textsEN: TextMap = {
   deliv: {
     tag: "Demo deliverable",
     title: "24-slide pitch deck. 15 min generated, 45 min reviewed.",
-    lead: "Synthetic Medadom file, taken end-to-end: full public research, buyer short-list, a valuation range cross-checked against our base of 60–100K transactions with disclosed multiples. Zero numbers typed by hand — every figure traces back to its source document. An analyst produces the same deck in 2–3 full days."
+    lead: "Synthetic Projet Atlas file, taken end-to-end: full public research, buyer short-list, a valuation range cross-checked against our base of 60–100K transactions with disclosed multiples. Zero numbers typed by hand — every figure traces back to its source document. An analyst produces the same deck in 2–3 full days."
   },
   diff: {
     tag: "Why build a system",
@@ -168,7 +166,7 @@ const textsFR: TextMap = {
   deliv: {
     tag: "Livrable démo",
     title: "Deck pitch 24 slides. 15 min de génération, 45 min de relecture.",
-    lead: "Dossier fictif Medadom, traité de bout en bout : recherche publique complète, short-list d'acquéreurs, fourchette de valorisation recoupée sur notre base de 60-100K transactions avec multiples divulgués. Aucun chiffre saisi à la main — chaque figure remonte à son document source. Un analyste sort le même deck en 2-3 jours pleins."
+    lead: "Dossier fictif Projet Atlas, traité de bout en bout : recherche publique complète, short-list d'acquéreurs, fourchette de valorisation recoupée sur notre base de 60-100K transactions avec multiples divulgués. Aucun chiffre saisi à la main — chaque figure remonte à son document source. Un analyste sort le même deck en 2-3 jours pleins."
   },
   diff: {
     tag: "Pourquoi construire un système",
@@ -240,7 +238,7 @@ const operatorEN: TextOverride = {
   deliv: {
     tag: "Proof on a synthetic file",
     title: "24 slides, built end-to-end in 15 minutes of machine time.",
-    lead: "The Medadom file (synthetic) was pushed through every module: public research, buyer matching, valuation, deck composition. Every number back-links to its source. The banker still reviews before anything ships — that's a product decision, not a limitation. A banker-analyst pair produces the same deliverable in 2–3 full days."
+    lead: "The Projet Atlas file (synthetic, small-cap levage / industrial services) was pushed through every module: public research, buyer matching, valuation, deck composition. Every number back-links to its source. The banker still reviews before anything ships — that's a product decision, not a limitation. A banker-analyst pair produces the same deliverable in 2–3 full days."
   },
   diff: {
     tag: "The product argument",
@@ -270,7 +268,7 @@ const operatorFR: TextOverride = {
   deliv: {
     tag: "Preuve sur un dossier fictif",
     title: "24 slides, construites de bout en bout en 15 minutes de temps machine.",
-    lead: "Le dossier Medadom (fictif) a traversé tous les modules : recherche publique, matching acquéreurs, valorisation, composition du deck. Chaque chiffre remonte à son document source. Le banquier valide avant toute sortie — c'est un choix produit, pas une limite. Un binôme banquier-analyste produit le même livrable en 2–3 jours pleins."
+    lead: "Le dossier Projet Atlas (fictif — cible small-cap levage / services industriels) a traversé tous les modules : recherche publique, matching acquéreurs, valorisation, composition du deck. Chaque chiffre remonte à son document source. Le banquier valide avant toute sortie — c'est un choix produit, pas une limite. Un binôme banquier-analyste produit le même livrable en 2–3 jours pleins."
   },
   diff: {
     tag: "L'argument produit",

@@ -11,8 +11,8 @@ function CoverSlide() {
     <div className={styles.slideContent}>
       <div className={styles.coverLayout}>
         <span className={styles.micro}>STRICTEMENT CONFIDENTIEL</span>
-        <h3 className={styles.coverTitle}>MEDADOM</h3>
-        <p className={styles.coverSub}>Présentation confidentielle — HealthTech / Télémédecine</p>
+        <h3 className={styles.coverTitle}>PROJET ATLAS</h3>
+        <p className={styles.coverSub}>Présentation confidentielle — Levage & services industriels (sud-ouest France)</p>
         <div className={styles.coverFooter}>
           <span>EPOCH ASSOCIÉS — Paris</span>
           <span>01</span>
@@ -23,18 +23,20 @@ function CoverSlide() {
 }
 
 function CompsSlide() {
+  // Fictive small-cap transaction comps in French industrial-services / levage.
+  // Multiples are sector-realistic (4-6.5x EBITDA, 0.5-1.2x CA).
   const comps = [
-    { cible: "Doctolib", secteur: "HealthTech", ev: "5.8 Md€", multiple: "25.0x", annee: "2022" },
-    { cible: "Qare (HealthHero)", secteur: "Télémédecine", ev: "300 M€", multiple: "12.0x", annee: "2021" },
-    { cible: "Livi (KRY)", secteur: "Télémédecine", ev: "200 M€", multiple: "8.0x", annee: "2020" },
-    { cible: "Hellocare", secteur: "Télémédecine", ev: "50 M€", multiple: "6.5x", annee: "2022" },
-    { cible: "MesDocteurs", secteur: "Télémédecine", ev: "35 M€", multiple: "5.0x", annee: "2021" },
-    { cible: "Tessan", secteur: "Téléconsultation", ev: "25 M€", multiple: "4.0x", annee: "2023" }
+    { cible: "Levage Pyrénées",        secteur: "Levage mobile",        ev: "12 M€", multiple: "5.8x",  annee: "2025" },
+    { cible: "Manutention Occitanie",  secteur: "Manutention industrielle", ev: "9 M€",  multiple: "5.2x",  annee: "2024" },
+    { cible: "Grues Atlantique",       secteur: "Grues & levage lourd", ev: "7 M€",  multiple: "4.8x",  annee: "2024" },
+    { cible: "Nord Levage Services",   secteur: "Location + levage",    ev: "11 M€", multiple: "5.5x",  annee: "2023" },
+    { cible: "Coubertin Maintenance",  secteur: "Maintenance indus.",   ev: "8 M€",  multiple: "4.6x",  annee: "2023" },
+    { cible: "Levage Normandie",       secteur: "Transport exceptionnel", ev: "6 M€",  multiple: "4.2x",  annee: "2025" }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Transactions comparables récentes</span>
+      <span className={styles.micro}>Transactions comparables — levage & services industriels FR</span>
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <thead>
@@ -42,7 +44,7 @@ function CompsSlide() {
               <th>Cible</th>
               <th>Secteur</th>
               <th>EV</th>
-              <th>EV/CA</th>
+              <th>EV/EBITDA</th>
               <th>Année</th>
             </tr>
           </thead>
@@ -59,21 +61,22 @@ function CompsSlide() {
           </tbody>
         </table>
       </div>
-      <p className={styles.tableFootnote}>Médiane : 8.5x EV/CA sur 6 transactions. Décote de taille -50 à -70 % appliquée à la cible small-cap (pairs cotés / levés significatifs).</p>
+      <p className={styles.tableFootnote}>Médiane : 5.1x EV/EBITDA sur 6 transactions small-cap 2023–2025. Données fictives, calibrées sur la base MAKB + CFNews du secteur.</p>
     </div>
   );
 }
 
 function ValoSlide() {
+  // Target profile: CA ~€9M, EBITDA ~€1.8M — realistic small-cap levage.
   const ranges = [
-    { label: "Standalone", value: "6 M€", multiple: "7.0x EBITDA · 1.2x CA", note: "Scénario conservateur, acquéreur financier" },
-    { label: "Marché", value: "10 M€", multiple: "11.0x EBITDA · 2.0x CA", note: "Médiane après décote de taille", highlight: true },
-    { label: "Premium", value: "16 M€", multiple: "17.0x EBITDA · 3.2x CA", note: "Processus compétitif, acquéreur stratégique" }
+    { label: "Standalone",  value: "7 M€",  multiple: "4.0x EBITDA · 0.8x CA", note: "Sortie financière conservatrice" },
+    { label: "Marché",      value: "10 M€", multiple: "5.5x EBITDA · 1.1x CA", note: "Médiane des comps small-cap récentes", highlight: true },
+    { label: "Premium",     value: "14 M€", multiple: "7.5x EBITDA · 1.5x CA", note: "Build-up stratégique, acquéreur régional" }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Fourchette de valorisation</span>
+      <span className={styles.micro}>Fourchette de valorisation — cible CA ~9 M€ / EBITDA ~1,8 M€</span>
       <div className={styles.valoGrid}>
         {ranges.map((r) => (
           <div key={r.label} className={`${styles.valoCard} ${r.highlight ? styles.valoCardHighlight : ""}`}>
@@ -93,9 +96,9 @@ function ValoSlide() {
           </div>
         </div>
         <div className={styles.ffLabels}>
-          <span>6 M€</span>
+          <span>7 M€</span>
           <span>10 M€</span>
-          <span>16 M€</span>
+          <span>14 M€</span>
         </div>
       </div>
     </div>
@@ -103,25 +106,27 @@ function ValoSlide() {
 }
 
 function BuyersSlide() {
+  // Small-cap industrial-services buyer universe: regional consolidators,
+  // mid-cap PE doing build-ups, corporate adjacent sectors.
   const buyers = [
-    { name: "Doctolib", type: "HealthTech", logique: "Consolidation — leader téléconsultation", prio: 3 },
-    { name: "Cegedim", type: "Health IT", logique: "Diversification — canal télémédecine", prio: 2 },
-    { name: "Cerballiance", type: "Biologie médicale", logique: "Build-up santé — extension digitale", prio: 2 },
-    { name: "Bridgepoint", type: "PE — Healthcare", logique: "Plateforme PE healthcare", prio: 2 },
-    { name: "EQT", type: "PE — Tech/Healthcare", logique: "Build-up européen cross-border", prio: 2 },
-    { name: "Ramsay Santé", type: "Hospitalier", logique: "Intégration verticale — parcours digital", prio: 1 }
+    { name: "Foselev Group",          type: "Consolidateur sectoriel",  logique: "Build-up régional levage — complément géographique sud-ouest", prio: 3 },
+    { name: "Mediaco Levage",         type: "Leader indépendant",       logique: "Extension flotte + couverture clients industrie locale", prio: 3 },
+    { name: "Fayat Services",         type: "Groupe BTP / services",    logique: "Intégration verticale — levage pour chantiers propres", prio: 2 },
+    { name: "Capza (small-cap)",      type: "PE — services B2B",        logique: "Plateforme services industriels régionaux", prio: 2 },
+    { name: "Andera MidCap",          type: "PE — industrie",           logique: "Build-up national, synergie avec portefeuille existant", prio: 2 },
+    { name: "Dirigeant sortant MBI",  type: "Repreneur / search fund",  logique: "Reprise opérationnelle, continuité équipe", prio: 1 }
   ];
 
   return (
     <div className={styles.slideContent}>
-      <span className={styles.micro}>Acquéreurs prioritaires</span>
+      <span className={styles.micro}>Acquéreurs prioritaires — matching 7M base Epoch</span>
       <div className={styles.tableWrap}>
         <table className={styles.table}>
           <thead>
             <tr>
               <th>Acquéreur</th>
-              <th>Secteur</th>
-              <th>Logique</th>
+              <th>Type</th>
+              <th>Logique stratégique</th>
               <th>Priorité</th>
             </tr>
           </thead>
@@ -175,7 +180,7 @@ export function PitchShowcase() {
             <i />
             <i />
           </div>
-          <span>pitch_medadom.pptx — 24 slides</span>
+          <span>pitch_atlas.pptx — 24 slides</span>
         </div>
 
         <ActiveSlide />

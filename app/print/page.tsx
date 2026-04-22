@@ -207,14 +207,14 @@ export default function PrintPage() {
   const tocItems = isFR
     ? [
         "Synthèse", "Thèse — Pourquoi le M&A small-cap a besoin d'un nouveau modèle",
-        "Opportunité de marché", "Étude de cas — Pitch Medadom",
+        "Opportunité de marché", "Étude de cas — Pitch Projet Atlas",
         "Moteur de valorisation", "Football Field",
         "Pipeline de transaction", "Architecture système",
         "Différenciation", "Philosophie HITL", "Équipe"
       ]
     : [
         "Executive Summary", "Thesis — Why Small-Cap M&A Needs a New Model",
-        "Market Opportunity", "Case Study — Medadom Pitch Deck",
+        "Market Opportunity", "Case Study — Projet Atlas Pitch Deck",
         "Valuation Engine", "Football Field",
         "Deal Pipeline", "System Architecture",
         "Differentiation", "HITL Philosophy", "Team"
@@ -358,7 +358,7 @@ export default function PrintPage() {
       <div className={styles.slide}>
         <SlideHeader section={isFR ? "Étude de cas" : "Case Study"} chapter={isFR ? "Preuve de concept" : "Proof of Concept"} />
         <div className={styles.slideContent}>
-          <Title title={isFR ? "Medadom — 24 slides, 15 minutes, zéro intervention manuelle." : "Medadom — 24 slides, 15 minutes, zero manual input."} />
+          <Title title={isFR ? "Projet Atlas — 24 slides, 15 minutes, chaque chiffre sourcé." : "Projet Atlas — 24 slides, 15 minutes, every figure sourced."} />
           <div className={styles.caseColumns}>
             <div className={styles.caseLeft}>
               <div className={styles.caseSlides}>
