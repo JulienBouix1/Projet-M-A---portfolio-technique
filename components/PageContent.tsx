@@ -302,7 +302,7 @@ const copy: Record<Audience, Record<Lang, PageCopy>> = {
         eyebrow: "Pourquoi tenter ce projet",
         title: "Le small-cap a besoin de rigueur bancaire, mais pas du modèle de coûts d'une banque d'affaires.",
         lead:
-          "Sur un mandat à 2M€ EV, les honoraires ne financent pas une équipe MD / Director / VP / Associate / Analyst pendant six à neuf mois. Le risque est connu: moins de préparation, moins de recherche acquéreurs, moins de structuration, donc moins de tension concurrentielle.",
+          "Sur un mandat à 2M€ EV, les honoraires ne financent pas une équipe MD / Director / VP / Associate / Analyst pendant six à neuf mois. Le risque est connu : moins de préparation, moins de recherche acquéreurs, moins de structuration, donc un taux de succès au closing en chute libre.",
         cards: [
           {
             title: "Le coût de production ne colle pas",
@@ -439,7 +439,7 @@ const copy: Record<Audience, Record<Lang, PageCopy>> = {
         eyebrow: "Why attempt this",
         title: "Small-cap needs banker-grade rigor, but not the cost base of an investment bank.",
         lead:
-          "On a €2M EV mandate, the fee pool cannot fund a full MD / Director / VP / Associate / Analyst team for six to nine months. The usual consequence is less preparation, less buyer work, less structure, and less competitive tension.",
+          "On a €2M EV mandate, the fee pool cannot fund a full MD / Director / VP / Associate / Analyst team for six to nine months. The usual consequence is less preparation, less buyer work and less structure, which sharply lowers the probability of closing.",
         cards: [
           { title: "Production cost does not fit", body: "A small-cap mandate may pay €80-150K of success fee. A full IB team can cost €40-60K per month. The mid-cap staffing model does not translate." },
           { title: "Junior execution work still matters", body: "Sourcing, document collection, buyer research, comps, workshop prep, first drafts: this work drives process quality, but is hard to monetize on small deals." },
@@ -569,7 +569,7 @@ const copy: Record<Audience, Record<Lang, PageCopy>> = {
         eyebrow: "Défi produit",
         title: "Le sujet n'était pas de coder vite. Il fallait d'abord rendre le métier explicite.",
         lead:
-          "L'exécution M&A repose sur des centaines de micro-décisions : quoi demander, quoi croire, quoi ignorer, quoi escalader, quoi envoyer. Sans décomposition, l'IA produit du texte. Avec décomposition, on peut commencer à produire un système.",
+          "L'exécution M&A repose sur des centaines de micro-décisions : quoi demander, quoi croire, quoi ignorer, quoi escalader, quoi envoyer. Cette discipline protège le closing : préparation, recherche acquéreurs, structuration et validation humaine. Sans décomposition, l'IA produit du texte. Avec décomposition, on peut commencer à produire un système.",
         cards: [
           { title: "Tacite → explicite", body: "Transformer des gestes métier en entrées, sorties, critères de qualité et points de validation." },
           { title: "Production → contrôle", body: "Ne pas seulement générer un livrable, mais savoir quand il doit être bloqué." },
@@ -677,7 +677,7 @@ const copy: Record<Audience, Record<Lang, PageCopy>> = {
         eyebrow: "Product challenge",
         title: "The task was not to code fast. It was to make the craft explicit first.",
         lead:
-          "M&A execution involves hundreds of micro-decisions: what to ask, what to trust, what to ignore, what to escalate, what to send. Without decomposition, AI produces text. With decomposition, you can start building a system.",
+          "M&A execution involves hundreds of micro-decisions: what to ask, what to trust, what to ignore, what to escalate, what to send. That discipline protects closing: preparation, buyer work, structure and human validation. Without decomposition, AI produces text. With decomposition, you can start building a system.",
         cards: [
           { title: "Tacit → explicit", body: "Turn domain gestures into inputs, outputs, quality criteria and validation points." },
           { title: "Production → control", body: "Do not only generate a deliverable; know when it must be blocked." },
