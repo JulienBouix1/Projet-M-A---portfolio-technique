@@ -1,4 +1,12 @@
 .shell {
+  --arch-navy: #26231e;
+  --arch-navy-soft: #343027;
+  --arch-brass: #9b6b3f;
+  --arch-brass-soft: rgba(155, 107, 63, 0.16);
+  --arch-line: rgba(45, 40, 33, 0.34);
+  --arch-paper: #fffdf8;
+  --arch-muted: #eef0ec;
+
   display: grid;
   gap: 0;
 }
@@ -11,10 +19,10 @@
   justify-content: space-between;
   gap: 16px;
   padding: 20px 24px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--arch-line);
   border-bottom: 0;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  background: var(--bg-raised);
+  background: #ffffff;
 }
 
 .layerTag {
@@ -22,25 +30,74 @@
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--arch-brass);
   flex-shrink: 0;
 }
 
 .layerHint {
   margin: 0;
   font-size: 13px;
-  color: var(--text-3);
+  color: var(--text-2);
+}
+
+/* ── Business-risk summary ───────────────────────────────────── */
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  padding: 1px;
+  border-left: 1px solid var(--arch-line);
+  border-right: 1px solid var(--arch-line);
+  background:
+    linear-gradient(135deg, rgba(143, 106, 61, 0.12), rgba(255, 253, 248, 0.74)),
+    #efe5d5;
+}
+
+.summaryCard {
+  min-height: 142px;
+  padding: 20px;
+  background: rgba(255, 253, 248, 0.76);
+}
+
+.summaryCard span {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.summaryCard strong {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-display), serif;
+  font-size: 1.18rem;
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+.summaryCard p {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-2);
 }
 
 /* ── Node grid ─────────────────────────────────────────────── */
 
 .nodeGrid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 18px 24px 24px;
+  background: #f1eee6;
+  border-left: 1px solid var(--arch-line);
+  border-right: 1px solid var(--arch-line);
+  border-bottom: 1px solid var(--arch-line);
 }
 
 .node {
@@ -51,21 +108,35 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  min-height: 88px;
   padding: 20px;
-  background: var(--bg-card);
+  border: 1px solid rgba(45, 40, 33, 0.28);
+  border-radius: var(--radius);
+  background: var(--arch-paper);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82) inset,
+    0 8px 18px rgba(45, 40, 33, 0.07);
   cursor: pointer;
   transition:
     background var(--duration) ease,
+    border-color var(--duration) ease,
+    box-shadow var(--duration) ease,
     opacity var(--duration) ease,
     transform var(--duration) var(--ease);
 }
 
 .node:hover {
-  background: var(--bg-raised);
+  border-color: var(--arch-navy);
+  background: #ffffff;
+  transform: translateY(-2px);
 }
 
 .nodeFocused {
-  background: var(--bg-raised) !important;
+  border-color: var(--arch-brass);
+  background: #fff7e8 !important;
+  box-shadow:
+    0 0 0 2px var(--arch-brass-soft),
+    0 14px 28px rgba(45, 40, 33, 0.14);
   z-index: 2;
 }
 
@@ -73,14 +144,14 @@
   content: "";
   position: absolute;
   inset: -1px;
-  border: 2px solid var(--accent);
-  border-radius: 0;
+  border: 2px solid var(--arch-brass);
+  border-radius: var(--radius);
   pointer-events: none;
   animation: glow 3s ease-in-out infinite;
 }
 
 .nodeDimmed {
-  opacity: 0.3;
+  opacity: 0.42;
 }
 
 .nodeIcon {
@@ -90,19 +161,19 @@
   height: 40px;
   flex-shrink: 0;
   border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 1px solid var(--arch-navy);
+  background: var(--arch-navy);
   font-family: var(--font-mono), monospace;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.06em;
-  color: var(--accent-text);
+  color: #ffffff;
   transition: border-color var(--duration) ease, background var(--duration) ease;
 }
 
 .nodeFocused .nodeIcon {
-  border-color: var(--accent);
-  background: var(--accent-glow);
+  border-color: var(--arch-brass);
+  background: var(--arch-brass);
 }
 
 .nodeText {
@@ -115,10 +186,8 @@
   font-family: var(--font-sans), sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--arch-navy);
+  white-space: normal;
 }
 
 .nodeText span {
@@ -126,7 +195,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 .loupeIndicator {
@@ -137,16 +206,16 @@
   width: 24px;
   height: 3px;
   border-radius: 3px 3px 0 0;
-  background: var(--accent);
+  background: var(--arch-brass);
 }
 
 /* ── Loupe panel ───────────────────────────────────────────── */
 
 .loupe {
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-top: 2px solid var(--accent);
-  background: var(--bg-card);
+  border-left: 1px solid var(--arch-line);
+  border-right: 1px solid var(--arch-line);
+  border-top: 3px solid var(--arch-brass);
+  background: #ffffff;
   animation: fadeIn 0.25s ease;
 }
 
@@ -163,7 +232,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: var(--text);
+  color: var(--arch-navy);
 }
 
 .loupeSublabel {
@@ -171,7 +240,7 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 .loupeColumns {
@@ -185,7 +254,7 @@
 }
 
 .loupeCol + .loupeCol {
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--arch-line);
 }
 
 .loupeLabel {
@@ -195,12 +264,12 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--arch-brass);
 }
 
 .loupeCol p {
   margin: 0;
-  color: var(--text-2);
+  color: var(--text);
   font-size: 14px;
   line-height: 1.75;
 }
@@ -218,7 +287,7 @@
   padding-left: 14px;
   font-family: var(--font-mono), monospace;
   font-size: 12px;
-  color: var(--text-2);
+  color: var(--text);
   line-height: 1.5;
 }
 
@@ -230,15 +299,15 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.6;
+  background: var(--arch-brass);
+  opacity: 0.9;
 }
 
 /* ── Loupe module pills ───────────────────────────────────── */
 
 .loupeModules {
   padding: 14px 24px 16px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--arch-line);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -260,20 +329,20 @@
   align-items: center;
   padding: 3px 8px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 1px solid rgba(45, 40, 33, 0.3);
+  background: #f4f1ea;
   font-family: var(--font-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.06em;
-  color: var(--text-2);
+  color: var(--arch-navy);
 }
 
 /* ── Module layer ──────────────────────────────────────────── */
 
 .moduleLayer {
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  background: var(--bg-raised);
+  border-left: 1px solid var(--arch-line);
+  border-right: 1px solid var(--arch-line);
+  background: #ffffff;
   padding: 18px 24px 20px;
 }
 
@@ -290,22 +359,23 @@
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--arch-brass);
   animation: fadeIn 0.3s var(--ease);
 }
 
 .moduleStrip {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 10px;
 }
 
 .moduleCard {
   position: relative;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
+  min-height: 86px;
+  padding: 13px 14px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(45, 40, 33, 0.28);
+  background: var(--arch-paper);
   transition:
     border-color var(--duration) ease,
     background var(--duration) ease,
@@ -324,16 +394,18 @@
 .moduleNumber {
   font-family: var(--font-mono), monospace;
   font-size: 10px;
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 .moduleStatus {
   font-family: var(--font-mono), monospace;
   font-size: 8px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 1px 5px;
+  padding: 1px 6px;
   border-radius: 999px;
+  border: 1px solid currentColor;
 }
 
 .status_live {
@@ -353,24 +425,25 @@
 
 .moduleCard strong {
   display: block;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--arch-navy);
   line-height: 1.3;
 }
 
 .moduleCardConnected {
-  border-color: var(--border-focus);
-  background: var(--accent-glow);
+  border-color: var(--arch-brass);
+  background: #fff7e8;
+  box-shadow: 0 0 0 2px var(--arch-brass-soft);
   transform: translateY(-2px);
 }
 
 .moduleCardConnected strong {
-  color: var(--accent-text);
+  color: var(--arch-navy);
 }
 
 .moduleCardDimmed {
-  opacity: 0.25;
+  opacity: 0.34;
 }
 
 .connectionDot {
@@ -381,18 +454,18 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px rgba(193, 127, 78, 0.5);
+  background: var(--arch-brass);
+  box-shadow: 0 0 8px rgba(155, 107, 63, 0.6);
 }
 
 /* ── Guardrail strip ───────────────────────────────────────── */
 
 .guardrailStrip {
   padding: 20px 24px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--arch-line);
   border-top: 0;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  background: var(--bg-raised);
+  background: #f1eee6;
 }
 
 .guardrailStrip .layerTag {
@@ -402,15 +475,17 @@
 
 .guardrailGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .guardrailCard {
-  padding: 14px 16px;
+  min-height: 170px;
+  padding: 16px 18px;
   border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bg-card);
+  border: 1px solid rgba(45, 40, 33, 0.28);
+  background: #ffffff;
+  box-shadow: 0 6px 14px rgba(45, 40, 33, 0.06);
 }
 
 .guardrailCard strong {
@@ -418,20 +493,24 @@
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.06em;
-  color: var(--accent-text);
+  color: var(--arch-navy);
   margin-bottom: 6px;
 }
 
 .guardrailCard p {
   margin: 0;
   font-size: 13px;
-  color: var(--text-3);
+  color: var(--text-2);
   line-height: 1.55;
 }
 
 /* ── Responsive ────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .loupeColumns {
     grid-template-columns: 1fr;
   }
@@ -442,7 +521,11 @@
   }
 
   .nodeGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .guardrailGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -455,11 +538,13 @@
 
   .nodeGrid {
     grid-template-columns: 1fr;
+    padding: 14px 18px 18px;
   }
 
   .node {
     gap: 12px;
-    padding: 16px 18px;
+    min-height: 72px;
+    padding: 14px 18px;
   }
 
   .nodeIcon {
@@ -495,6 +580,16 @@
 
   .moduleStrip {
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .moduleCard {
+    min-height: 74px;
+    padding: 11px 12px;
+  }
+
+  .moduleCard strong {
+    font-size: 12px;
   }
 
   .guardrailStrip {
@@ -503,6 +598,19 @@
 
   .guardrailGrid {
     grid-template-columns: 1fr;
+  }
+
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryCard {
+    min-height: auto;
+    padding: 16px 18px;
+  }
+
+  .summaryCard p {
+    display: none;
   }
 
   .loupeModules {

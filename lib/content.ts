@@ -50,7 +50,7 @@ export type ThesisContent = { tag: string; title: string; cards: ThesisCard[] };
 
 const thesisEN: ThesisContent = {
   tag: "The Problem",
-  title: "400,000 French SMEs must change hands by 2030. Half will do it without IB-grade advisory.",
+  title: "400,000 French SMEs must change hands by 2030. Many will do it without banker-grade preparation.",
   cards: [
     {
       number: "01",
@@ -60,24 +60,24 @@ const thesisEN: ThesisContent = {
     {
       number: "02",
       heading: "So the market adapts poorly",
-      body: "Either boutiques cut corners (no real valuation, no structured buyer search, no CIM, just a phone call and a handshake), or the deal gets no advisory at all. 400,000 French SMEs need to change hands by 2030. Most will do it without IB-grade support because nobody can afford to give it to them."
+      body: "Either boutiques cut corners (limited valuation work, limited buyer research, no robust memorandum), or the deal gets no advisory at all. 400,000 French SMEs need to change hands by 2030. Many will do it without banker-grade preparation because the economics are difficult."
     },
     {
       number: "03",
       heading: "AI changes the cost equation",
-      body: "The thesis is not \"AI replaces the banker.\" It is: purpose-built agents can replace the junior team (Analyst + Associate + VP execution work), making IB-grade deliverables profitable at 500K-10M€ EV. The MD still runs the relationship. The system does the production."
+      body: "The thesis is not \"AI replaces the banker.\" It is: purpose-built agents may absorb part of the repeatable junior execution work, making higher-quality preparation more economical on 500K-10M€ EV deals. The banker still owns the relationship, judgment and final output."
     },
     {
       number: "04",
       heading: "Infrastructure follows from the constraint",
-      body: "If you need IB-grade output with no junior team, every module must be auditable, every figure traceable, every output validated by a senior banker. That is why Epoch is not a chatbot with a database. It is a deal operating system with isolation, memory, a facts layer, and human control gates at every stage."
+      body: "If the target is banker-grade output with a smaller team, every module must be auditable, every figure traceable, every output validated by a banker. That is why Epoch is not a chatbot with a database. It is a deal operating system with isolation, memory, a facts layer, and human control gates."
     }
   ]
 };
 
 const thesisFR: ThesisContent = {
   tag: "Le problème",
-  title: "400 000 PME françaises doivent changer de mains d’ici 2030. La moitié le fera sans conseil de qualité.",
+  title: "400 000 PME françaises doivent changer de mains d’ici 2030. Beaucoup le feront sans préparation de niveau bancaire.",
   cards: [
     {
       number: "01",
@@ -87,17 +87,17 @@ const thesisFR: ThesisContent = {
     {
       number: "02",
       heading: "Le marché s’adapte mal",
-      body: "Soit les boutiques rognent sur la qualité (pas de vraie valorisation, pas de recherche structurée d’acquéreurs, pas de mémorandum d’information confidentiel, un gré-à-gré non concurrentiel), soit le dossier ne bénéficie d’aucun conseil. 400 000 PME françaises doivent changer de mains d’ici 2030 ; la plupart le feront sans accompagnement de qualité IB, faute de modèle économique viable."
+      body: "Soit les boutiques réduisent le niveau de préparation (valorisation limitée, recherche acquéreurs limitée, mémorandum peu robuste), soit le dossier ne bénéficie d’aucun conseil. 400 000 PME françaises doivent changer de mains d’ici 2030 ; beaucoup le feront sans préparation de niveau bancaire, faute de modèle économique viable."
     },
     {
       number: "03",
       heading: "L’IA change l’équation des coûts",
-      body: "La thèse n’est pas « l’IA remplace le banquier ». Elle est : des agents spécialisés peuvent remplacer l’équipe junior (Analyste + Associé + VP en exécution), rendant des livrables de qualité IB rentables sur des valorisations de 500K-10M€. Le MD conserve la relation client. Le système assure la production."
+      body: "La thèse n’est pas « l’IA remplace le banquier ». Elle est : des agents spécialisés peuvent absorber une partie du travail junior répétable, afin de rendre une préparation de meilleure qualité plus économique sur des valorisations de 500K-10M€. Le banquier conserve la relation, le jugement et la sortie finale."
     },
     {
       number: "04",
       heading: "L’infrastructure découle de la contrainte",
-      body: "Si l’on veut un livrable de qualité IB sans équipe junior, chaque module doit être auditable, chaque chiffre traçable, chaque livrable validé par un banquier senior. Ce n’est donc pas un chatbot avec une base de données : c’est une infrastructure de process — isolation par dossier, mémoire persistante, traçabilité de chaque chiffre, validation banquier à chaque étape."
+      body: "Si l’on vise un livrable de niveau bancaire avec une équipe réduite, chaque module doit être auditable, chaque chiffre traçable, chaque livrable validé par un banquier. Ce n’est donc pas un chatbot avec une base de données : c’est une infrastructure de process — isolation par dossier, mémoire persistante, traçabilité et validation humaine."
     }
   ]
 };
@@ -170,7 +170,7 @@ const infraNodesFR: InfraNode[] = [
       "Coût marginal nul après le GPU"
     ],
     maReason:
-      "Résoudre 500K entités entreprises coûte zéro euro en GPU local contre des milliers via API. Quand on traite ce volume quotidiennement, la structure de coûts est une décision d’architecture, pas d’optimisation.",
+      "Résoudre 500K entités entreprises a un coût marginal API quasi nul après amortissement GPU, contre des milliers d'euros via API. Quand on traite ce volume quotidiennement, la structure de coûts est une décision d’architecture, pas d’optimisation.",
     moduleIds: ["sourcing", "buyer"]
   },
   {
@@ -258,7 +258,7 @@ const infraNodesFR: InfraNode[] = [
     label: "HTML + Playwright",
     sublabel: "Moteur de rendu pitch (HTML → PDF)",
     techDetail:
-      "Chaque pitch est un site HTML rendu par un template Jinja, convertit en PDF par Playwright (fidelité print 1:1). Pas de python-pptx dans la chaîne v2 : HTML donne un contrôle typographique total, un design auditable en CSS et des audits de chiffres par data-attribute.",
+      "Chaque pitch est un site HTML rendu par un template Jinja, converti en PDF par Playwright (fidélité print 1:1). Pas de python-pptx dans la chaîne v2 : HTML donne un contrôle typographique total, un design auditable en CSS et des audits de chiffres par data-attribute.",
     techSpecs: [
       "Templates Jinja2 HTML par layout",
       "Export PDF via Playwright headless",
@@ -282,7 +282,7 @@ const infraNodesFR: InfraNode[] = [
       "Scoring qualité"
     ],
     maReason:
-      "Quand 14 modules font des milliers d'appels LLM par dossier, il faut savoir quels appels coûtent de l'argent, lesquels sont lents, et lesquels produisent de mauvais résultats. Sans observabilité, on pilote à l'aveugle le poste de coût le plus variable du système.",
+      "Quand 12 étapes et 2 couches transversales déclenchent des milliers d'appels LLM par dossier, il faut savoir quels appels coûtent de l'argent, lesquels sont lents, et lesquels produisent de mauvais résultats. Sans observabilité, on pilote à l'aveugle le poste de coût le plus variable du système.",
     moduleIds: ["pitch", "workshop", "datapack", "bp", "valo", "im", "buyer"]
   },
   {
@@ -298,7 +298,7 @@ const infraNodesFR: InfraNode[] = [
       "Analyse des réseaux de dirigeants"
     ],
     maReason:
-      "En M&A, les faits sont connectés. Un dirigeant qui siège dans 3 conseils, chacun acquis par le même fonds de PE, est un signal d'acquéreur sériel. Un chiffre d'affaires du workshop qui contredit un compte publié est un red flag. Un graphe relie ce que les tables ne peuvent pas.",
+      "En M&A, les faits sont connectés. Un dirigeant ayant siégé au conseil de trois sociétés acquises par le même fonds de PE est un signal d'acquéreur sériel. Un chiffre d'affaires du workshop qui contredit un compte publié est un red flag. Un graphe relie ce que les tables ne peuvent pas.",
     moduleIds: ["sourcing", "buyer", "pitch", "workshop", "datapack", "valo"]
   },
   {
@@ -331,7 +331,7 @@ const pipelineStagesFR: PipelineStage[] = [
       "Module de déduplication pré-ER pour éviter de payer 3x la même entreprise provenant de différents portails.",
       "Résolution d’URL : cascade à 4 niveaux (Pappers, Google, agrégateurs, manuel).",
       "Enrichissement LinkedIn via Playwright (signaux de recrutement C-level, indicateurs de croissance).",
-      "Sourcing froid : recherche mulicritères sur INSEE/INPI pour trouver 5K-15K PME probablement cessibles mais non référencées.",
+      "Sourcing froid : recherche multicritères sur INSEE/INPI pour trouver 5K-15K PME probablement cessibles mais non référencées.",
       "PostgreSQL avec recherche plein texte + extension earthdistance pour les requêtes géographiques."
     ],
     architectureInsight: "Module = pipeline déterministe. Le LLM n’intervient qu’en fallback quand les règles échouent, pas par défaut. 70 % de la résolution d’entités est du pur matching de chaînes à coût nul."
@@ -341,7 +341,7 @@ const pipelineStagesFR: PipelineStage[] = [
     number: "02",
     title: "Agent Pitch",
     status: "live",
-    oneLiner: "Générer un pitch deck de qualité IB (python-pptx) pour convaincre un dirigeant de signer un mandat de cession.",
+    oneLiner: "Générer une première version de pitch deck (HTML -> PDF) pour tester l'automatisation partielle d'un pitch de mandat sell-side.",
     details: [
       "Conversation-first : le banquier décrit le dossier en langage naturel, l’agent planifie et exécute de manière autonome.",
       "Appelle Agent Info Publique (recherche complète de données publiques), Module Buyer Research (liste préliminaire d’acquéreurs), Module Valo (fourchette de valorisation préliminaire).",
@@ -350,7 +350,7 @@ const pipelineStagesFR: PipelineStage[] = [
       "Audit des chiffres : chaque nombre tracé à sa source, qualifié par fiabilité (certifié / déclaratif / estimé / web_public).",
       "Circuit breaker à 3 révisions : si la même section est révisée 3x, escalade vers le banquier."
     ],
-    architectureInsight: "Agent Info Publique tourne INTEGRALEMENT au stade du pitch, pas post-mandat. Il faut le dossier public complet pour rédiger un pitch crédible. Le deck 24 slides Projet Atlas a été généré en 15 minutes (relecture et itérations ajoutent du temps banquier)."
+    architectureInsight: "Agent Info Publique tourne au stade du pitch, pas post-mandat, car un pitch crédible suppose un dossier public solide dès le départ. Projet Atlas est une sortie de démonstration : utile pour tester la chaîne, pas une preuve que le pitch est envoyable sans revue banquier."
   },
   {
     id: "mandate",
@@ -453,7 +453,7 @@ const pipelineStagesFR: PipelineStage[] = [
     details: [
       "Consomme TOUS les modules en amont : Info Publique, synthèse Workshop, Datapack, BP, Valo.",
       "Deux modes narratifs : sell-side compétitif (processus multi-acquéreurs, pas de prix affiché) et présentation management bilatérale (acquéreur identifié unique, valorisation complète incluse).",
-      "Corpus de CIM : 8+ mémorandums analysés de Lincoln, Sycomore, Bryan Garnier, Clipperton. Couverture sectorielle en expansion au-delà de la tech/SaaS vers l’industrie, le BTP, la santé, le retail.",
+      "Corpus de CIM : exemples anonymisés, publics ou revus en interne. Couverture sectorielle en expansion au-delà de la tech/SaaS vers l’industrie, le BTP, la santé, le retail.",
       "La valorisation n’apparaît JAMAIS dans un CIM sell-side compétitif (règle fondamentale du M&A).",
       "Chaque chiffre exige une citation avec tag de fiabilité."
     ],
@@ -464,7 +464,7 @@ const pipelineStagesFR: PipelineStage[] = [
     number: "10",
     title: "Pipeline Post-Mémorandum",
     status: "spec",
-    oneLiner: "Approche acquéreurs, présentations management, support due diligence, négociation, closing.",
+    oneLiner: "Specs post-IM : suivi des approches acquéreurs, présentations management, Q&A de due diligence et support de négociation.",
     details: [
       "Séquençage et suivi de l’approche acquéreurs avec distribution de la process letter.",
       "Gestion des offres indicatives : comparaison, shortlisting, recommandation du banquier.",
@@ -472,9 +472,9 @@ const pipelineStagesFR: PipelineStage[] = [
       "Coordination de la due diligence : constitution de la dataroom avec masquage automatique, routage des Q&A et rédaction de réponses.",
       "Gestion des offres fermes, comparaison LOI/SPA, analyse de term sheets.",
       "Email Intelligence (actif en permanence dès le mandat) : deux agents IA surveillent Gmail, classifient, extraient les faits, rédigent des projets de réponse. Agent VP stateful LangGraph avec thread_id = deal_id. Aucun email n’est jamais envoyé par un agent.",
-      "Ces modules bouclent la chaîne de la distribution du mémorandum jusqu’au SPA signé."
+      "Ces modules sont surtout des spécifications ou des briques partielles et ne doivent pas être présentés comme un processus autonome de closing."
     ],
-    architectureInsight: "Le pipeline post-mémorandum est là où les transactions se gagnent ou se perdent. Le timing d'approche, la qualité des Q&A et le support en négociation déterminent si le mandat se transforme en closing."
+    architectureInsight: "Le post-mémorandum est précisément le moment où le jugement du banquier devient encore plus important. Le système peut préparer, suivre et proposer; le timing, la négociation et le closing restent chez le banquier."
   },
   {
     id: "qa-agent",
@@ -618,7 +618,7 @@ const comparisonRowsFR: ComparisonRow[] = [
   {
     property: "Orchestration",
     baseline: "Un prompt, un output. Aucune coordination entre étapes.",
-    epoch: "14 modules chaînés. La sortie de l’un alimente le suivant, avec une validation banquier obligatoire entre chaque étape."
+    epoch: "12 étapes séquentielles et 2 couches transversales. Les sorties alimentent le dossier, avec une validation banquier obligatoire aux portes clés."
   },
   {
     property: "Garde-fous",

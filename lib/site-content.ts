@@ -94,7 +94,7 @@ export const infraNodes: InfraNode[] = [
       "Zero marginal cost after GPU"
     ],
     maReason:
-      "Resolving 500K company entities costs zero dollars on local GPU vs thousands via API. When you process that volume daily, cost structure is architecture, not optimization.",
+      "Resolving 500K company entities has near-zero marginal API cost after GPU amortization, versus thousands via API. When you process that volume daily, cost structure is architecture, not optimization.",
     moduleIds: ["sourcing", "buyer"]
   },
   {
@@ -206,7 +206,7 @@ export const infraNodes: InfraNode[] = [
       "Quality score tracking"
     ],
     maReason:
-      "When 14 modules make thousands of LLM calls per deal, you need to know which calls cost money, which are slow, and which produce bad output. Without observability, you are flying blind on the most variable cost in the system.",
+      "When 12 stages and 2 cross-cutting layers trigger thousands of LLM calls per deal, you need to know which calls cost money, which are slow, and which produce bad output. Without observability, you are flying blind on the most variable cost in the system.",
     moduleIds: ["pitch", "workshop", "datapack", "bp", "valo", "im", "buyer"]
   },
   {
@@ -283,7 +283,7 @@ export const pipelineStages: PipelineStage[] = [
     number: "02",
     title: "Agent Pitch",
     status: "live",
-    oneLiner: "Generate an IB-grade pitch deck (python-pptx) to convince a business owner to sign a sell-side mandate.",
+    oneLiner: "Generate a first-draft pitch deck (HTML -> PDF) to test whether a sell-side mandate pitch can be partially automated.",
     details: [
       "Conversation-first: the banker describes the deal in natural language, the agent plans and executes autonomously.",
       "Autonomously calls Agent Info Publique (full public data research), Buyer Matching (preliminary buyer list), and Valuation Engine (preliminary valuation range). These modules run for the first time at pitch stage.",
@@ -292,7 +292,7 @@ export const pipelineStages: PipelineStage[] = [
       "Figures audit: every number traced to source, flagged by reliability (certified / declarative / estimated / public_web).",
       "3-revision circuit breaker: if same section revised 3x, escalate to human."
     ],
-    architectureInsight: "Agent Info Publique runs FULL at pitch stage, not post-mandate. You need the complete public dossier to write a credible pitch. The 24-slide Projet Atlas deck was generated in 15 minutes (review and iteration add banker time on top)."
+    architectureInsight: "Agent Info Publique runs at pitch stage, not post-mandate, because a credible mandate pitch needs the public dossier upfront. Project Atlas is a demonstration output: useful to test the chain, not proof that the pitch is client-ready without banker review."
   },
   {
     id: "mandate",
@@ -384,7 +384,7 @@ export const pipelineStages: PipelineStage[] = [
       "Preliminary buyer list runs at pitch stage. Full list built in parallel with datapack/BP/valo, ready before IM goes to market.",
       "Every banker correction (add/remove/rerank) improves future matching."
     ],
-    architectureInsight: "Building a 7M-record buyer DB from free public APIs instead of paying Pappers is the unsexy work that creates a real moat. The data is the defensible asset."
+    architectureInsight: "Building a 7M-record buyer DB from free public APIs instead of paying Pappers is the unsexy work that creates a differentiated proprietary data asset."
   },
   {
     id: "im",
@@ -395,7 +395,7 @@ export const pipelineStages: PipelineStage[] = [
     details: [
       "Consumes ALL prior modules: Info Publique, Workshop synthesis, Datapack, BP, Valo.",
       "Two narrative modes: sell-side competitive (multi-buyer process, no price shown) and bilateral management presentation (single identified buyer, full valuation included).",
-      "CIM corpus: 8+ analyzed IMs from Lincoln, Sycomore, Bryan Garnier, Clipperton. Sector coverage expanding beyond tech/SaaS into industrial, BTP, healthcare, retail.",
+      "CIM corpus: anonymized, public or internally reviewed memorandum examples. Sector coverage expanding beyond tech/SaaS into industrial, BTP, healthcare, retail.",
       "Valuation NEVER appears in a sell-side competitive CIM (fundamental M&A rule).",
       "Every figure requires citation with reliability tag."
     ],
@@ -406,7 +406,7 @@ export const pipelineStages: PipelineStage[] = [
     number: "10",
     title: "Post-IM Pipeline",
     status: "spec",
-    oneLiner: "Outreach, management presentations, due diligence support, negotiation, closing.",
+    oneLiner: "Post-IM support specs: outreach tracking, management presentations, due diligence Q&A and negotiation support.",
     details: [
       "Buyer outreach sequencing and tracking with process letter distribution.",
       "Indicative offer management: comparison, shortlisting, banker recommendation.",
@@ -414,9 +414,9 @@ export const pipelineStages: PipelineStage[] = [
       "Due diligence coordination: dataroom assembly, Q&A routing and answer drafting.",
       "Binding offer management, LOI/SPA comparison, term sheet analysis.",
       "Email Intelligence (always-on from mandate): two AI agents monitor Gmail, classify, extract facts, draft replies. LangGraph stateful VP agent with thread_id = deal_id. No email is ever sent by any agent.",
-      "These modules close the loop from IM distribution to signed SPA."
+      "These modules are mostly specs or partial components and should not be presented as an autonomous closing workflow."
     ],
-    architectureInsight: "The post-IM pipeline is where deals are won or lost. Outreach timing, Q&A quality, and negotiation support determine whether the mandate converts to a closing."
+    architectureInsight: "Post-IM is where banker judgment becomes even more important. The system can prepare, track and draft, but timing, negotiation and closing remain with the banker."
   },
   {
     id: "qa-agent",
@@ -596,7 +596,7 @@ export const comparisonRows: ComparisonRow[] = [
   {
     property: "Orchestration",
     baseline: "Single prompt, single output. No coordination between stages.",
-    epoch: "14 chained modules. The output of one feeds the next, with a mandatory banker sign-off between every stage."
+    epoch: "12 sequential stages plus 2 cross-cutting layers. Outputs feed the deal file, with mandatory banker sign-off at key gates."
   },
   {
     property: "Guardrails",

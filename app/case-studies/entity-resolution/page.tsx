@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Entity Resolution — Epoch Associes Case Study",
+  title: "Entity Resolution — Epoch Associés Case Study",
   description:
-    "How we resolve 500,000 company entities per day through a 3-tier cascade that keeps 98% of work at zero marginal cost."
+    "How we resolve 500,000 company entities per day through a 3-tier cascade that keeps most work at near-zero marginal API cost."
 };
 
 export default function EntityResolutionPage() {
@@ -19,8 +19,8 @@ export default function EntityResolutionPage() {
           </Link>
           <span className={styles.tag}>Case study · Engineering</span>
           <h1 className={styles.title}>
-            Resolving 500,000 French company entities per day at zero marginal
-            cost.
+            Resolving 500,000 French company entities per day at near-zero
+            marginal API cost.
           </h1>
           <p className={styles.lede}>
             This is the unsexy work that makes the rest of the system possible.

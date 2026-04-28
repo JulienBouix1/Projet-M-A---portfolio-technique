@@ -8,6 +8,6 @@ type UIState = {
 };
 
 export const useUIStore = create<UIState>((set) => ({
-  activeSection: "architecture",
+  activeSection: "",
   setActiveSection: (activeSection) => set({ activeSection })
 }));

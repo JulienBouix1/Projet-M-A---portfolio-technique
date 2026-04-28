@@ -23,9 +23,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Epoch Associes | AI-Native M&A Advisory",
+  title: "Epoch Associés | Portfolio technique M&A",
   description:
-    "Full-stack deal execution for French small-cap transactions, orchestrated by purpose-built agents with human control gates."
+    "Portfolio technique sur Epoch Associés, un projet d'exécution M&A small-cap assistée par IA avec modules, contrôles humains et limites documentées."
 };
 
 export const viewport: Viewport = {
@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
         {children}
       </body>

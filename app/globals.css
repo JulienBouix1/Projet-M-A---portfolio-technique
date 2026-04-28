@@ -1,52 +1,45 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* ── Palette — elite-IB: deep navy · parchment · brass ────────
-     Reference: Lazard, Rothschild & Co, Perella Weinberg.
-     Deep oxford-navy base, parchment-cream type, muted brass accent.
-  */
-  --bg:          #0b1524;          /* deep oxford navy */
-  --bg-raised:   #142036;
-  --bg-card:     #18263f;
-  --border:      rgba(200, 164, 90, 0.16);
-  --border-focus: rgba(200, 164, 90, 0.4);
+  --bg:          #f6f4ee;
+  --bg-raised:   #ffffff;
+  --bg-card:     #fffdf8;
+  --border:      rgba(42, 52, 57, 0.24);
+  --border-focus: rgba(143, 106, 61, 0.58);
 
-  --accent:      #c8a45a;          /* antique brass */
-  --accent-dim:  #a68641;
-  --accent-glow: rgba(200, 164, 90, 0.12);
-  --accent-text: #dcb876;          /* lighter brass for text-on-navy */
+  --accent:      #8f6a3d;
+  --accent-dim:  #6f5230;
+  --accent-glow: rgba(143, 106, 61, 0.11);
+  --accent-text: #6f4f2a;
 
-  --live:        #7aa380;
-  --live-bg:     rgba(122, 163, 128, 0.14);
-  --testing:     #8ab1cf;
-  --testing-bg:  rgba(138, 177, 207, 0.14);
-  --spec:        #c8a45a;
-  --spec-bg:     rgba(200, 164, 90, 0.12);
+  --live:        #2f7d5c;
+  --live-bg:     rgba(47, 125, 92, 0.12);
+  --testing:     #68727a;
+  --testing-bg:  rgba(104, 114, 122, 0.13);
+  --spec:        #9b6b3f;
+  --spec-bg:     rgba(155, 107, 63, 0.12);
 
-  --text:        #f6eed5;          /* parchment cream — higher luminance for navy */
-  --text-2:      #d4c9a7;          /* muted parchment, still readable */
-  --text-3:      #aa9f84;          /* tertiary labels — lifted for navy contrast */
+  --text:        #20272b;
+  --text-2:      #4c565c;
+  --text-3:      #625d55;
 
-  --shadow:      0 20px 60px rgba(0, 8, 22, 0.50);
-  --shadow-glow: 0 0 60px rgba(200, 164, 90, 0.08);
+  --shadow:      0 18px 44px rgba(47, 43, 35, 0.12);
+  --shadow-glow: 0 0 40px rgba(143, 106, 61, 0.08);
 
-  /* Dark-island tokens — used by the CockpitMockup which needs to feel
-     like a separate production UI surface, darker than the page. */
-  --dark-bg:        #060c17;
-  --dark-bg-raised: #0d1524;
-  --dark-bg-card:   #101a2c;
-  --dark-border:    rgba(200, 164, 90, 0.12);
-  --dark-text:      #efe6cf;
-  --dark-text-2:    #c2b899;
-  --dark-text-3:    #8e8572;
-  --dark-accent:    #c8a45a;
-  --dark-accent-text: #dcb876;
+  --dark-bg:        #eef2ef;
+  --dark-bg-raised: #f8faf7;
+  --dark-bg-card:   #ffffff;
+  --dark-border:    rgba(42, 52, 57, 0.16);
+  --dark-text:      #20272b;
+  --dark-text-2:    #4c565c;
+  --dark-text-3:    #625d55;
+  --dark-accent:    #8f6a3d;
+  --dark-accent-text: #6f4f2a;
 
-  /* ── Layout ──────────────────────────────────────────────── */
-  --max:         1280px;
+  --max:         1180px;
   --nav-h:       64px;
-  --radius:      16px;
-  --radius-lg:   24px;
+  --radius:      8px;
+  --radius-lg:   8px;
 
   /* ── Motion ──────────────────────────────────────────────── */
   --ease:        cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,7 +58,11 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(32, 39, 43, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(32, 39, 43, 0.024) 1px, transparent 1px),
+    var(--bg);
+  background-size: 32px 32px, 32px 32px, auto;
   color: var(--text);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   font-size: 15px;
@@ -83,7 +80,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.035;
+  opacity: 0.022;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -92,7 +89,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; }
 
 ::selection {
-  background: rgba(193, 127, 78, 0.25);
+  background: rgba(143, 106, 61, 0.18);
   color: var(--text);
 }
 
@@ -124,8 +121,8 @@ main {
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(193, 127, 78, 0.08); }
-  50%      { box-shadow: 0 0 40px rgba(193, 127, 78, 0.16); }
+  0%, 100% { box-shadow: 0 0 20px rgba(143, 106, 61, 0.08); }
+  50%      { box-shadow: 0 0 40px rgba(143, 106, 61, 0.14); }
 }
 
 /* ── Reduced motion ────────────────────────────────────────── */
@@ -135,5 +132,11 @@ main {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 92px;
   }
 }

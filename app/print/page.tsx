@@ -42,9 +42,9 @@ function Title({ title, subtitle }: { title: string; subtitle?: string }) {
 
 const ffBars = [
   { label: "Transaction Comps", low: 5.5, high: 9.0, median: 7.2, color: "#c17f4e", opacity: 0.25 },
-  { label: "Trading Comps (adj.)", low: 4.8, high: 7.5, median: 6.0, color: "#3b82f6", opacity: 0.2 },
-  { label: "LBO Floor (25% IRR)", low: 4.0, high: 5.5, median: 4.8, color: "#666", opacity: 0.15 },
-  { label: "LBO Floor (20% IRR)", low: 5.0, high: 6.5, median: 5.8, color: "#666", opacity: 0.15 },
+  { label: "Trading Comps (adj.)", low: 4.8, high: 7.5, median: 6.0, color: "#6f7a80", opacity: 0.2 },
+  { label: "Reverse LBO (25% IRR)", low: 4.0, high: 5.5, median: 4.8, color: "#666", opacity: 0.15 },
+  { label: "Reverse LBO (20% IRR)", low: 5.0, high: 6.5, median: 5.8, color: "#666", opacity: 0.15 },
 ];
 const FF_MIN = 3.5, FF_MAX = 10.5, FF_L = 180, FF_R = 780, FF_W = FF_R - FF_L;
 const FF_BH = 32, FF_G = 20, FF_T = 36, FF_B = 44, FF_TICKS = [4, 5, 6, 7, 8, 9, 10];
@@ -90,7 +90,7 @@ function PipelineTimeline({ stages, isFR }: { stages: { number: string; title: s
   const Y_MAIN = 60, Y_LABELS = Y_MAIN + 28, Y_CROSS = 210;
   const startX = 50, endX = W - 50;
   const gap = (endX - startX) / (stages.length - 1);
-  const statusColor: Record<string, string> = { live: "#22c55e", testing: "#3b82f6", spec: "#f59e0b" };
+  const statusColor: Record<string, string> = { live: "#22c55e", testing: "#6f7a80", spec: "#f59e0b" };
   const mono = "var(--font-mono), monospace";
   const sans = "var(--font-sans), sans-serif";
 
@@ -130,8 +130,8 @@ function PipelineTimeline({ stages, isFR }: { stages: { number: string; title: s
         <text x={startX} y={Y_CROSS + 2} style={{ fontFamily: mono, fontSize: "7.5px", fill: "#c17f4e", letterSpacing: "0.06em" }}>
           CRM COCKPIT — {isFR ? "toujours actif" : "always-on"}
         </text>
-        <rect x={startX + gap * 2 - 10} y={Y_CROSS + 14} width={endX - startX - gap * 2 + 20} height={18} rx={0} fill="#3b82f6" opacity={0.06} />
-        <text x={startX + gap * 2} y={Y_CROSS + 26} style={{ fontFamily: mono, fontSize: "7.5px", fill: "#3b82f6", letterSpacing: "0.06em" }}>
+        <rect x={startX + gap * 2 - 10} y={Y_CROSS + 14} width={endX - startX - gap * 2 + 20} height={18} rx={0} fill="#6f7a80" opacity={0.08} />
+        <text x={startX + gap * 2} y={Y_CROSS + 26} style={{ fontFamily: mono, fontSize: "7.5px", fill: "#6f7a80", letterSpacing: "0.06em" }}>
           EMAIL INTELLIGENCE — {isFR ? "à partir du mandat" : "from mandate onward"}
         </text>
       </svg>
@@ -148,8 +148,8 @@ function ArchitectureDiagram({ isFR }: { isFR: boolean }) {
 
   const layers = [
     { y: 20, label: isFR ? "INTERFACE" : "INTERFACE", color: "#c17f4e", items: ["FastAPI + HTMX", "Langfuse", "OpenRouter"] },
-    { y: 105, label: isFR ? "TRAITEMENT" : "PROCESSING", color: "#3b82f6", items: ["Docling", "Playwright", "python-pptx", "openpyxl", "LangGraph"] },
-    { y: 190, label: isFR ? "INFRASTRUCTURE" : "INFRASTRUCTURE", color: "#666", items: ["PostgreSQL", "Qdrant", "Neo4j", "vLLM + Qwen 32B"] },
+    { y: 105, label: isFR ? "TRAITEMENT" : "PROCESSING", color: "#8f6a3d", items: ["Docling", "Playwright", "HTML → PDF", "openpyxl", "LangGraph"] },
+    { y: 190, label: isFR ? "INFRASTRUCTURE" : "INFRASTRUCTURE", color: "#4c463b", items: ["PostgreSQL", "Qdrant", "Neo4j", "vLLM + Qwen 32B"] },
   ];
 
   return (
@@ -233,7 +233,7 @@ export default function PrintPage() {
       <div className={`${styles.slide} ${styles.cover}`}>
         <div className={styles.coverBrand}>Epoch Associés</div>
         <div className={styles.coverRule} />
-        <div className={styles.coverTagline}>{isFR ? "Conseil M&A augmenté par l'IA" : "AI-Native M&A Advisory"}</div>
+        <div className={styles.coverTagline}>{isFR ? "Portfolio technique M&A" : "Technical M&A portfolio"}</div>
         <div className={styles.coverMeta}>
           <div>Paris, France</div>
           <div>{date}</div>
@@ -267,20 +267,20 @@ export default function PrintPage() {
         <SlideHeader section={isFR ? "Synthèse" : "Executive Summary"} chapter={isFR ? "Vue d'ensemble" : "Overview"} />
         <div className={styles.slideContent}>
           <Title title={isFR
-            ? "Un système d'exécution de transactions, construit de zéro pour le M&A small-cap."
-            : "A deal operating system built from scratch for small-cap M&A."} />
+            ? "Un POC pour tester l'automatisation de l'exécution M&A small-cap."
+            : "A POC to test automation in small-cap M&A execution."} />
           <div className={styles.execColumns}>
             <div className={styles.execLeft}>
               <p className={styles.execParagraph}>
                 {isFR
-                  ? "Epoch Associés est un cabinet de conseil M&A augmenté par l'IA, spécialisé dans les mandats de cession français small-cap (500K–10M€ EV). Le cabinet remplace l'équipe d'exécution junior (Analyste à VP) par des agents IA sur mesure tout en préservant le jugement du banquier senior à chaque point de décision."
-                  : "Epoch Associés is an AI-native M&A advisory boutique focused on French small-cap sell-side transactions (500K–10M€ EV). The firm replaces the junior execution team (Analyst through VP) with purpose-built AI agents while preserving senior banker judgment at every decision point."}
+                  ? "Epoch Associés est né d'une question : jusqu'où peut-on automatiser l'exécution M&A small-cap sans perdre le standard bancaire ? Les POC construits sur trois mois ne sont pas encore au niveau attendu pour être vendus comme produit ; le projet est donc mis en attente."
+                  : "Epoch Associés began with one question: how far can small-cap M&A execution be automated without losing banker-grade standards? The POCs built over three months are not yet good enough to be sold as a product; the project is therefore on hold."}
               </p>
             </div>
             <div className={styles.execRight}>
               <ul className={styles.execBullets}>
-                <li>{isFR ? "14+ modules couvrant l'intégralité du cycle sell-side, du sourcing au closing" : "14+ modules covering the full sell-side lifecycle from sourcing to closing"}</li>
-                <li>{isFR ? "Human-in-the-loop à chaque porte — aucun output d'agent n'atteint le marché sans validation du banquier" : "Human-in-the-loop at every gate — no agent output reaches the market without banker validation"}</li>
+                <li>{isFR ? "12 étapes et 2 couches transversales cartographiées ; le post-IM reste en spécifications ou briques partielles" : "12 stages and 2 cross-cutting layers mapped; post-IM remains specs or partial components"}</li>
+                <li>{isFR ? "Human-in-the-loop à chaque porte — aucun livrable externe sans validation du banquier" : "Human-in-the-loop at every gate — no external output without banker validation"}</li>
                 <li>{isFR ? "Construit par un ex-Lincoln International et un ingénieur ML full-stack" : "Built by an ex-Lincoln International banker and a full-stack ML engineer"}</li>
               </ul>
             </div>
@@ -324,7 +324,7 @@ export default function PrintPage() {
       <div className={styles.slide}>
         <SlideHeader section={isFR ? "Opportunité de marché" : "Market Opportunity"} chapter={isFR ? "Vue d'ensemble" : "Overview"} />
         <div className={styles.slideContent}>
-          <Title title={isFR ? "Un marché massif, sous-servi, prêt pour l'automatisation." : "A massive market, underserved, ready for automation."} />
+          <Title title={isFR ? "Un segment important, sous-servi, où l'automatisation partielle peut améliorer l'économie du conseil." : "A large underserved segment where partial automation can improve advisory economics."} />
           <div className={styles.marketMetrics}>
             <div className={styles.marketMetric}>
               <div className={styles.marketMetricValue}>400K</div>
@@ -335,16 +335,16 @@ export default function PrintPage() {
               <div className={styles.marketMetricLabel}>{isFR ? "Success fee typique sur un deal de 2M€ EV" : "Typical success fee on a 2M€ EV deal"}</div>
             </div>
             <div className={styles.marketMetric}>
-              <div className={styles.marketMetricValue}>&lt;5%</div>
-              <div className={styles.marketMetricLabel}>{isFR ? "Part estimée recevant un conseil IB-grade" : "Estimated share currently receiving IB-grade advisory"}</div>
+              <div className={styles.marketMetricValue}>{isFR ? "Limitée" : "Limited"}</div>
+              <div className={styles.marketMetricLabel}>{isFR ? "Part recevant probablement une préparation de niveau bancaire" : "Likely share receiving banker-grade preparation"}</div>
             </div>
           </div>
           <div className={styles.marketInsight}>
             <div className={styles.marketInsightTitle}>{isFR ? "L'équation économique" : "The economics equation"}</div>
             <p className={styles.marketInsightBody}>
               {isFR
-                ? "Un deal de 2M€ génère 80-150K€ de fees. Avec une équipe junior traditionnelle (2-3 analystes à 60-80K€/an), les coûts fixes rendent le deal à peine rentable. Epoch remplace l'équipe junior par des agents IA à coût marginal quasi nul, rendant chaque deal dans la fourchette 500K-10M€ économiquement viable avec une qualité IB-grade."
-                : "A 2M€ deal generates 80-150K€ in fees. With a traditional junior team (2-3 analysts at 60-80K€/year), fixed costs make the deal barely profitable. Epoch replaces the junior team with AI agents at near-zero marginal cost, making every deal in the 500K-10M€ range economically viable with IB-grade quality."}
+                ? "Un deal de 2M€ génère 80-150K€ de fees. Avec une équipe junior traditionnelle, les coûts fixes limitent le temps de préparation possible. L'hypothèse Epoch : absorber une partie du travail junior répétable pour rendre une préparation plus robuste économiquement viable sur 500K-10M€ EV."
+                : "A 2M€ deal generates 80-150K€ in fees. With a traditional junior team, fixed costs limit the preparation time available. Epoch's hypothesis: absorb part of the repeatable junior work to make stronger preparation economically viable on 500K-10M€ EV deals."}
             </p>
           </div>
           <div className={styles.source}>{isFR ? "Source : INSEE, BPI France, estimations Epoch Associés" : "Source: INSEE, BPI France, Epoch Associés estimates"}</div>
@@ -375,7 +375,7 @@ export default function PrintPage() {
             <div className={styles.caseRight}>
               <div className={styles.caseStat}>
                 <span className={styles.caseStatValue}>24</span>
-                <span className={styles.caseStatLabel}>{isFR ? "slides IB-grade" : "IB-grade slides"}</span>
+                <span className={styles.caseStatLabel}>{isFR ? "pages de démonstration" : "demo pages"}</span>
               </div>
               <div className={styles.caseStat}>
                 <span className={styles.caseStatValue}>15 min</span>
@@ -439,8 +439,8 @@ export default function PrintPage() {
           <FootballFieldSVG />
           <p className={styles.footballQuote}>
             {isFR
-              ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. L'analyse LBO fixe le plancher. Le banquier arbitre les pondérations."
-              : "Transaction comps are the anchor. Trading comps confirm or challenge. LBO floor sets the minimum. The banker decides the weights."}
+              ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. Le reverse LBO teste le plafond de prix d'un acquéreur financier. Le banquier arbitre les pondérations."
+              : "Transaction comps are the anchor. Trading comps confirm or challenge. Reverse LBO tests the PE buyer ceiling. The banker decides the weights."}
           </p>
           <div className={styles.source}>{src}</div>
         </div>
@@ -454,7 +454,7 @@ export default function PrintPage() {
         <SlideHeader section={isFR ? "Pipeline de transaction" : "Deal Pipeline"} chapter={isFR ? "Capacités" : "Capabilities"} />
         <div className={styles.slideContent}>
           <Title
-            title={isFR ? "L'intégralité du cycle sell-side, décomposée en étapes auditables." : "The entire sell-side lifecycle, decomposed into auditable stages."}
+            title={isFR ? "Le processus jusqu'au mémorandum, décomposé en étapes auditables." : "The process up to the memorandum, decomposed into auditable stages."}
             subtitle={isFR
               ? "12 étapes séquentielles, 2 couches transversales. Chaque étape a des contrats Pydantic I/O, des portes HITL et un suivi de statut. Le pipeline attend la validation humaine."
               : "12 sequential stages, 2 cross-cutting layers. Each stage has Pydantic I/O contracts, HITL gates, and status tracking. The pipeline waits for human validation."}
@@ -462,7 +462,7 @@ export default function PrintPage() {
           <PipelineTimeline stages={c.pipelineStages.map((s) => ({ number: s.number, title: s.title, status: s.status }))} isFR={isFR} />
           <div className={styles.pipelineLegend}>
             <span><span className={styles.legendDot} style={{ background: "#22c55e" }} /> Live</span>
-            <span><span className={styles.legendDot} style={{ background: "#3b82f6" }} /> In Test</span>
+            <span><span className={styles.legendDot} style={{ background: "#6f7a80" }} /> In Test</span>
             <span><span className={styles.legendDot} style={{ background: "#f59e0b" }} /> Spec</span>
           </div>
           <div className={styles.source}>{src}</div>
@@ -496,7 +496,7 @@ export default function PrintPage() {
       <div className={styles.slide}>
         <SlideHeader section={isFR ? "Différenciation" : "Differentiation"} chapter={isFR ? "Positionnement" : "Positioning"} />
         <div className={styles.slideContent}>
-          <Title title={isFR ? "Pas des fonctionnalités. De l'architecture." : "Not features. Architecture."} />
+          <Title title={isFR ? "Ce qui distingue le POC d'un simple prompt." : "What separates the POC from a simple prompt."} />
           <table className={styles.compTable}>
             <thead>
               <tr>
@@ -570,17 +570,17 @@ export default function PrintPage() {
       <div className={styles.slide}>
         <SlideHeader section={isFR ? "Équipe" : "Team"} />
         <div className={styles.slideContent}>
-          <Title title={isFR ? "Deux personnes. Un système." : "Two people. One system."} />
+          <Title title={isFR ? "Une équipe réduite, un chantier dense." : "A small team, a dense build."} />
           <div className={styles.teamGrid}>
             <div className={styles.teamCard}>
               <h3 className={styles.teamName}>Julien Bouix</h3>
               <span className={styles.teamRole}>{isFR ? "Président" : "President"}</span>
               <p className={styles.teamDesc}>
                 {isFR
-                  ? "Ex-Lincoln International, équipe Technology (niveau Associate). 10+ transactions mid-cap dans les secteurs Technology, Healthcare et Industrials. M&A execution, conception du système, rédaction des specs, validation HITL et co-développement."
+                  ? "Ex-Lincoln International, équipe Technology (niveau Associate). 10+ transactions mid-cap dans les secteurs Technology, Healthcare et Industrials. Exécution M&A, conception du système, rédaction des spécifications, validation HITL et co-développement."
                   : "Ex-Lincoln International, Technology Team (Associate level). 10+ mid-cap transactions across Technology, Healthcare, and Industrials. M&A execution, system design, spec authorship, HITL validation, and co-development."}
               </p>
-              <p className={styles.teamQuote}>{isFR ? "\"Specs, décisions d'architecture, validation et code.\"" : "\"Specs, architecture decisions, validation, and code.\""}</p>
+              <p className={styles.teamQuote}>{isFR ? "\"Spécifications, décisions d'architecture, validation et code.\"" : "\"Specs, architecture decisions, validation, and code.\""}</p>
             </div>
             <div className={styles.teamCard}>
               <h3 className={styles.teamName}>Louis Germain</h3>
@@ -588,7 +588,7 @@ export default function PrintPage() {
               <p className={styles.teamDesc}>
                 {isFR
                   ? "MSc Informatique. Implémentation intégrale : infrastructure, orchestration d'agents, pipelines de données, déploiement. RTX 4090, Docker, PostgreSQL, Qdrant."
-                  : "MSc Computer Science. Full-stack implementation: infrastructure, agent orchestration, data pipelines, deployment. RTX 4090, Docker, PostgreSQL, Qdrant, the works."}
+                  : "MSc Computer Science. Full-stack implementation: infrastructure, agent orchestration, data pipelines, deployment. RTX 4090, Docker, PostgreSQL, Qdrant."}
               </p>
               <p className={styles.teamQuote}>{isFR ? "\"Architecture, infrastructure et chaque pipeline.\"" : "\"Architecture, infrastructure, and every pipeline.\""}</p>
             </div>
@@ -596,8 +596,8 @@ export default function PrintPage() {
           <div className={styles.teamAdvisory}>
             <strong>{isFR ? "Réseau de conseil" : "Advisory Network"}</strong>
             <p>{isFR
-              ? "Epoch engage des conseillers sectoriels seniors sur une base par-mandat pour l'expertise sectorielle et l'accès au réseau d'acquéreurs. Exécution senior-only : pas de junior, pas de délégation de qualité."
-              : "Epoch engages sector-specific senior advisors on a per-deal basis for industry expertise and buyer network access. Senior-only execution: no juniors, no quality delegation."}</p>
+              ? "Le projet a surtout servi à formaliser les contrats entre métier, données, modules et validation humaine. La qualité finale reste à stabiliser avant toute logique produit."
+              : "The project mainly served to formalize the contracts between domain work, data, modules and human validation. Final quality still needs to stabilize before any product logic."}</p>
           </div>
         </div>
         <SlideFooter page={13} lang={lang} />
@@ -634,7 +634,7 @@ export default function PrintPage() {
       <div className={`${styles.slide} ${styles.backCover}`}>
         <div className={styles.backBrand}>Epoch Associés</div>
         <div className={styles.coverRule} />
-        <div className={styles.backTagline}>{isFR ? "Conseil M&A augmenté par l'IA" : "AI-Native M&A Advisory"}</div>
+        <div className={styles.backTagline}>{isFR ? "Portfolio technique M&A" : "Technical M&A portfolio"}</div>
         <div className={styles.backContact}>
           <div>julien@epochassocies.com</div>
           <div>Paris, France</div>

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Architecture Decisions Log — Epoch Associes",
+  title: "Architecture Decisions Log — Epoch Associés",
   description:
     "Load-bearing decisions for the Epoch deal operating system, with the reasoning behind each one and the alternatives we rejected."
 };

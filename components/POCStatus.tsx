@@ -22,16 +22,16 @@ export function POCStatus({ stages, crossCutting, lang }: POCStatusProps) {
         live: "Live",
         testing: "En test",
         spec: "Spec",
-        total: "modules au total",
-        honest: "Statut revu manuellement. On ne gonfle pas : un banquier senior le détecterait en 10 min d'utilisation."
+        total: "éléments cartographiés",
+        honest: "Statut revu manuellement : les modules en test ou en spécification ne sont pas présentés comme live."
       }
     : {
         tag: "POC status · April 2026",
         live: "Live",
         testing: "In test",
         spec: "Spec",
-        total: "modules total",
-        honest: "Status reviewed by hand. No inflation — a senior banker would catch it in 10 min of poking."
+        total: "mapped elements",
+        honest: "Status reviewed manually: modules in test or specification are not presented as live."
       };
 
   return (

@@ -155,13 +155,35 @@
 @media (max-width: 780px) {
   .header {
     grid-template-columns: 24px 1fr auto;
+    padding: 14px 16px;
+  }
+
+  .title {
+    font-size: 1.05rem;
+    white-space: normal;
   }
 
   .oneLiner {
     grid-column: 1 / -1;
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 12.5px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .bodyInner {
     margin-left: 0;
+    padding: 0 16px 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .oneLiner {
+    display: none;
+  }
+
+  .badge {
+    font-size: 7.5px;
   }
 }

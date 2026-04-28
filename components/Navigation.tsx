@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import type { NavSection } from "@/lib/site-content";
 import { useUIStore } from "@/store/ui-store";
 import { useLangStore } from "@/store/lang-store";
-import { useAudienceStore } from "@/store/audience-store";
 
 import styles from "./Navigation.module.css";
 
@@ -16,7 +17,8 @@ type NavigationProps = {
 export function Navigation({ sections }: NavigationProps) {
   const activeSection = useUIStore((s) => s.activeSection);
   const { lang, toggleLang } = useLangStore();
-  const { audience, setAudience } = useAudienceStore();
+  const pathname = usePathname();
+  const isOperator = pathname.endsWith("/operator");
   const [scrolled, setScrolled] = useState(false);
   const shellRef = useRef<HTMLElement>(null);
 
@@ -35,7 +37,7 @@ export function Navigation({ sections }: NavigationProps) {
       <div className={styles.inner}>
         <a className={styles.brand} href="#top">
           <span className={styles.brandMark}>EA</span>
-          <span className={styles.brandName}>Epoch Associes</span>
+          <span className={styles.brandName}>Epoch Associés</span>
         </a>
 
         <nav className={styles.nav} aria-label="Main navigation">
@@ -48,41 +50,38 @@ export function Navigation({ sections }: NavigationProps) {
               {s.label}
             </a>
           ))}
-          <div className={styles.controls}>
-            <div
-              className={styles.audienceGroup}
-              role="group"
-              aria-label={lang === "fr" ? "Audience" : "Audience"}
-            >
-              <button
-                type="button"
-                className={`${styles.audienceBtn} ${audience === "banker" ? styles.audienceActive : ""}`}
-                onClick={() => setAudience("banker")}
-                aria-pressed={audience === "banker"}
-              >
-                {lang === "fr" ? "Banquier" : "Banker"}
-              </button>
-              <button
-                type="button"
-                className={`${styles.audienceBtn} ${audience === "operator" ? styles.audienceActive : ""}`}
-                onClick={() => setAudience("operator")}
-                aria-pressed={audience === "operator"}
-              >
-                {lang === "fr" ? "Opérateur" : "Operator"}
-              </button>
-            </div>
-            <button
-              className={styles.langToggle}
-              onClick={toggleLang}
-              aria-label={`Switch to ${lang === "fr" ? "English" : "French"}`}
-            >
-              {lang === "fr" ? "EN" : "FR"}
-            </button>
-            <a className={styles.printBtn} href="/portfolio/print" target="_blank" rel="noopener" title={lang === "fr" ? "Version PDF imprimable" : "Printable PDF version"}>
-              PDF
-            </a>
-          </div>
         </nav>
+
+        <div className={styles.controls}>
+          <div
+            className={styles.audienceGroup}
+            role="group"
+            aria-label={lang === "fr" ? "Audience" : "Audience"}
+          >
+            <Link
+              href="/"
+              className={`${styles.audienceBtn} ${!isOperator ? styles.audienceActive : ""}`}
+              aria-current={!isOperator ? "page" : undefined}
+            >
+              M&A
+            </Link>
+            <Link
+              href="/operator"
+              className={`${styles.audienceBtn} ${isOperator ? styles.audienceActive : ""}`}
+              aria-current={isOperator ? "page" : undefined}
+            >
+              {lang === "fr" ? "Opérateur" : "Operator"}
+            </Link>
+          </div>
+          <button
+            className={styles.langToggle}
+            type="button"
+            onClick={toggleLang}
+            aria-label={`Switch to ${lang === "fr" ? "English" : "French"}`}
+          >
+            {lang === "fr" ? "EN" : "FR"}
+          </button>
+        </div>
       </div>
     </header>
   );

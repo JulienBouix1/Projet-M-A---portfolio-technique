@@ -16,8 +16,8 @@ interface BarData {
 const bars: BarData[] = [
   { label: "Transaction Comps", low: 5.5, high: 9.0, median: 7.2, colorVar: "var(--accent)", barOpacity: 0.3 },
   { label: "Trading Comps (adj.)", low: 4.8, high: 7.5, median: 6.0, colorVar: "var(--testing)", barOpacity: 0.3 },
-  { label: "LBO Floor (25% IRR)", low: 4.0, high: 5.5, median: 4.8, colorVar: "var(--text-3)", barOpacity: 0.2 },
-  { label: "LBO Floor (20% IRR)", low: 5.0, high: 6.5, median: 5.8, colorVar: "var(--text-3)", barOpacity: 0.2 },
+  { label: "Reverse LBO (25% IRR)", low: 4.0, high: 5.5, median: 4.8, colorVar: "var(--text-3)", barOpacity: 0.2 },
+  { label: "Reverse LBO (20% IRR)", low: 5.0, high: 6.5, median: 5.8, colorVar: "var(--text-3)", barOpacity: 0.2 },
 ];
 
 const AXIS_MIN = 3.5;
@@ -168,8 +168,8 @@ export default function FootballField() {
 
       <blockquote className={styles.quote}>
         {lang === "fr"
-          ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. L'analyse LBO fixe le plancher. Le banquier arbitre les pondérations."
-          : "Transaction comps are the anchor. Trading comps confirm or challenge. LBO floor sets the minimum. The banker decides the weights."}
+          ? "Les comparables transactionnels sont l'ancre. Les comparables boursiers confirment ou challengent. Le reverse LBO teste le plafond de prix d'un acquéreur financier. Le banquier arbitre les pondérations."
+          : "Transaction comps are the anchor. Trading comps confirm or challenge. Reverse LBO tests the PE buyer ceiling. The banker decides the weights."}
       </blockquote>
     </div>
   );

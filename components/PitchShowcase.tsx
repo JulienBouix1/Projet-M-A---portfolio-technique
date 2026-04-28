@@ -3,6 +3,7 @@
 import { startTransition, useState } from "react";
 
 import { showcaseSlides } from "@/lib/site-content";
+import { useLangStore } from "@/store/lang-store";
 
 import styles from "./PitchShowcase.module.css";
 
@@ -61,7 +62,7 @@ function CompsSlide() {
           </tbody>
         </table>
       </div>
-      <p className={styles.tableFootnote}>Transactions privées, multiples non divulgués. Fourchette indicative interne : 4.0x–6.5x EBITDA sur comparables small-cap levage FR (base MAKB + CFNews).</p>
+      <p className={styles.tableFootnote}>Exemple synthétique inspiré de transactions publiques. Fourchette illustrative, non utilisable comme référence de marché.</p>
     </div>
   );
 }
@@ -156,8 +157,17 @@ const slideComponents: Record<string, React.FC> = {
 };
 
 export function PitchShowcase() {
+  const lang = useLangStore((s) => s.lang);
   const [activeId, setActiveId] = useState("valo");
   const ActiveSlide = slideComponents[activeId] ?? ValoSlide;
+  const tabCopy: Record<string, { label: string; title: string }> = lang === "fr"
+    ? {
+        cover: { label: "Page 01", title: "Couverture" },
+        comps: { label: "Page 15", title: "Transactions comparables" },
+        valo: { label: "Page 16", title: "Fourchette de valorisation" },
+        buyers: { label: "Page 20", title: "Liste acquéreurs" }
+      }
+    : Object.fromEntries(showcaseSlides.map((slide) => [slide.id, { label: slide.label, title: slide.title }]));
 
   return (
     <div className={styles.shell}>
@@ -169,8 +179,8 @@ export function PitchShowcase() {
             className={`${styles.tab} ${activeId === slide.id ? styles.tabActive : ""}`}
             onClick={() => startTransition(() => setActiveId(slide.id))}
           >
-            <span>{slide.label}</span>
-            <strong>{slide.title}</strong>
+            <span>{tabCopy[slide.id].label}</span>
+            <strong>{tabCopy[slide.id].title}</strong>
           </button>
         ))}
       </div>
@@ -182,14 +192,16 @@ export function PitchShowcase() {
             <i />
             <i />
           </div>
-          <span>pitch_atlas.pptx — 24 slides</span>
+          <span>{lang === "fr" ? "pitch_atlas.pptx — 24 pages" : "pitch_atlas.pptx — 24 slides"}</span>
         </div>
 
         <ActiveSlide />
 
         <div className={styles.previewFooter}>
-          <span className={styles.badge}>100% AI-generated</span>
-          <span className={styles.footerNote}>Données fictives — pitch de démonstration</span>
+          <span className={styles.badge}>{lang === "fr" ? "Démo générée par IA" : "AI-generated demo"}</span>
+          <span className={styles.footerNote}>
+            {lang === "fr" ? "Données synthétiques — pitch de démonstration" : "Synthetic data — demonstration pitch"}
+          </span>
         </div>
       </div>
     </div>
